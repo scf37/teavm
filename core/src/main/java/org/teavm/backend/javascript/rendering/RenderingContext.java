@@ -155,9 +155,13 @@ public abstract class RenderingContext {
             typeToClsString(writer, type);
             writer.append(")");
         } else if (cst instanceof String) {
+
             String string = (String) cst;
-            int index = lookupString(string);
-            writer.appendFunction("$rt_s").append("(" + index + ")");
+            writer.appendFunction("$rt_str").append("(");
+            RenderingUtil.writeString(writer, string);
+            writer.append(")");
+//            int index = lookupString(string);
+//            writer.appendFunction("$rt_s").append("(" + index + ")");
         } else if (cst instanceof Long) {
             long value = (Long) cst;
             if (value == 0) {

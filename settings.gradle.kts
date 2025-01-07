@@ -55,6 +55,8 @@ include("tools:wasm-disassembly")
 include("tests")
 include("extras-slf4j")
 
+include("playground")
+
 val teavmVersion = providers.gradleProperty("teavm.project.version").get()
 
 gradle.allprojects {

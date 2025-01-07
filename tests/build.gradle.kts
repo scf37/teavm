@@ -25,9 +25,9 @@ javaVersion {
 }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(21)
+//    }
 }
 
 dependencies {

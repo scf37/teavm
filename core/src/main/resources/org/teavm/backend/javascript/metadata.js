@@ -85,11 +85,13 @@ let $rt_metadata = data => {
             for (let j = 0; j < virtualMethods.length; j += 2) {
                 let name = virtualMethods[j];
                 let func = virtualMethods[j + 1];
-                if (typeof name === 'string') {
-                    name = [name];
+                // name changed from field name to setter function (o, r)=>o.<name>=r
+                // for GCC compatibility
+                if (typeof name === 'function') {
+                    name = [name]
                 }
                 for (let k = 0; k < name.length; ++k) {
-                    cls.prototype[name[k]] = func;
+                    name[k](cls.prototype, func);
                 }
             }
         }

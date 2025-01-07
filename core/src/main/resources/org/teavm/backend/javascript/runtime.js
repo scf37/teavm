@@ -100,8 +100,8 @@ let $rt_classWithoutFields = superclass => {
 let $rt_cls = (cls) => teavm_javaMethod("java.lang.Class",
         "getClass(Lorg/teavm/platform/PlatformClass;)Ljava/lang/Class;")(cls);
 
-
-let $rt_objcls = () => teavm_javaClass("java.lang.Object");
+var rt_objcls_gcc_fix = teavm_javaClass("java.lang.Object");
+let $rt_objcls = () => rt_objcls_gcc_fix;
 
 let $rt_getThread = () => {
     if (teavm_javaMethodExists("java.lang.Thread", "currentThread()Ljava/lang/Thread;")) {

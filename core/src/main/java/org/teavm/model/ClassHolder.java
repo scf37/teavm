@@ -93,6 +93,7 @@ public class ClassHolder extends ElementHolder implements ClassReader {
     }
 
     public void removeMethod(MethodHolder method) {
+        System.out.println("remove " + method.getOwnerName() + "." + method.getName());
         if (method.getOwner() != this) {
             throw new IllegalArgumentException("Method " + method.getOwner().getName()
                     + "." + method.getDescriptor() + " is not a member of " + getName());

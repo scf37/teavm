@@ -1,0 +1,21 @@
+- code should use imported object directly, for hot reloading to work:
+let bar = require("./bar.js");
+foo(bar.value);
+- restore original teavm via SplittingJavascriptTarget.useSplitting
+- option to obfuscate class names in class metadata?
+- option to drop method metadata?
+
+- heavy org.teavm.runtime sucks - because when user adds dependency on another java.* class, hot reload will break.
+    but - $rt_ depends on java classes, full list of dependencies depends on JDK version
+
+concept:
+- write my own TeaVmTarget that delegates to JavaScriptTarget for EVERY class.
+- hammer JavaScriptTarget output so:
+-- it adds proper require() at the top
+-- it uses imported stdlib instead of emitted one:
+stdlib = require(....)
+$rt_nextId = stdlib.$rt_nextId;
+// ......
+-- it exports symbols used by other classes
+-- rt_packages and rt_metadata should work as-is
+

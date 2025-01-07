@@ -22,6 +22,9 @@ import org.teavm.model.Program;
 import org.teavm.model.TryCatchBlock;
 import org.teavm.model.optimization.UnreachableBasicBlockEliminator;
 
+/**
+ * Eliminates java.lang.NoSuchFieldError catch handlers
+ */
 public class NoSuchFieldCatchElimination {
     private UnreachableBasicBlockEliminator blockEliminator = new UnreachableBasicBlockEliminator();
 

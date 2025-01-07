@@ -34,6 +34,7 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 import org.objectweb.asm.tree.ClassNode;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.cache.IncrementalDependencyProvider;
 import org.teavm.cache.IncrementalDependencyRegistration;
 import org.teavm.callgraph.CallGraph;
@@ -673,6 +674,7 @@ public abstract class DependencyAnalyzer implements DependencyInfo {
     public void processDependencies() {
         interrupted = false;
         processQueue();
+
         if (!interrupted) {
             completing = true;
             lock();
@@ -712,6 +714,7 @@ public abstract class DependencyAnalyzer implements DependencyInfo {
     }
 
     public void cleanup(ClassSourcePacker classSourcePacker) {
+
         for (DependencyNode node : allNodes) {
             node.followers = null;
             node.transitions = null;

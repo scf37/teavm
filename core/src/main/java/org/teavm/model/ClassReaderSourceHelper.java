@@ -39,6 +39,10 @@ final class ClassReaderSourceHelper {
         if (method != null && !method.hasModifier(ElementModifier.ABSTRACT)) {
             return method;
         }
+        // constructors can not be overridden
+        if (method != null && method.getName().equals("<init>")) {
+            return null;
+        }
 
         MethodReader mostSpecificMethod = null;
         List<String> superClasses = new ArrayList<>();

@@ -17,11 +17,13 @@ package org.teavm.backend.javascript.codegen;
 
 import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.carrotsearch.hppc.ObjectIntMap;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.teavm.model.FieldReference;
 import org.teavm.model.MethodDescriptor;
 import org.teavm.model.MethodReference;
+import org.teavm.model.ValueType;
 
 public class DefaultAliasProvider implements AliasProvider {
     private final int maxTopLevelNames;
@@ -87,7 +89,7 @@ public class DefaultAliasProvider implements AliasProvider {
                 alias = "$" + alias;
                 break;
         }
-        return makeUniqueInstance(alias);
+        return makeUniqueInstance(alias + computeMethodSignature(method));
     }
 
     @Override
@@ -102,7 +104,43 @@ public class DefaultAliasProvider implements AliasProvider {
                 break;
         }
 
-        return makeUnique(suggestAliasForClass(method.getClassName()) + "_" + suggested);
+        return makeUnique(suggestAliasForClass(method.getClassName()) + "_" + suggested + computeMethodSignature(method.getDescriptor()));
+    }
+
+    // for split source, we need stable method aliases, both static and non-static as they both are visible
+    private String computeMethodSignature(MethodDescriptor method) {
+        if (method.getParameterTypes().length == 0) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder("_");
+        for (ValueType t: method.getParameterTypes()) {
+            sb.append(t.toString());
+        }
+        String result = sb.toString().replace('.', '_').replace('/', '_');
+        if (result.length() > 6)
+            return hash(result);
+        else return result;
+    }
+
+    private static final long FNV_OFFSET_BASIS = 0xcbf29ce484222325L;
+    private static final long FNV_PRIME = 0x100000001b3L;
+    private static final char[] hashChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabdefghijklmnopqrstuvwxyz".toCharArray();
+    // 34 bits, should be enough to avoid collisions
+    private String hash(String s) {
+        long hash = FNV_OFFSET_BASIS;
+        for (int i = 0; i < s.length(); ++i) {
+            hash ^= s.charAt(i) & 0xff;
+            hash *= FNV_PRIME;
+        }
+        if (hash < 0) hash = -hash;
+        char[] result = new char[7];
+        result[0] = '_';
+        for (int i = 1; i < 7; ++i) {
+            result[i] = hashChars[(int)(hash % hashChars.length)];
+            hash /= hashChars.length;
+        }
+        return new String(result);
     }
 
     @Override

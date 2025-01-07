@@ -15,6 +15,7 @@
  */
 package org.teavm.backend.javascript;
 
+import static org.teavm.backend.javascript.rendering.Renderer.CLINIT_METHOD;
 import com.carrotsearch.hppc.ObjectIntHashMap;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -41,6 +42,7 @@ import org.teavm.ast.ControlFlowEntry;
 import org.teavm.backend.javascript.codegen.DefaultAliasProvider;
 import org.teavm.backend.javascript.codegen.DefaultNamingStrategy;
 import org.teavm.backend.javascript.codegen.MinifyingAliasProvider;
+import org.teavm.backend.javascript.codegen.NamingStrategy;
 import org.teavm.backend.javascript.codegen.OutputSourceWriter;
 import org.teavm.backend.javascript.codegen.OutputSourceWriterBuilder;
 import org.teavm.backend.javascript.codegen.RememberedSource;
@@ -62,6 +64,9 @@ import org.teavm.backend.javascript.spi.InjectedBy;
 import org.teavm.backend.javascript.spi.Injector;
 import org.teavm.backend.javascript.spi.MethodContributor;
 import org.teavm.backend.javascript.spi.MethodContributorContext;
+import org.teavm.backend.javascript.splitting.ImportsRenderer;
+import org.teavm.backend.javascript.splitting.JavaScriptTargetBase;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.backend.javascript.templating.JavaScriptTemplateFactory;
 import org.teavm.cache.EmptyMethodNodeCache;
 import org.teavm.cache.MethodNodeCache;
@@ -76,11 +81,13 @@ import org.teavm.dependency.DependencyType;
 import org.teavm.dependency.MethodDependency;
 import org.teavm.interop.PlatformMarker;
 import org.teavm.interop.Platforms;
+import org.teavm.model.AccessLevel;
 import org.teavm.model.BasicBlock;
-import org.teavm.model.CallLocation;
+import org.teavm.model.ClassHolder;
 import org.teavm.model.ClassHolderTransformer;
 import org.teavm.model.ClassReaderSource;
 import org.teavm.model.ElementModifier;
+import org.teavm.model.FieldHolder;
 import org.teavm.model.FieldReference;
 import org.teavm.model.ListableClassHolderSource;
 import org.teavm.model.MethodHolder;
@@ -90,6 +97,8 @@ import org.teavm.model.Program;
 import org.teavm.model.TextLocation;
 import org.teavm.model.ValueType;
 import org.teavm.model.Variable;
+import org.teavm.model.VariableReader;
+import org.teavm.model.instructions.AbstractInstructionReader;
 import org.teavm.model.instructions.ConstructInstruction;
 import org.teavm.model.instructions.InvocationType;
 import org.teavm.model.instructions.InvokeInstruction;
@@ -107,7 +116,7 @@ import org.teavm.vm.TeaVMTargetController;
 import org.teavm.vm.spi.RendererListener;
 import org.teavm.vm.spi.TeaVMHostExtension;
 
-public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
+public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaScriptTargetBase {
     private static final NumberFormat STATS_NUM_FORMAT = new DecimalFormat("#,##0");
     private static final NumberFormat STATS_PERCENT_FORMAT = new DecimalFormat("0.000 %");
     private static final MethodReference CURRENT_THREAD = new MethodReference(Thread.class,
@@ -360,6 +369,9 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
     }
 
     private void emit(ListableClassHolderSource classes, Writer writer, BuildTarget target) {
+        exports.clear();
+        boolean renderRuntime = controller.getEntryPoint().equals("org.teavm.runtime");
+
         var aliasProvider = obfuscated
                 ? new MinifyingAliasProvider(maxTopLevelNames)
                 : new DefaultAliasProvider(maxTopLevelNames);
@@ -409,6 +421,35 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
         renderer.setProperties(controller.getProperties());
         renderer.setProgressConsumer(controller::reportProgress);
 
+        for (String className: classes.getClassNames()) {
+            ClassHolder cls = classes.get(className);
+            // export all non-private stuff and constructors
+            boolean needInitializer = !cls.hasModifier(ElementModifier.INTERFACE)
+                    && !cls.hasModifier(ElementModifier.ABSTRACT);
+            for (MethodHolder method : cls.getMethods()) {
+                if ((method.getLevel() != AccessLevel.PRIVATE || method.getOwnerName().equals("java.lang.Object"))
+                        && method.getAnnotations().get(InjectedBy.class.getName()) == null
+                        && !methodInjectors.containsKey(method.getReference())
+                        && method.getAnnotations().get("org.teavm.jso.JSBody") == null
+                        && method.getProgram() != null
+                        && ((!method.hasModifier(ElementModifier.ABSTRACT) && !method.getName().startsWith("<")) ||
+                                (method.getName().equals("<init>"))
+                        )) {
+                    renderer.exportMethod(method.getReference(), null);
+                    if (needInitializer && method.getName().equals("<init>")) {
+                        renderer.exportInitializer(method.getReference(), null);
+                    }
+                }
+            }
+            renderer.exportClass(className, null);
+
+            for (FieldHolder field : cls.getFields()) {
+                if (field.hasModifier(ElementModifier.STATIC) && field.getLevel() != AccessLevel.PRIVATE) {
+                    renderer.exportField(field.getReference(), null);
+                }
+            }
+        }
+
         for (var listener : rendererListeners) {
             listener.begin(renderer, target);
         }
@@ -420,7 +461,8 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
 
         renderer.renderStringPool();
         renderer.renderStringConstants();
-        renderer.renderCompatibilityStubs();
+        if (renderRuntime)
+            renderer.renderCompatibilityStubs();
 
         var alias = "$rt_export_main";
         var ref = new MethodReference(controller.getEntryPoint(), "main", ValueType.parse(String[].class),
@@ -439,18 +481,54 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
         for (var listener : rendererListeners) {
             listener.complete();
         }
+        // eagerly run class static initializers
+        // it is required because static fields are exported as-is and not within wrapper objects
+        // so they must be initialized before 'exports.field = field;' line.
+        // this is not very good since can increase startup time
+        // Alternative: move static fields within some eager object (class constructor maybe)
+
+//        for (var clsName : classes.getClassNames()) {
+//            MethodReader clinit = classes.get(clsName).getMethod(CLINIT_METHOD);
+//            if (clinit != null && renderingContext.isDynamicInitializer(clsName)) {
+//                rememberingWriter.appendClassInit(clsName).append("();").softNewLine();
+//            }
+//        }
         var epilogue = rememberingWriter.save();
         rememberingWriter.clear();
 
-        var runtimeRenderer = new RuntimeRenderer(classes, rememberingWriter, controller.getClassInitializerInfo());
-        runtimeRenderer.prepareAstParts(renderer.isThreadLibraryUsed());
-        declarations.replay(runtimeRenderer.sink, RememberedSource.FILTER_REF);
-        epilogue.replay(runtimeRenderer.sink, RememberedSource.FILTER_REF);
-        runtimeRenderer.removeUnusedParts();
-        runtimeRenderer.renderRuntime();
-        var runtime = rememberingWriter.save();
+        ImportsRenderer importsRenderer = new ImportsRenderer(
+                classes,
+                SplittingJavaScriptTarget.fullSource,
+                SplittingJavaScriptTarget.runtimeLibraryExports,
+                SplittingJavaScriptTarget.runtimeLibraryClasses,
+                naming
+        );
+
+        if (!renderRuntime) {
+            declarations.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
+            epilogue.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
+
+            importsRenderer.emit(rememberingWriter);
+        }
+
+        var imports = rememberingWriter.save();
         rememberingWriter.clear();
-        runtimeRenderer.renderEpilogue();
+
+
+        var runtimeRenderer = new RuntimeRenderer(classes, rememberingWriter, controller.getClassInitializerInfo());
+        if (renderRuntime) {
+            runtimeRenderer.prepareAstParts(renderer.isThreadLibraryUsed());
+            declarations.replay(runtimeRenderer.sink, RememberedSource.FILTER_REF);
+            epilogue.replay(runtimeRenderer.sink, RememberedSource.FILTER_REF);
+            // unused parts are used in other files
+            // runtimeRenderer.removeUnusedParts();
+            runtimeRenderer.renderRuntime();
+        }
+        var runtime = rememberingWriter.save();
+        if (renderRuntime) {
+            rememberingWriter.clear();
+            runtimeRenderer.renderEpilogue();
+        }
         var runtimeEpilogue = rememberingWriter.save();
         rememberingWriter.clear();
 
@@ -478,6 +556,7 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
         }
 
         int start = sourceWriter.getOffset();
+        imports.write(sourceWriter, 0);
         runtime.write(sourceWriter, 0);
         declarations.write(sourceWriter, 0);
         runtimeEpilogue.write(sourceWriter, 0);
@@ -625,7 +704,10 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
 
     private void printCommonJsEnd(SourceWriter writer) {
         for (var export : exports) {
-            writer.append("exports.").append(export.alias).ws().append("=").ws();
+            writer.append("exports.");
+            // support exporting names as-is for split sources
+            if (export.alias == null) export.name.accept(writer); else writer.append(export.alias);
+            writer.ws().append("=").ws();
             export.name.accept(writer);
             writer.append(";").softNewLine();
         }
@@ -753,8 +835,12 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost {
         raiseInsn.setException(exceptionVar);
         block.add(raiseInsn);
 
-        controller.getDiagnostics().error(new CallLocation(method.getReference()),
-                "Native method {{m0}} has no implementation",  method.getReference());
+        // for code splitting, we need to emit all methods and fields for each class
+        // unfortunately there is no easy way to distinquish unused and unimplemented methods so we keep both
+        // solution: emit stubs, they will be dropped by final optimization
+
+//        controller.getDiagnostics().error(new CallLocation(method.getReference()),
+//                "Native method {{m0}} has no implementation",  method.getReference());
     }
 
     class ProviderContextImpl implements ProviderContext {

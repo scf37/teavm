@@ -1,0 +1,74 @@
+/*
+ *  Copyright 2025 asm.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+package js;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class JsMain {
+    private final Service3 service3;
+
+    public String foo() {
+        return "Main:" + service3.foo();
+    }
+
+    public JsMain(Service3 service3) {
+        this.service3 = service3;
+    }
+
+    public static void main(String[] args) {
+        Service1 service1 = new Service1();
+        Service2 service2 = new Service2();
+        Service3 service3 = new Service3(service1, service2);
+        JsMain main = new JsMain(service3);
+        List<String> list = new ArrayList<>();
+        list.add("item1");
+        list.add("item2");
+        list.add("item3");
+        list.forEach(System.out::println);
+        System.out.println(main.foo());
+        System.out.println(String.CASE_INSENSITIVE_ORDER.compare("HELLO", "hello"));
+
+        // now, test virtual methods
+        Bar bar = new Bar();
+        System.out.println(bar.foo());
+        Baz baz = new Baz();
+        System.out.println(baz.foo());
+        System.out.println(make("Bar").foo());
+        System.out.println(make("Baz").foo());
+
+        System.out.println(make("Bar").getClass().getName());
+        System.out.println(make("Baz").getClass().getName());
+
+        System.out.println(make("Baz") instanceof Iface);
+        System.out.println(make("Baz") instanceof Bar);
+        System.out.println(make("Baz") instanceof Baz);
+
+        System.out.println(make("Bar") instanceof Iface);
+        System.out.println(make("Bar") instanceof Bar);
+        System.out.println(make("Bar") instanceof Baz);
+
+    }
+
+    private static Iface make(String what) {
+        if (what.equals("Bar")) {
+            return new Bar();
+        } else if (what.equals("Baz")) {
+            return new Baz();
+        }
+        return null;
+    }
+}

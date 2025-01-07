@@ -38,6 +38,7 @@ import org.teavm.backend.c.generate.ShorteningFileNameProvider;
 import org.teavm.backend.c.generate.SimpleFileNameProvider;
 import org.teavm.backend.javascript.JSModuleType;
 import org.teavm.backend.javascript.JavaScriptTarget;
+import org.teavm.backend.javascript.splitting.JavaScriptTargetBase;
 import org.teavm.backend.wasm.WasmDebugInfoLevel;
 import org.teavm.backend.wasm.WasmDebugInfoLocation;
 import org.teavm.backend.wasm.WasmGCTarget;
@@ -68,6 +69,7 @@ import org.teavm.model.transformation.AssertionRemoval;
 import org.teavm.parsing.ClasspathClassHolderSource;
 import org.teavm.tooling.sources.DefaultSourceFileResolver;
 import org.teavm.tooling.sources.SourceFileProvider;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.vm.BuildTarget;
 import org.teavm.vm.DirectoryBuildTarget;
 import org.teavm.vm.TeaVM;
@@ -77,6 +79,7 @@ import org.teavm.vm.TeaVMProgressListener;
 import org.teavm.vm.TeaVMTarget;
 
 public class TeaVMTool {
+    private boolean useSplitting;
     private File targetDirectory = new File(".");
     private TeaVMTargetType targetType = TeaVMTargetType.JAVASCRIPT;
     private String targetFileName = "";
@@ -109,7 +112,7 @@ public class TeaVMTool {
     private TeaVMOptimizationLevel optimizationLevel = TeaVMOptimizationLevel.SIMPLE;
     private List<SourceFileProvider> sourceFileProviders = new ArrayList<>();
     private DebugInformationBuilder debugEmitter;
-    private JavaScriptTarget javaScriptTarget;
+    private JavaScriptTargetBase javaScriptTarget;
     private WasmTarget webAssemblyTarget;
     private WasmBinaryVersion wasmVersion = WasmBinaryVersion.V_0x1;
     private WasmDebugInfoLocation wasmDebugInfoLocation = WasmDebugInfoLocation.EXTERNAL;
@@ -361,7 +364,11 @@ public class TeaVMTool {
     }
 
     private TeaVMTarget prepareJavaScriptTarget() {
-        javaScriptTarget = new JavaScriptTarget();
+        if (useSplitting) {
+            javaScriptTarget = new SplittingJavaScriptTarget();
+        } else {
+            javaScriptTarget = new JavaScriptTarget();
+        }
         javaScriptTarget.setObfuscated(obfuscated);
         javaScriptTarget.setStrict(strict);
         javaScriptTarget.setMaxTopLevelNames(maxTopLevelNames);
@@ -429,6 +436,9 @@ public class TeaVMTool {
 
     public void generate() throws TeaVMToolException {
         try {
+            if (useSplitting) {
+                SplittingJavaScriptTarget.useSplitting = true;
+            }
             cancelled = false;
             log.info("Running TeaVM");
             referenceCache = new ReferenceCache();
@@ -554,6 +564,8 @@ public class TeaVMTool {
             printStats();
         } catch (IOException e) {
             throw new TeaVMToolException("IO error occurred", e);
+        } finally {
+            SplittingJavaScriptTarget.useSplitting = false;
         }
     }
 
@@ -687,5 +699,9 @@ public class TeaVMTool {
             }
         }
         return transformerInstances;
+    }
+
+    public void setUseSplitting(boolean useSplitting) {
+        this.useSplitting = useSplitting;
     }
 }

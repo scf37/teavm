@@ -84,6 +84,9 @@ class DependencyClassSource implements ClassHolderSource {
     public ClassHolder get(String name) {
         var result = cache.get(name);
         if (result == null) {
+            if (name.equals("java.util.ArrayList")) {
+                System.out.println(name);
+            }
             var cls = findClass(name);
             result = Optional.ofNullable(cls);
             cache.put(name, result);

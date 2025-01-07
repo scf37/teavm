@@ -136,6 +136,14 @@ public class Renderer implements RenderingManager {
         exports.add(new ExportedDeclaration(w -> w.appendMethod(method), n -> n.methodName(method), alias));
     }
 
+    public void exportInitializer(MethodReference method, String alias) {
+        exports.add(new ExportedDeclaration(w -> w.appendInit(method), n -> n.initializerName(method), alias));
+    }
+
+    public void exportField(FieldReference field, String alias) {
+        exports.add(new ExportedDeclaration(w -> w.appendStaticField(field), n -> n.fieldName(field), alias));
+    }
+
     @Override
     public void exportClass(String className, String alias) {
         exports.add(new ExportedDeclaration(w -> w.appendClass(className), n -> n.className(className), alias));
@@ -378,6 +386,9 @@ public class Renderer implements RenderingManager {
         var needsInitializers = !cls.hasModifier(ElementModifier.INTERFACE)
             && !cls.hasModifier(ElementModifier.ABSTRACT);
         for (var method : cls.getMethods()) {
+            if (method.getOwnerName().equals("java.lang.ClassCastException")) {
+                System.out.println(method);
+            }
             if (!filterMethod(method)) {
                 continue;
             }
@@ -788,7 +799,8 @@ public class Renderer implements RenderingManager {
 
     private void emitVirtualDeclaration(MethodReference ref) {
         String methodName = context.getNaming().instanceMethodName(ref.getDescriptor());
-        writer.append("\"").append(methodName).append("\"");
+        //writer.append("\"").append(methodName).append("\"");
+        writer.append("(o,r)=>o.").append(methodName).append("=r");
         writer.append(",").ws();
         emitVirtualFunctionWrapper(ref);
     }

@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
-import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
-
 /*
  *  Copyright 2023 Alexey Andreev.
  *
@@ -18,28 +15,22 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
  */
 
 plugins {
-    kotlin("jvm") version "1.9.20"
-    war
-    id("org.teavm")
+    `java-library`
+    `teavm-publish`
 }
+
+description = "API that helps to create tooling"
 
 dependencies {
-    teavm(teavm.libs.jsoApis)
+    compileOnly(libs.jackson.annotations)
+    compileOnly(project(":jso:apis"))
+    api(project(":core"))
+    api(project(":tools:core"))
+    api(project(":classlib"))
+
+    implementation(libs.commons.io)
 }
 
-teavm.js {
-    addedToWebApp = true
-    mainClass = "org.teavm.samples.kotlin.HelloKt"
-}
-
-java {
-//    toolchain {
-//        languageVersion = JavaLanguageVersion.of(21)
-//    }
-}
-
-// kotlin.jvmToolchain(21)
-
-tasks.withType<KotlinJvmCompile>().configureEach {
-    jvmTargetValidationMode.set(JvmTargetValidationMode.WARNING)
+teavmPublish {
+    artifactId = "teavm-tooling"
 }
