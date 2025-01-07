@@ -22,12 +22,6 @@ import org.teavm.model.optimization.GlobalValueNumbering;
 import org.teavm.model.optimization.UnusedVariableElimination;
 import org.teavm.model.transformation.NoSuchFieldCatchElimination;
 
-/**
- * Perform basic optimizations on loading java class:
- * - drop NoSuchFieldException handlers (why?)
- * - common subexpresison elimination
- * - unused variable elimination
- */
 public class PreOptimizingClassHolderSource implements ClassHolderSource {
     private ClassHolderSource innerClassSource;
     private Map<String, ClassHolder> cache = new LinkedHashMap<>();

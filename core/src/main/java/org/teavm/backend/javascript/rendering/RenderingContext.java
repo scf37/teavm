@@ -28,6 +28,7 @@ import org.teavm.backend.javascript.codegen.NamingStrategy;
 import org.teavm.backend.javascript.codegen.SourceWriter;
 import org.teavm.backend.javascript.spi.InjectedBy;
 import org.teavm.backend.javascript.spi.Injector;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.common.ServiceRepository;
 import org.teavm.debugging.information.DebugInformationEmitter;
 import org.teavm.dependency.DependencyInfo;
@@ -157,11 +158,15 @@ public abstract class RenderingContext {
         } else if (cst instanceof String) {
 
             String string = (String) cst;
-            writer.appendFunction("$rt_str").append("(");
-            RenderingUtil.writeString(writer, string);
-            writer.append(")");
-//            int index = lookupString(string);
-//            writer.appendFunction("$rt_s").append("(" + index + ")");
+            if (SplittingJavaScriptTarget.useSplitting) {
+                // splitting can not work with string pool, using literals
+                writer.appendFunction("$rt_str").append("(");
+                RenderingUtil.writeString(writer, string);
+                writer.append(")");
+            } else {
+                int index = lookupString(string);
+                writer.appendFunction("$rt_s").append("(" + index + ")");
+            }
         } else if (cst instanceof Long) {
             long value = (Long) cst;
             if (value == 0) {

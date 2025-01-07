@@ -73,12 +73,9 @@ public class ImportsRenderer {
 
         for (String className : classes.getClassNames()) {
             ClassHolder cls = classes.get(className);
-            // also need to import direct superclass and interfaces
             if (cls.getParent() != null) {
                 ClassHolder parent = allClasses.get(cls.getParent());
-                // js class
                 imports.registerImport(cls.getParent(), naming.className(cls.getParent()).name);
-                // constructors
                 for (MethodHolder method : parent.getMethods()) {
                     if (method.getName().equals("<init>")) {
                         imports.importMethod(method.getReference());
@@ -171,10 +168,14 @@ public class ImportsRenderer {
         }
 
         void importMethod(MethodReference method) {
-            if (classNames.contains(method.getClassName())) return;
+            if (classNames.contains(method.getClassName())){
+                return;
+            }
 
             MethodReader ref = allClasses.getMethod(method);
-            if (ref == null) return;
+            if (ref == null) {
+                return;
+            }
             if ((ref.getLevel() != AccessLevel.PRIVATE || method.getClassName().equals("java.lang.Object")) && (
                     (!ref.hasModifier(ElementModifier.ABSTRACT) && !ref.getName().startsWith("<")) ||
                             (ref.getName().equals("<init>"))
@@ -188,11 +189,17 @@ public class ImportsRenderer {
         }
 
         private void importField(FieldReference field) {
-            if (classNames.contains(field.getClassName())) return;
+            if (classNames.contains(field.getClassName())) {
+                return;
+            }
             ClassHolder cls = allClasses.get(field.getClassName());
-            if (cls == null) return;
+            if (cls == null) {
+                return;
+            }
             FieldHolder ref = cls.getField(field.getFieldName());
-            if (ref == null) return;
+            if (ref == null) {
+                return;
+            }
             if (ref.getLevel() != AccessLevel.PRIVATE && ref.hasModifier(ElementModifier.STATIC)) {
                 registerImport(field.getClassName(), namingStrategy.fieldName(ref.getReference()).name);
             }

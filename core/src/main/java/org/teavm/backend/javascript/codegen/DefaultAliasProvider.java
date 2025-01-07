@@ -117,10 +117,12 @@ public class DefaultAliasProvider implements AliasProvider {
         for (ValueType t: method.getParameterTypes()) {
             sb.append(t.toString());
         }
-        String result = sb.toString().replace('.', '_').replace('/', '_');
-        if (result.length() > 6)
+        String result = sb.toString();
+        if (result.length() > 6) {
             return hash(result);
-        else return result;
+        } else {
+            return result.replace('.', '_').replace('/', '_');
+        }
     }
 
     private static final long FNV_OFFSET_BASIS = 0xcbf29ce484222325L;

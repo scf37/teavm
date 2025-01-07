@@ -29,6 +29,10 @@ import org.teavm.vm.TeaVMOptimizationLevel;
 import org.teavm.vm.TeaVMProgressFeedback;
 import org.teavm.vm.TeaVMTargetController;
 
+/**
+ * Hack to set entryPoint when running JavascriptTarget multiple times with different entrypoints.
+ * Required for code splitting to work.
+ */
 public class DelegatingTeaVMTargetController implements TeaVMTargetController {
     private TeaVMTargetController delegate;
     private String entryPoint;

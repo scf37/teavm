@@ -46,7 +46,7 @@ public class Linker {
         for (FieldHolder field : cls.getFields().toArray(new FieldHolder[0])) {
             FieldReference fieldRef = new FieldReference(cls.getName(), field.getName());
             if (dependency.getField(fieldRef) == null) {
-                 cls.removeField(field);
+                cls.removeField(field);
             }
         }
 

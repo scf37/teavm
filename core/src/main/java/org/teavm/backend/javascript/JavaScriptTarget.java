@@ -42,7 +42,6 @@ import org.teavm.ast.ControlFlowEntry;
 import org.teavm.backend.javascript.codegen.DefaultAliasProvider;
 import org.teavm.backend.javascript.codegen.DefaultNamingStrategy;
 import org.teavm.backend.javascript.codegen.MinifyingAliasProvider;
-import org.teavm.backend.javascript.codegen.NamingStrategy;
 import org.teavm.backend.javascript.codegen.OutputSourceWriter;
 import org.teavm.backend.javascript.codegen.OutputSourceWriterBuilder;
 import org.teavm.backend.javascript.codegen.RememberedSource;
@@ -83,6 +82,7 @@ import org.teavm.interop.PlatformMarker;
 import org.teavm.interop.Platforms;
 import org.teavm.model.AccessLevel;
 import org.teavm.model.BasicBlock;
+import org.teavm.model.CallLocation;
 import org.teavm.model.ClassHolder;
 import org.teavm.model.ClassHolderTransformer;
 import org.teavm.model.ClassReaderSource;
@@ -97,8 +97,6 @@ import org.teavm.model.Program;
 import org.teavm.model.TextLocation;
 import org.teavm.model.ValueType;
 import org.teavm.model.Variable;
-import org.teavm.model.VariableReader;
-import org.teavm.model.instructions.AbstractInstructionReader;
 import org.teavm.model.instructions.ConstructInstruction;
 import org.teavm.model.instructions.InvocationType;
 import org.teavm.model.instructions.InvokeInstruction;
@@ -369,7 +367,9 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
     }
 
     private void emit(ListableClassHolderSource classes, Writer writer, BuildTarget target) {
-        exports.clear();
+        if (SplittingJavaScriptTarget.useSplitting) {
+            exports.clear();
+        }
         boolean renderRuntime = controller.getEntryPoint().equals("org.teavm.runtime");
 
         var aliasProvider = obfuscated
@@ -421,33 +421,8 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
         renderer.setProperties(controller.getProperties());
         renderer.setProgressConsumer(controller::reportProgress);
 
-        for (String className: classes.getClassNames()) {
-            ClassHolder cls = classes.get(className);
-            // export all non-private stuff and constructors
-            boolean needInitializer = !cls.hasModifier(ElementModifier.INTERFACE)
-                    && !cls.hasModifier(ElementModifier.ABSTRACT);
-            for (MethodHolder method : cls.getMethods()) {
-                if ((method.getLevel() != AccessLevel.PRIVATE || method.getOwnerName().equals("java.lang.Object"))
-                        && method.getAnnotations().get(InjectedBy.class.getName()) == null
-                        && !methodInjectors.containsKey(method.getReference())
-                        && method.getAnnotations().get("org.teavm.jso.JSBody") == null
-                        && method.getProgram() != null
-                        && ((!method.hasModifier(ElementModifier.ABSTRACT) && !method.getName().startsWith("<")) ||
-                                (method.getName().equals("<init>"))
-                        )) {
-                    renderer.exportMethod(method.getReference(), null);
-                    if (needInitializer && method.getName().equals("<init>")) {
-                        renderer.exportInitializer(method.getReference(), null);
-                    }
-                }
-            }
-            renderer.exportClass(className, null);
-
-            for (FieldHolder field : cls.getFields()) {
-                if (field.hasModifier(ElementModifier.STATIC) && field.getLevel() != AccessLevel.PRIVATE) {
-                    renderer.exportField(field.getReference(), null);
-                }
-            }
+        if (SplittingJavaScriptTarget.useSplitting) {
+            emitExports(classes, renderer);
         }
 
         for (var listener : rendererListeners) {
@@ -461,8 +436,9 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
 
         renderer.renderStringPool();
         renderer.renderStringConstants();
-        if (renderRuntime)
+        if (renderRuntime || !SplittingJavaScriptTarget.useSplitting) {
             renderer.renderCompatibilityStubs();
+        }
 
         var alias = "$rt_export_main";
         var ref = new MethodReference(controller.getEntryPoint(), "main", ValueType.parse(String[].class),
@@ -481,34 +457,40 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
         for (var listener : rendererListeners) {
             listener.complete();
         }
-        // eagerly run class static initializers
-        // it is required because static fields are exported as-is and not within wrapper objects
-        // so they must be initialized before 'exports.field = field;' line.
-        // this is not very good since can increase startup time
-        // Alternative: move static fields within some eager object (class constructor maybe)
 
-//        for (var clsName : classes.getClassNames()) {
-//            MethodReader clinit = classes.get(clsName).getMethod(CLINIT_METHOD);
-//            if (clinit != null && renderingContext.isDynamicInitializer(clsName)) {
-//                rememberingWriter.appendClassInit(clsName).append("();").softNewLine();
-//            }
-//        }
+        if (SplittingJavaScriptTarget.useSplitting) {
+            // eagerly run class static initializers
+            // it is required because static fields are exported as-is and not within wrapper objects
+            // so they must be initialized before 'exports.field = field;' line.
+            // this is not very good since can increase startup time
+            // Alternative: move static fields within some eager object (class constructor maybe)
+
+            for (var clsName : classes.getClassNames()) {
+                MethodReader clinit = classes.get(clsName).getMethod(CLINIT_METHOD);
+                if (clinit != null && renderingContext.isDynamicInitializer(clsName)) {
+                    rememberingWriter.appendClassInit(clsName).append("();").softNewLine();
+                }
+            }
+        }
+
         var epilogue = rememberingWriter.save();
         rememberingWriter.clear();
 
-        ImportsRenderer importsRenderer = new ImportsRenderer(
-                classes,
-                SplittingJavaScriptTarget.fullSource,
-                SplittingJavaScriptTarget.runtimeLibraryExports,
-                SplittingJavaScriptTarget.runtimeLibraryClasses,
-                naming
-        );
+        if (SplittingJavaScriptTarget.useSplitting) {
+            ImportsRenderer importsRenderer = new ImportsRenderer(
+                    classes,
+                    SplittingJavaScriptTarget.fullSource,
+                    SplittingJavaScriptTarget.runtimeLibraryExports,
+                    SplittingJavaScriptTarget.runtimeLibraryClasses,
+                    naming
+            );
 
-        if (!renderRuntime) {
-            declarations.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
-            epilogue.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
+            if (!renderRuntime) {
+                declarations.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
+                epilogue.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
 
-            importsRenderer.emit(rememberingWriter);
+                importsRenderer.emit(rememberingWriter);
+            }
         }
 
         var imports = rememberingWriter.save();
@@ -516,16 +498,18 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
 
 
         var runtimeRenderer = new RuntimeRenderer(classes, rememberingWriter, controller.getClassInitializerInfo());
-        if (renderRuntime) {
+        if (renderRuntime || !SplittingJavaScriptTarget.useSplitting) {
             runtimeRenderer.prepareAstParts(renderer.isThreadLibraryUsed());
             declarations.replay(runtimeRenderer.sink, RememberedSource.FILTER_REF);
             epilogue.replay(runtimeRenderer.sink, RememberedSource.FILTER_REF);
-            // unused parts are used in other files
-            // runtimeRenderer.removeUnusedParts();
+            // code splitting: unused parts are used in other files
+            if (!SplittingJavaScriptTarget.useSplitting) {
+                runtimeRenderer.removeUnusedParts();
+            }
             runtimeRenderer.renderRuntime();
         }
         var runtime = rememberingWriter.save();
-        if (renderRuntime) {
+        if (renderRuntime || !SplittingJavaScriptTarget.useSplitting) {
             rememberingWriter.clear();
             runtimeRenderer.renderEpilogue();
         }
@@ -706,7 +690,11 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
         for (var export : exports) {
             writer.append("exports.");
             // support exporting names as-is for split sources
-            if (export.alias == null) export.name.accept(writer); else writer.append(export.alias);
+            if (export.alias == null) {
+                export.name.accept(writer);
+            } else {
+                writer.append(export.alias);
+            }
             writer.ws().append("=").ws();
             export.name.accept(writer);
             writer.append(";").softNewLine();
@@ -839,8 +827,8 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
         // unfortunately there is no easy way to distinquish unused and unimplemented methods so we keep both
         // solution: emit stubs, they will be dropped by final optimization
 
-//        controller.getDiagnostics().error(new CallLocation(method.getReference()),
-//                "Native method {{m0}} has no implementation",  method.getReference());
+        controller.getDiagnostics().error(new CallLocation(method.getReference()),
+                "Native method {{m0}} has no implementation",  method.getReference());
     }
 
     class ProviderContextImpl implements ProviderContext {
@@ -940,6 +928,37 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
         @Override
         public ClassReaderSource getClassSource() {
             return classSource;
+        }
+    }
+
+    private void emitExports(ListableClassHolderSource classes, Renderer renderer) {
+        for (String className: classes.getClassNames()) {
+            ClassHolder cls = classes.get(className);
+            // export all non-private stuff and constructors
+            boolean needInitializer = !cls.hasModifier(ElementModifier.INTERFACE)
+                    && !cls.hasModifier(ElementModifier.ABSTRACT);
+            for (MethodHolder method : cls.getMethods()) {
+                if ((method.getLevel() != AccessLevel.PRIVATE || method.getOwnerName().equals("java.lang.Object"))
+                        && method.getAnnotations().get(InjectedBy.class.getName()) == null
+                        && !methodInjectors.containsKey(method.getReference())
+                        && method.getAnnotations().get("org.teavm.jso.JSBody") == null
+                        && method.getProgram() != null
+                        && ((!method.hasModifier(ElementModifier.ABSTRACT) && !method.getName().startsWith("<")) ||
+                        (method.getName().equals("<init>"))
+                )) {
+                    renderer.exportMethod(method.getReference(), null);
+                    if (needInitializer && method.getName().equals("<init>")) {
+                        renderer.exportInitializer(method.getReference(), null);
+                    }
+                }
+            }
+            renderer.exportClass(className, null);
+
+            for (FieldHolder field : cls.getFields()) {
+                if (field.hasModifier(ElementModifier.STATIC) && field.getLevel() != AccessLevel.PRIVATE) {
+                    renderer.exportField(field.getReference(), null);
+                }
+            }
         }
     }
 }

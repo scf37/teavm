@@ -30,10 +30,10 @@ public class ToolTest {
         tool.setTargetType(TeaVMTargetType.JAVASCRIPT);
         tool.setTargetDirectory(new File("playground/src/main/java"));
         tool.setTargetFileName("ToolTest.js");
-        tool.setObfuscated(false);
+        tool.setObfuscated(true);
         tool.setJsModuleType(JSModuleType.COMMON_JS);
-//        tool.setIncremental(true);
-        tool.setOptimizationLevel(TeaVMOptimizationLevel.SIMPLE);
+        tool.setOptimizationLevel(TeaVMOptimizationLevel.ADVANCED);
+    //        tool.setIncremental(true);
         tool.setUseSplitting(true);
         tool.generate();
 

@@ -137,8 +137,6 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
 
     @Override
     public void emit(ListableClassHolderSource classes, BuildTarget buildTarget, String outputName) throws IOException {
-        // here goes the fun!
-        useSplitting = true;
         fullSource = classes;
 
         try {
@@ -157,15 +155,7 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
                     );
                 }
             }
-
-            // TODO automatically generate exports and imports based on DependencyInfo
-            // should export: constructors, static fields, static methods
-            // should import: runtime library, constructors, static fields, static methods from used classes
-            // as for runtime: preferably used symbols only
-
-            DependencyInfo deps = targetController.getDependencyInfo();
         } finally {
-            useSplitting = false;
             fullSource = null;
         }
 
@@ -188,47 +178,7 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
         javaScriptTarget.emit(classSource, memoryTarget, sourceFile);
 
         try (OutputStream os = buildTarget.createResource(sourceFile)) {
-            emitImports(sourceClassName, classes);
             os.write(memoryTarget.getContent(sourceFile));
-        }
-    }
-
-    // TODO this should be in JavaScriptTarget
-    // howerver, we need to determine method modifiers by MethodReference which requires full ClassHolderSource
-    //   which is not available in JavaScriptTarget
-    //   public static ClassHolderSource is required...
-    private void emitImports(String className, ListableClassHolderSource classes) {
-
-        // collect imports
-        ClassHolder cls = classes.get(className);
-        for (MethodHolder method : cls.getMethods()) {
-            Program program = method.getProgram();
-            if (program == null) continue;
-            for (BasicBlock block: program.getBasicBlocks()) {
-                block.readAllInstructions(new AbstractInstructionReader() {
-                    public void invoke(VariableReader receiver, VariableReader instance, MethodReference method,
-                            List<? extends VariableReader> arguments, InvocationType type) {
-                            MethodReader m = classes.getMethod(method);
-                            if (m == null) return;
-                            if (m.hasModifier(ElementModifier.STATIC))
-                                System.out.println(method.getClassName() + "." + method.getName());
-                    }
-
-                    public void invokeDynamic(VariableReader receiver, VariableReader instance, MethodDescriptor method,
-                            List<? extends VariableReader> arguments, MethodHandle bootstrapMethod,
-                            List<RuntimeConstant> bootstrapArguments) {
-
-                    }
-                    public void getField(VariableReader receiver, VariableReader instance, FieldReference field, ValueType fieldType) {
-
-                    }
-
-                    public void putField(VariableReader instance, FieldReference field, VariableReader value, ValueType fieldType) {
-
-                    }
-
-                });
-            }
         }
     }
 
@@ -263,8 +213,6 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
         targetController.setEntryPoint(runtimeName);
         MutableClassHolderSource classSource = new MutableClassHolderSource();
 
-        // for some reason, teavm does not pick this dependency for $rt_throwCCE
-        runtimeLibraryClasses.add("java.lang.ClassCastException");
         for (String name: classes.getClassNames()) {
             if ((name.startsWith("java.") || name.startsWith("org.teavm.")) && !name.equals("org.teavm.runtime")) {
                 runtimeLibraryClasses.add(extractSourceClassName(name));

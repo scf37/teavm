@@ -438,6 +438,11 @@ public class TeaVMTool {
         try {
             if (useSplitting) {
                 SplittingJavaScriptTarget.useSplitting = true;
+                // code splitting does work with per-file obfuscation and optimizations
+                // other modules types are untested
+                setObfuscated(false);
+                setJsModuleType(JSModuleType.COMMON_JS);
+                setOptimizationLevel(TeaVMOptimizationLevel.SIMPLE);
             }
             cancelled = false;
             log.info("Running TeaVM");

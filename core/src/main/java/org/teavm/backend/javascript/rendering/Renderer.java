@@ -386,9 +386,6 @@ public class Renderer implements RenderingManager {
         var needsInitializers = !cls.hasModifier(ElementModifier.INTERFACE)
             && !cls.hasModifier(ElementModifier.ABSTRACT);
         for (var method : cls.getMethods()) {
-            if (method.getOwnerName().equals("java.lang.ClassCastException")) {
-                System.out.println(method);
-            }
             if (!filterMethod(method)) {
                 continue;
             }
@@ -799,6 +796,7 @@ public class Renderer implements RenderingManager {
 
     private void emitVirtualDeclaration(MethodReference ref) {
         String methodName = context.getNaming().instanceMethodName(ref.getDescriptor());
+        // use lambdas instead of string literals to support GCC advanced optimizations
         //writer.append("\"").append(methodName).append("\"");
         writer.append("(o,r)=>o.").append(methodName).append("=r");
         writer.append(",").ws();

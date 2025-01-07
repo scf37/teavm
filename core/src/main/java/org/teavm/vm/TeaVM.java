@@ -998,7 +998,6 @@ public class TeaVM implements TeaVMHost, ServiceRepository {
         @Override
         public ClassHolder get(String name) {
             return cache.computeIfAbsent(name, className -> {
-
                 ClassReader classReader = dependencyAnalyzer.getClassSource().get(className);
                 if (classReader == null) {
                     return null;
@@ -1009,7 +1008,7 @@ public class TeaVM implements TeaVMHost, ServiceRepository {
                 for (FieldHolder field : cls.getFields().toArray(new FieldHolder[0])) {
                     FieldReference fieldRef = new FieldReference(cls.getName(), field.getName());
                     if (dependencyAnalyzer.getField(fieldRef) == null) {
-                         cls.removeField(field);
+                        cls.removeField(field);
                     }
                 }
 
@@ -1035,7 +1034,6 @@ public class TeaVM implements TeaVMHost, ServiceRepository {
                         if (method.hasModifier(ElementModifier.STATIC)) {
                             cls.removeMethod(method);
                         } else {
-                            System.out.println("remove " + method.getOwnerName() + " " + method.getName());
                             method.getModifiers().add(ElementModifier.ABSTRACT);
                             method.getModifiers().remove(ElementModifier.NATIVE);
                             method.setProgram(null);
