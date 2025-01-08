@@ -489,7 +489,7 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
                 declarations.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
                 epilogue.replay(importsRenderer.sink, RememberedSource.FILTER_REF);
 
-                importsRenderer.emit(rememberingWriter);
+                importsRenderer.emit(rememberingWriter, importsRenderer.collectImports());
             }
         }
 
@@ -943,8 +943,8 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
                         && !methodInjectors.containsKey(method.getReference())
                         && method.getAnnotations().get("org.teavm.jso.JSBody") == null
                         && method.getProgram() != null
-                        && ((!method.hasModifier(ElementModifier.ABSTRACT) && !method.getName().startsWith("<")) ||
-                        (method.getName().equals("<init>"))
+                        && ((!method.hasModifier(ElementModifier.ABSTRACT) && !method.getName().startsWith("<"))
+                        || (method.getName().equals("<init>"))
                 )) {
                     renderer.exportMethod(method.getReference(), null);
                     if (needInitializer && method.getName().equals("<init>")) {

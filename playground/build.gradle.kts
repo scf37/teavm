@@ -32,5 +32,5 @@ dependencies {
 }
 
 teavmPublish {
-    artifactId = "teavm-tooling"
+    artifactId = "teavm-playground"
 }

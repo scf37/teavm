@@ -20,6 +20,7 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,26 +36,14 @@ import org.teavm.backend.javascript.spi.MethodContributor;
 import org.teavm.cache.MethodNodeCache;
 import org.teavm.debugging.information.DebugInformationEmitter;
 import org.teavm.dependency.DependencyAnalyzer;
-import org.teavm.dependency.DependencyInfo;
 import org.teavm.dependency.DependencyListener;
-import org.teavm.model.BasicBlock;
 import org.teavm.model.ClassHolder;
 import org.teavm.model.ClassHolderTransformer;
-import org.teavm.model.ElementModifier;
-import org.teavm.model.FieldReference;
 import org.teavm.model.ListableClassHolderSource;
-import org.teavm.model.MethodDescriptor;
-import org.teavm.model.MethodHandle;
-import org.teavm.model.MethodHolder;
 import org.teavm.model.MethodReader;
 import org.teavm.model.MethodReference;
 import org.teavm.model.MutableClassHolderSource;
 import org.teavm.model.Program;
-import org.teavm.model.RuntimeConstant;
-import org.teavm.model.ValueType;
-import org.teavm.model.VariableReader;
-import org.teavm.model.instructions.AbstractInstructionReader;
-import org.teavm.model.instructions.InvocationType;
 import org.teavm.model.util.VariableCategoryProvider;
 import org.teavm.vm.BuildTarget;
 import org.teavm.vm.MemoryBuildTarget;
@@ -67,17 +56,17 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
     /**
      * Global flag enabling lots of small patches to make code splitting work
      */
-    public static boolean useSplitting = false;
+    public static boolean useSplitting;
 
     /**
      * lets JavaScriptTarget access all loaded classes for import generation in splitted source.
      */
-    public static ListableClassHolderSource fullSource = null;
+    public static ListableClassHolderSource fullSource;
 
     /**
      * $rt_* names exported by org.teavm.runtime
      */
-    public static Set<String> runtimeLibraryExports = null;
+    public static Set<String> runtimeLibraryExports;
 
     /**
      * List of classes emitted into org.teavm.runtime since some $rt_ functions depend on them
@@ -87,11 +76,16 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
     /**
      * If true, JavascriptTarget currently emitting org.teavm.runtime.js and not other files
      */
-    public static boolean isRenderingRuntime = false;
+    public static boolean isRenderingRuntime;
+
+    /**
+     * Set of classes currently rendered by JavascriptTarget
+     */
+    public static Set<String> currentClasses;
 
 
     private JavaScriptTarget javaScriptTarget = new JavaScriptTarget();
-    private DelegatingTeaVMTargetController targetController = null;
+    private DelegatingTeaVMTargetController targetController;
 
 
     @Override
@@ -180,14 +174,20 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
             classSource.putClassHolder(cls);
         }
         targetController.setEntryPoint(sourceClassName);
-        javaScriptTarget.emit(classSource, memoryTarget, sourceFile);
+        try {
+            currentClasses = classSource.getClassNames();
+            javaScriptTarget.emit(classSource, memoryTarget, sourceFile);
+        } finally {
+            currentClasses = null;
+        }
 
         try (OutputStream os = buildTarget.createResource(sourceFile)) {
             os.write(memoryTarget.getContent(sourceFile));
         }
     }
 
-    // group classes by source class name: java.lang.String -> (java.lang.String, java.lang.String$<clinit>$lambda$_115_0)
+    // group classes by source class name:
+    // java.lang.String -> (java.lang.String, java.lang.String$<clinit>$lambda$_115_0)
     private Map<String, Set<String>> groupBySourceClassName(Set<String> classes) {
         return classes.stream()
                 .collect(Collectors.groupingBy(this::extractSourceClassName, Collectors.toSet()));
@@ -332,3 +332,4 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
         javaScriptTarget.setModuleType(moduleType);
     }
 }
+

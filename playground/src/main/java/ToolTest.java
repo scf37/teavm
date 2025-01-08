@@ -23,6 +23,8 @@ import org.teavm.tooling.TeaVMToolException;
 import org.teavm.vm.TeaVMOptimizationLevel;
 
 public class ToolTest {
+    private ToolTest() { }
+
     public static void main(String[] args) throws TeaVMToolException {
         var log = new ConsoleTeaVMToolLog(false);
         TeaVMTool tool = new TeaVMTool();
@@ -30,9 +32,9 @@ public class ToolTest {
         tool.setTargetType(TeaVMTargetType.JAVASCRIPT);
         tool.setTargetDirectory(new File("playground/src/main/java"));
         tool.setTargetFileName("ToolTest.js");
-        tool.setObfuscated(true);
+        tool.setObfuscated(false);
         tool.setJsModuleType(JSModuleType.COMMON_JS);
-        tool.setOptimizationLevel(TeaVMOptimizationLevel.ADVANCED);
+        tool.setOptimizationLevel(TeaVMOptimizationLevel.SIMPLE);
     //        tool.setIncremental(true);
         tool.setUseSplitting(true);
         tool.generate();

@@ -1084,6 +1084,9 @@ public class StatementRenderer implements ExprVisitor, StatementVisitor {
 
     @Override
     public void visit(InvocationExpr expr) {
+        if (expr.getMethod().getClassName().equals("org.teavm.jso.impl.JS") && expr.getMethod().getName().equals("invoke")) {
+            System.out.println(expr.getMethod());
+        }
         if (expr.getLocation() != null) {
             pushLocation(expr.getLocation());
         }

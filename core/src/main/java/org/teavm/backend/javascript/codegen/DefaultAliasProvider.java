@@ -17,7 +17,6 @@ package org.teavm.backend.javascript.codegen;
 
 import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.carrotsearch.hppc.ObjectIntMap;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import org.teavm.model.FieldReference;
@@ -104,7 +103,9 @@ public class DefaultAliasProvider implements AliasProvider {
                 break;
         }
 
-        return makeUnique(suggestAliasForClass(method.getClassName()) + "_" + suggested + computeMethodSignature(method.getDescriptor()));
+        return makeUnique(suggestAliasForClass(method.getClassName())
+            + "_" + suggested + computeMethodSignature(method.getDescriptor())
+        );
     }
 
     // for split source, we need stable method aliases, both static and non-static as they both are visible
@@ -135,11 +136,13 @@ public class DefaultAliasProvider implements AliasProvider {
             hash ^= s.charAt(i) & 0xff;
             hash *= FNV_PRIME;
         }
-        if (hash < 0) hash = -hash;
+        if (hash < 0) {
+            hash = -hash;
+        }
         char[] result = new char[7];
         result[0] = '_';
         for (int i = 1; i < 7; ++i) {
-            result[i] = hashChars[(int)(hash % hashChars.length)];
+            result[i] = hashChars[(int) (hash % hashChars.length)];
             hash /= hashChars.length;
         }
         return new String(result);

@@ -305,11 +305,19 @@ public abstract class RenderingContext {
     }
 
     public Injector getInjector(MethodReference ref) {
+        if (ref.getClassName().equals("org.teavm.jso.impl.JS") && ref.getName().equals("invoke")) {
+            System.out.println(ref);
+        }
         InjectorHolder holder = injectorMap.get(ref);
         if (holder == null) {
             holder = new InjectorHolder(null);
             if (!isBootstrap()) {
-                ClassReader cls = classSource.get(ref.getClassName());
+                final ClassReader cls;
+                if (SplittingJavaScriptTarget.useSplitting) {
+                    cls = SplittingJavaScriptTarget.fullSource.get(ref.getClassName());
+                } else {
+                    cls = classSource.get(ref.getClassName());
+                }
                 if (cls != null) {
                     MethodReader method = cls.getMethod(ref.getDescriptor());
                     if (method != null) {

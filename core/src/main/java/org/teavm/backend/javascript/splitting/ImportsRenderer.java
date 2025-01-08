@@ -63,7 +63,7 @@ public class ImportsRenderer {
         this.naming = naming;
     }
 
-    public void emit(SourceWriter writer) {
+    public Map<String, Set<String>> collectImports() {
         ImportsCollector imports = new ImportsCollector(classes.getClassNames(), naming);
         for (String name: runtimeLibraryExports) {
             if (usedFunctions.contains(name)) {
@@ -95,7 +95,12 @@ public class ImportsRenderer {
                 }
             }
         }
-        var sortedImports = imports.getImports().entrySet().stream()
+
+        return imports.getImports();
+    }
+
+    public void emit(SourceWriter writer, Map<String, Set<String>> imports) {
+        var sortedImports = imports.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .collect(Collectors.toList());
 
@@ -104,15 +109,6 @@ public class ImportsRenderer {
             writer.append("let ").append(importAlias).append(" = require(");
             RenderingUtil.writeString(writer, "./" + i.getKey() + ".js");
             writer.append(");").softNewLine();
-        }
-        writer.newLine();
-
-        for (Map.Entry<String, Set<String>> i : sortedImports) {
-            String importAlias = i.getKey().replace('.', '_') + "_import";
-            for (String importName : i.getValue()) {
-                writer.append("let ").append(importName).append(" = ").append(importAlias)
-                        .append(".").append(importName).append(";").softNewLine();
-            }
         }
         writer.newLine();
     }
@@ -142,7 +138,12 @@ public class ImportsRenderer {
         }
 
         @Override
-        public void getField(VariableReader receiver, VariableReader instance, FieldReference field, ValueType fieldType) {
+        public void getField(
+                VariableReader receiver,
+                VariableReader instance,
+                FieldReference field,
+                ValueType fieldType
+        ) {
             importField(field);
         }
 
@@ -168,7 +169,7 @@ public class ImportsRenderer {
         }
 
         void importMethod(MethodReference method) {
-            if (classNames.contains(method.getClassName())){
+            if (classNames.contains(method.getClassName())) {
                 return;
             }
 
@@ -177,8 +178,8 @@ public class ImportsRenderer {
                 return;
             }
             if ((ref.getLevel() != AccessLevel.PRIVATE || method.getClassName().equals("java.lang.Object")) && (
-                    (!ref.hasModifier(ElementModifier.ABSTRACT) && !ref.getName().startsWith("<")) ||
-                            (ref.getName().equals("<init>"))
+                    (!ref.hasModifier(ElementModifier.ABSTRACT) && !ref.getName().startsWith("<"))
+                            || (ref.getName().equals("<init>"))
             )) {
                 registerImport(method.getClassName(), namingStrategy.methodName(ref.getReference()).name);
                 if (ref.getName().equals("<init>")) {

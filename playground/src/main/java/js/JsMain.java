@@ -16,7 +16,10 @@
 package js;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.teavm.jso.browser.Window;
 
 public class JsMain {
     private final Service3 service3;
@@ -42,6 +45,10 @@ public class JsMain {
         System.out.println(main.foo());
         System.out.println(String.CASE_INSENSITIVE_ORDER.compare("HELLO", "hello"));
 
+        Map<String, Integer> map = new HashMap<>();
+        map.put("hello", 1);
+        map.put("world", 2);
+        map.forEach((k, v) -> System.out.println(k + " " + v));
         // now, test virtual methods
         Bar bar = new Bar();
         System.out.println(bar.foo());
@@ -61,6 +68,7 @@ public class JsMain {
         System.out.println(make("Bar") instanceof Bar);
         System.out.println(make("Bar") instanceof Baz);
 
+        Window.alert("hello javascript alert");
     }
 
     private static Iface make(String what) {

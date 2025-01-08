@@ -139,16 +139,12 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
 
     @Override
     public SourceWriter appendClass(String cls) {
-        if (
-                SplittingJavaScriptTarget.useSplitting
-                        && !SplittingJavaScriptTarget.isRenderingRuntime
-                        && (cls.startsWith("java."))
-        ) {
+        String prefix = importPrefix(cls);
+        if (prefix != null) {
             var sn = naming.className(cls);
-            return appendDeclaration(new ScopedName("org_teavm_runtime_import." + sn.name, sn.scoped));
-        } else {
-            return appendDeclaration(naming.className(cls));
+            return appendDeclaration(new ScopedName(prefix + sn.name, sn.scoped));
         }
+        return appendDeclaration(naming.className(cls));
     }
 
     @Override
@@ -158,6 +154,11 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
 
     @Override
     public SourceWriter appendStaticField(FieldReference field) {
+        String prefix = importPrefix(field.getClassName());
+        if (prefix != null) {
+            var sn = naming.fieldName(field);
+            return appendDeclaration(new ScopedName(prefix + sn.name, sn.scoped));
+        }
         return appendDeclaration(naming.fieldName(field));
     }
 
@@ -168,32 +169,22 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
 
     @Override
     public SourceWriter appendMethod(MethodReference method) {
-        if (
-                SplittingJavaScriptTarget.useSplitting
-                        && !SplittingJavaScriptTarget.isRenderingRuntime
-                        && (method.getClassName().startsWith("java."))
-        ) {
+        String prefix = importPrefix(method.getClassName());
+        if (prefix != null) {
             var sn = naming.methodName(method);
-            return appendDeclaration(new ScopedName("org_teavm_runtime_import." + sn.name, sn.scoped));
-        } else {
-            return appendDeclaration(naming.methodName(method));
+            return appendDeclaration(new ScopedName(prefix + sn.name, sn.scoped));
         }
-
+        return appendDeclaration(naming.methodName(method));
     }
 
     @Override
     public SourceWriter appendFunction(String name) {
-        if (
-                SplittingJavaScriptTarget.useSplitting
-                    && !SplittingJavaScriptTarget.isRenderingRuntime
-                    && (name.startsWith("$rt_"))
-                    && !name.startsWith("$rt_export_main")
-        ) {
+        String prefix = importPrefix(name);
+        if (prefix != null) {
             var sn = naming.functionName(name);
-            return appendDeclaration(new ScopedName("org_teavm_runtime_import." + sn.name, sn.scoped));
-        } else {
-            return appendDeclaration(naming.functionName(name));
+            return appendDeclaration(new ScopedName(prefix + sn.name, sn.scoped));
         }
+        return appendDeclaration(naming.functionName(name));
     }
 
     @Override
@@ -203,6 +194,11 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
 
     @Override
     public SourceWriter appendInit(MethodReference method) {
+        String prefix = importPrefix(method.getClassName());
+        if (prefix != null) {
+            var sn = naming.initializerName(method);
+            return appendDeclaration(new ScopedName(prefix + sn.name, sn.scoped));
+        }
         return appendDeclaration(naming.initializerName(method));
     }
 
@@ -536,9 +532,23 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
     }
 
     private String importPrefix(String name) {
-        if (!SplittingJavaScriptTarget.useSplitting || SplittingJavaScriptTarget.isRenderingRuntime) return null;
-        // TODO use actual collected imports instead of guessing
-        if ((name.startsWith("$rt_") && !name.startsWith("$rt_export_main")) return "ort_teavm_runtime_import";
-        return null;
+        if (!SplittingJavaScriptTarget.useSplitting || SplittingJavaScriptTarget.isRenderingRuntime) {
+            return null;
+        }
+        // TODO use actual collected imports instead of guessing.
+        //  But that seems to require additional full scan over bytecode....
+        if (name.startsWith("$rt_export_main")) {
+            return null;
+        }
+        if (name.startsWith("$rt_") && !name.startsWith("$rt_export_main")) {
+            return "org_teavm_runtime_import.";
+        }
+        if (name.startsWith("java.")) {
+            return "org_teavm_runtime_import.";
+        }
+        if (SplittingJavaScriptTarget.currentClasses.contains(name)) {
+            return null;
+        }
+        return name.replace('.', '_') + "_import.";
     }
 }
