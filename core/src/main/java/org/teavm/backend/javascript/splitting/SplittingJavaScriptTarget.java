@@ -84,6 +84,11 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
      */
     public static final Set<String> runtimeLibraryClasses = new HashSet<>();
 
+    /**
+     * If true, JavascriptTarget currently emitting org.teavm.runtime.js and not other files
+     */
+    public static boolean isRenderingRuntime = false;
+
 
     private JavaScriptTarget javaScriptTarget = new JavaScriptTarget();
     private DelegatingTeaVMTargetController targetController = null;
@@ -198,54 +203,58 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
             Map<String, Set<String>> classesWithLambdas,
             BuildTarget buildTarget
     ) throws IOException {
-        MemoryBuildTarget memoryTarget = new MemoryBuildTarget();
-        String runtimeName = "org.teavm.runtime";
-        String runtimeFile = runtimeName + ".js";
+        isRenderingRuntime = true;
+        try {
+            MemoryBuildTarget memoryTarget = new MemoryBuildTarget();
+            String runtimeName = "org.teavm.runtime";
+            String runtimeFile = runtimeName + ".js";
 
-        // those are used as local variables and not to be exported
-        Set<String> excludeExports = Set.of(
-                "$rt_putStdoutCustom",
-                "$rt_decodeStack",
-                "$rt_putStderrCustom",
-                "$rt_numberConversionLongArray"
-        );
+            // those are used as local variables and not to be exported
+            Set<String> excludeExports = Set.of(
+                    "$rt_putStdoutCustom",
+                    "$rt_decodeStack",
+                    "$rt_putStderrCustom",
+                    "$rt_numberConversionLongArray"
+            );
 
-        targetController.setEntryPoint(runtimeName);
-        MutableClassHolderSource classSource = new MutableClassHolderSource();
+            targetController.setEntryPoint(runtimeName);
+            MutableClassHolderSource classSource = new MutableClassHolderSource();
 
-        for (String name: classes.getClassNames()) {
-            if ((name.startsWith("java.") || name.startsWith("org.teavm.")) && !name.equals("org.teavm.runtime")) {
-                runtimeLibraryClasses.add(extractSourceClassName(name));
-            }
-        }
-
-        ClassHolder runtimeClassHolder = new ClassHolder(runtimeName);
-        classSource.putClassHolder(runtimeClassHolder);
-        for (String className: runtimeLibraryClasses) {
-            for (String realClassName: classesWithLambdas.get(className)) {
-                ClassHolder cls = classes.get(realClassName);
-                if (cls != null) {
-                    classSource.putClassHolder(cls);
+            for (String name : classes.getClassNames()) {
+                if ((name.startsWith("java.") || name.startsWith("org.teavm.")) && !name.equals("org.teavm.runtime")) {
+                    runtimeLibraryClasses.add(extractSourceClassName(name));
                 }
-
             }
-        }
 
-        javaScriptTarget.emit(classSource, memoryTarget, runtimeFile);
-
-        byte[] content = memoryTarget.getContent(runtimeFile);
-
-        Set<String> exports = Arrays.stream(new String(content, StandardCharsets.UTF_8).split("[^\\w_$]"))
-                .filter(s -> s.startsWith("$rt_") && !excludeExports.contains(s))
-                .collect(Collectors.toSet());
-
-        try (OutputStream os = buildTarget.createResource(runtimeFile)) {
-            os.write(content);
-            for (String name: exports) {
-                os.write(("exports." + name + " = " + name + ";\n").getBytes(StandardCharsets.UTF_8));
+            ClassHolder runtimeClassHolder = new ClassHolder(runtimeName);
+            classSource.putClassHolder(runtimeClassHolder);
+            for (String className : runtimeLibraryClasses) {
+                for (String realClassName : classesWithLambdas.get(className)) {
+                    ClassHolder cls = classes.get(realClassName);
+                    if (cls != null) {
+                        classSource.putClassHolder(cls);
+                    }
+                }
             }
+
+            javaScriptTarget.emit(classSource, memoryTarget, runtimeFile);
+
+            byte[] content = memoryTarget.getContent(runtimeFile);
+
+            Set<String> exports = Arrays.stream(new String(content, StandardCharsets.UTF_8).split("[^\\w_$]"))
+                    .filter(s -> s.startsWith("$rt_") && !excludeExports.contains(s))
+                    .collect(Collectors.toSet());
+
+            try (OutputStream os = buildTarget.createResource(runtimeFile)) {
+                os.write(content);
+                for (String name : exports) {
+                    os.write(("exports." + name + " = " + name + ";\n").getBytes(StandardCharsets.UTF_8));
+                }
+            }
+            return exports;
+        } finally {
+            isRenderingRuntime = false;
         }
-        return exports;
     }
 
     @Override

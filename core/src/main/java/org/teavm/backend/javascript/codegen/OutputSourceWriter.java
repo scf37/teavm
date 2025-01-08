@@ -22,6 +22,7 @@ import com.carrotsearch.hppc.ObjectIntMap;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.debugging.information.DebugInformationEmitter;
 import org.teavm.debugging.information.DummyDebugInformationEmitter;
 import org.teavm.model.FieldReference;
@@ -138,7 +139,16 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
 
     @Override
     public SourceWriter appendClass(String cls) {
-        return appendDeclaration(naming.className(cls));
+        if (
+                SplittingJavaScriptTarget.useSplitting
+                        && !SplittingJavaScriptTarget.isRenderingRuntime
+                        && (cls.startsWith("java."))
+        ) {
+            var sn = naming.className(cls);
+            return appendDeclaration(new ScopedName("org_teavm_runtime_import." + sn.name, sn.scoped));
+        } else {
+            return appendDeclaration(naming.className(cls));
+        }
     }
 
     @Override
@@ -158,12 +168,32 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
 
     @Override
     public SourceWriter appendMethod(MethodReference method) {
-        return appendDeclaration(naming.methodName(method));
+        if (
+                SplittingJavaScriptTarget.useSplitting
+                        && !SplittingJavaScriptTarget.isRenderingRuntime
+                        && (method.getClassName().startsWith("java."))
+        ) {
+            var sn = naming.methodName(method);
+            return appendDeclaration(new ScopedName("org_teavm_runtime_import." + sn.name, sn.scoped));
+        } else {
+            return appendDeclaration(naming.methodName(method));
+        }
+
     }
 
     @Override
     public SourceWriter appendFunction(String name) {
-        return appendDeclaration(naming.functionName(name));
+        if (
+                SplittingJavaScriptTarget.useSplitting
+                    && !SplittingJavaScriptTarget.isRenderingRuntime
+                    && (name.startsWith("$rt_"))
+                    && !name.startsWith("$rt_export_main")
+        ) {
+            var sn = naming.functionName(name);
+            return appendDeclaration(new ScopedName("org_teavm_runtime_import." + sn.name, sn.scoped));
+        } else {
+            return appendDeclaration(naming.functionName(name));
+        }
     }
 
     @Override
@@ -503,5 +533,12 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
         FUNCTION,
         VARIABLE,
         VARIABLE_WITHOUT_VALUE
+    }
+
+    private String importPrefix(String name) {
+        if (!SplittingJavaScriptTarget.useSplitting || SplittingJavaScriptTarget.isRenderingRuntime) return null;
+        // TODO use actual collected imports instead of guessing
+        if ((name.startsWith("$rt_") && !name.startsWith("$rt_export_main")) return "ort_teavm_runtime_import";
+        return null;
     }
 }
