@@ -305,9 +305,6 @@ public abstract class RenderingContext {
     }
 
     public Injector getInjector(MethodReference ref) {
-        if (ref.getClassName().equals("org.teavm.jso.impl.JS") && ref.getName().equals("invoke")) {
-            System.out.println(ref);
-        }
         InjectorHolder holder = injectorMap.get(ref);
         if (holder == null) {
             holder = new InjectorHolder(null);
