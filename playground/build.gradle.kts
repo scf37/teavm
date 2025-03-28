@@ -17,6 +17,10 @@
 plugins {
     `java-library`
     `teavm-publish`
+    id("org.teavm") version "0.11.0"
+}
+teavm.js {
+    mainClass="js2.Main"
 }
 
 description = "API that helps to create tooling"

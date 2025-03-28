@@ -15,3 +15,8 @@ $rt_nextId = stdlib.$rt_nextId;
 -- it exports symbols used by other classes
 -- rt_packages and rt_metadata should work as-is
 
+
+problems:
+- teavm runtime depends on JRE
+- not all teavm runtime names start with $rt_ (e.g. Long_xxx functions)
+

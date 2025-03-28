@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.teavm.jso.JSBody;
+import org.teavm.jso.JSFunctor;
+import org.teavm.jso.JSObject;
 import org.teavm.jso.browser.Window;
 
 public class JsMain {
@@ -30,6 +33,10 @@ public class JsMain {
 
     public JsMain(Service3 service3) {
         this.service3 = service3;
+    }
+
+    static {
+        export("JsMain1", JsMain::new);
     }
 
     public static void main(String[] args) {
@@ -79,4 +86,13 @@ public class JsMain {
         }
         return null;
     }
+
+    @FunctionalInterface
+    @JSFunctor
+    protected interface JsMainCtor<A> extends JSObject {
+        A create(Service3 service3);
+    }
+
+    @JSBody(params = {"name", "ctor"}, script="let window={};window[name]=ctor")
+    protected native static void export(String name, JsMainCtor<?> ctor);
 }
