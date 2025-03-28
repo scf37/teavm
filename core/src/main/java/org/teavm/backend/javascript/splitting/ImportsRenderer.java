@@ -105,9 +105,9 @@ public class ImportsRenderer {
                 .collect(Collectors.toList());
 
         for (Map.Entry<String, Set<String>> i : sortedImports) {
-            String importAlias = i.getKey().replace('.', '_') + "_import";
+            String importAlias = classNameToImportAlias(i.getKey());
             writer.append("let ").append(importAlias).append(" = require(");
-            RenderingUtil.writeString(writer, "./" + i.getKey() + ".js");
+            RenderingUtil.writeString(writer, "./" + classNameToFileName(i.getKey()));
             writer.append(");").softNewLine();
         }
         writer.newLine();
@@ -207,6 +207,10 @@ public class ImportsRenderer {
         }
 
         void registerImport(String className, String name) {
+            if (classes.get(className) != null) {
+                return;
+            }
+
             if (runtimeLibraryClasses.contains(extractSourceClassName(className))) {
                 className = "org.teavm.runtime";
             }
@@ -228,5 +232,18 @@ public class ImportsRenderer {
         public Map<String, Set<String>> getImports() {
             return imports;
         }
+    }
+
+    public static String classNameToImportAlias(String className) {
+        return className
+                .replace('.', '_')
+                .replace('<', '_')
+                .replace('>', '_') + "_import";
+    }
+
+    public static String classNameToFileName(String className) {
+        return className
+                .replace('<', '_')
+                .replace('>', '_') + ".js";
     }
 }

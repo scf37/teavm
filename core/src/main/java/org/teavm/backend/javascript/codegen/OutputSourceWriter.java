@@ -22,6 +22,7 @@ import com.carrotsearch.hppc.ObjectIntMap;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.teavm.backend.javascript.splitting.ImportsRenderer;
 import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.debugging.information.DebugInformationEmitter;
 import org.teavm.debugging.information.DummyDebugInformationEmitter;
@@ -540,15 +541,24 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
         if (name.startsWith("$rt_export_main")) {
             return null;
         }
-        if (name.startsWith("$rt_") && !name.startsWith("$rt_export_main")) {
+
+        if (name.equals("$rt_jso_marker")) {
+            // exclusion, generated together with class definition
+            return null;
+        }
+
+        if ((name.startsWith("$rt_") || name.startsWith("Long_")) && !name.startsWith("$rt_export_main")) {
             return "org_teavm_runtime_import.";
         }
         if (name.startsWith("java.")) {
             return "org_teavm_runtime_import.";
         }
+        if (name.startsWith("org.teavm.")) {
+            return "org_teavm_runtime_import.";
+        }
         if (SplittingJavaScriptTarget.currentClasses.contains(name)) {
             return null;
         }
-        return name.replace('.', '_') + "_import.";
+        return ImportsRenderer.classNameToImportAlias(name) + ".";
     }
 }

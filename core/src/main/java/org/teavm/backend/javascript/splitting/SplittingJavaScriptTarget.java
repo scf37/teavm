@@ -167,7 +167,7 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
             BuildTarget buildTarget
     ) throws IOException {
         final MemoryBuildTarget memoryTarget = new MemoryBuildTarget();
-        final String sourceFile = sourceClassName + ".js";
+        final String sourceFile = ImportsRenderer.classNameToFileName(sourceClassName);
 
         MutableClassHolderSource classSource = new MutableClassHolderSource();
         for (ClassHolder cls: sourceClasses) {
@@ -242,7 +242,7 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
             byte[] content = memoryTarget.getContent(runtimeFile);
 
             Set<String> exports = Arrays.stream(new String(content, StandardCharsets.UTF_8).split("[^\\w_$]"))
-                    .filter(s -> s.startsWith("$rt_") && !excludeExports.contains(s))
+                    .filter(s -> (s.startsWith("$rt_") || s.startsWith("Long_")) && !excludeExports.contains(s))
                     .collect(Collectors.toSet());
 
             try (OutputStream os = buildTarget.createResource(runtimeFile)) {
