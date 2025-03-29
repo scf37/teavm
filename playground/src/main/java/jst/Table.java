@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package js2;
+package jst;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,9 @@ import java.util.Objects;
 
 public interface Table {
     void addCell(int x, int y, String value);
+
     void addRowHeader(int n, String value);
+
     void addColumnHeader(int n, String value);
 
     List<List<String>> getTable();
@@ -94,9 +96,9 @@ class TableImpl implements Table {
         height++;
 
         List<List<String>> result = new ArrayList<>(height);
-        for (int y = -1 ; y < height ; y++) {
+        for (int y = -1; y < height; y++) {
             List<String> row = new ArrayList<>(width);
-            for (int x = -1; x < width ; x++) {
+            for (int x = -1; x < width; x++) {
                 String value = values.getOrDefault(new Point(x, y), "?");
                 if (x == -1 && y == -1) {
                     value = "";

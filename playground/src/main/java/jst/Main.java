@@ -13,9 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package js2;
+package jst;
 
 public class Main {
+    private Main() { }
     public static void main(String[] args) {
         System.out.println(renderTable());
     }

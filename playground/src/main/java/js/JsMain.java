@@ -93,6 +93,6 @@ public class JsMain {
         A create(Service3 service3);
     }
 
-    @JSBody(params = {"name", "ctor"}, script="let window={};window[name]=ctor")
+    @JSBody(params = {"name", "ctor"}, script = "let window={};window[name]=ctor")
     protected native static void export(String name, JsMainCtor<?> ctor);
 }
