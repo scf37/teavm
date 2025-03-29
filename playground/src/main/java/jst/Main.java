@@ -22,13 +22,14 @@ public class Main {
 
     private static String renderTable() {
         Table table = Table.newInstance();
+        TableRenderer tableRenderer = TableRenderer.newInstance();
         fillTable(table);
-        return new TableRenderer().renderTable(table.getTable());
+        return tableRenderer.renderTable(table.getTable());
     }
 
     private static void fillTable(Table table) {
-        for (int i = 1; i < 15; i++) {
-            for (int j = 1; j < 15; j++) {
+        for (int i = 1; i <= 15; i++) {
+            for (int j = 1; j <= 15; j++) {
                 table.addCell(j, i, String.valueOf(i * j));
             }
             table.addColumnHeader(i, String.valueOf(i));

@@ -33,6 +33,7 @@ public class RemoteBuildRequest implements Serializable {
     public final List<String> classPath = new ArrayList<>();
     public String[] transformers;
     public String[] classesToPreserve;
+    public boolean useSplitting;
     public TeaVMTargetType targetType;
     public String mainClass;
     public String entryPointName;

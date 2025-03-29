@@ -19,7 +19,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class TableRenderer {
+public interface TableRenderer {
+    String renderTable(List<List<String>> data);
+
+    static TableRenderer newInstance() {
+        return new TableRendererImpl();
+    }
+}
+
+class TableRendererImpl implements TableRenderer {
+    @Override
     public String renderTable(List<List<String>> data) {
         if (data.isEmpty()) {
             return "";

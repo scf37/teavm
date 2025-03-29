@@ -13,19 +13,20 @@ j_Main_main_Slabyb = $args => {
     (org_teavm_runtime_import.jl_System_out()).$println_VHLrpW(j_Main_renderTable());
 },
 j_Main_renderTable = () => {
-    let $table;
+    let $table, $tableRenderer;
     j_Main_$callClinit();
     $table = js2_Table_import.j_Table_newInstance();
+    $tableRenderer = js2_TableRenderer_import.j_TableRenderer_newInstance();
     j_Main_fillTable_ZCrTeN($table);
-    return (js2_TableRenderer_import.j_TableRenderer__init_0()).$renderTable_guavLb($table.$getTable());
+    return $tableRenderer.$renderTable_guavLb($table.$getTable());
 },
 j_Main_fillTable_ZCrTeN = $table => {
     let $i, $j;
     j_Main_$callClinit();
     $i = 1;
-    while ($i < 15) {
+    while ($i <= 15) {
         $j = 1;
-        while ($j < 15) {
+        while ($j <= 15) {
             $table.$addCell_RzmAeX($j, $i, org_teavm_runtime_import.jl_String_valueOf_I(org_teavm_runtime_import.$rt_imul($i, $j)));
             $j = $j + 1 | 0;
         }

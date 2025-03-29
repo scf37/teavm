@@ -62,6 +62,7 @@ public class InProcessBuildStrategy implements BuildStrategy {
     private TeaVMSourceFilePolicy sourceMapsSourcePolicy;
     private String[] transformers = new String[0];
     private String[] classesToPreserve = new String[0];
+    private boolean useSplitting;
     private WasmBinaryVersion wasmVersion = WasmBinaryVersion.V_0x1;
     private boolean wasmExceptionsUsed;
     private WasmDebugInfoLevel wasmDebugInfoLevel;
@@ -209,6 +210,11 @@ public class InProcessBuildStrategy implements BuildStrategy {
     }
 
     @Override
+    public void setUseSplitting(boolean value) {
+        this.useSplitting = value;
+    }
+
+    @Override
     public void setCacheDirectory(String cacheDirectory) {
         this.cacheDirectory = cacheDirectory;
     }
@@ -284,6 +290,7 @@ public class InProcessBuildStrategy implements BuildStrategy {
         tool.setIncremental(incremental);
         tool.getTransformers().addAll(Arrays.asList(transformers));
         tool.getClassesToPreserve().addAll(Arrays.asList(classesToPreserve));
+        tool.setUseSplitting(useSplitting);
         tool.setCacheDirectory(cacheDirectory != null ? new File(cacheDirectory) : null);
         tool.setWasmVersion(wasmVersion);
         tool.setWasmExceptionsUsed(wasmExceptionsUsed);

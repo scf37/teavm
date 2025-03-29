@@ -942,7 +942,8 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
                         && method.getAnnotations().get(InjectedBy.class.getName()) == null
                         && !methodInjectors.containsKey(method.getReference())
                         && method.getAnnotations().get("org.teavm.jso.JSBody") == null
-                        && (method.getProgram() != null || method.getAnnotations().get(GeneratedBy.class.getName()) != null)
+                        && (method.getProgram() != null
+                            || method.getAnnotations().get(GeneratedBy.class.getName()) != null)
                         && ((!method.hasModifier(ElementModifier.ABSTRACT) && !method.getName().startsWith("<"))
                         || (method.getName().equals("<init>"))
                 )) {

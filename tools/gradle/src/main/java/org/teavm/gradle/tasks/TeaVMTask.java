@@ -87,6 +87,8 @@ public abstract class TeaVMTask extends DefaultTask {
     @Optional
     public abstract ListProperty<String> getPreservedClasses();
 
+    public abstract Property<Boolean> getUseSplitting();
+
     @OutputDirectory
     public abstract Property<File> getOutputDir();
 
@@ -150,6 +152,7 @@ public abstract class TeaVMTask extends DefaultTask {
         builder.setFastDependencyAnalysis(getFastGlobalAnalysis().get());
         builder.setTargetDirectory(getOutputDir().get().getAbsolutePath());
         builder.setClassesToPreserve(getPreservedClasses().get().toArray(new String[0]));
+        builder.setUseSplitting(getUseSplitting().convention(false).get());
         if (getProperties().isPresent()) {
             var properties = new Properties();
             for (var entry : getProperties().get().entrySet()) {

@@ -180,6 +180,11 @@ public class RemoteBuildStrategy implements BuildStrategy {
     }
 
     @Override
+    public void setUseSplitting(boolean value) {
+        request.useSplitting = value;
+    }
+
+    @Override
     public void setCacheDirectory(String cacheDirectory) {
         request.cacheDirectory = cacheDirectory;
     }

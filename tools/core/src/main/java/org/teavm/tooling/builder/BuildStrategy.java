@@ -79,6 +79,8 @@ public interface BuildStrategy {
 
     void setClassesToPreserve(String[] classesToPreserve);
 
+    void setUseSplitting(boolean value);
+
     void setCacheDirectory(String cacheDirectory);
 
     void setWasmVersion(WasmBinaryVersion wasmVersion);
