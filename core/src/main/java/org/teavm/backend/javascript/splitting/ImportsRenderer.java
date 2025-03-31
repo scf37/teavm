@@ -211,7 +211,8 @@ public class ImportsRenderer {
                 return;
             }
 
-            if (runtimeLibraryClasses.contains(extractSourceClassName(className))) {
+            className = extractSourceClassName(className);
+            if (runtimeLibraryClasses.contains(className)) {
                 className = "org.teavm.runtime";
             }
 

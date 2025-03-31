@@ -23,21 +23,6 @@ j_JsMain$_clinit_$lambda$_6_0_create_Wwumam = (var$0, var$1) => {
 j_JsMain$_clinit_$lambda$_6_0_create$exported$0_GAudPG = (var$1, var$2) => {
     var$2 = var$2;
     return org_teavm_runtime_import.otji_JSWrapper_javaToJs_yToRiJ(var$1.$create_Wwumam(var$2));
-},
-j_JsMain$main$lambda$_2_1 = org_teavm_runtime_import.$rt_classWithoutFields(),
-j_JsMain$main$lambda$_2_1__init_ = var$0 => {
-    org_teavm_runtime_import.jl_Object__init_(var$0);
-},
-j_JsMain$main$lambda$_2_1__init_0 = () => {
-    let var_0 = new j_JsMain$main$lambda$_2_1();
-    j_JsMain$main$lambda$_2_1__init_(var_0);
-    return var_0;
-},
-j_JsMain$main$lambda$_2_1_accept_lVIoyP = (var$0, var$1, var$2) => {
-    j_JsMain$main$lambda$_2_1_accept_NfbYnN(var$0, var$1, var$2);
-},
-j_JsMain$main$lambda$_2_1_accept_NfbYnN = (var$0, var$1, var$2) => {
-    j_JsMain_lambda$main$0_NfbYnN(var$1, var$2);
 };
 function j_JsMain() {
     org_teavm_runtime_import.jl_Object.call(this);
@@ -99,7 +84,6 @@ j_JsMain_main_Slabyb = $args => {
     (org_teavm_runtime_import.jl_System_out()).$println_Z(org_teavm_runtime_import.$rt_isInstance(j_JsMain_make_VHLrpW(org_teavm_runtime_import.$rt_str("Bar")), js_Iface_import.j_Iface));
     (org_teavm_runtime_import.jl_System_out()).$println_Z(org_teavm_runtime_import.$rt_isInstance(j_JsMain_make_VHLrpW(org_teavm_runtime_import.$rt_str("Bar")), js_Bar_import.j_Bar));
     (org_teavm_runtime_import.jl_System_out()).$println_Z(org_teavm_runtime_import.$rt_isInstance(j_JsMain_make_VHLrpW(org_teavm_runtime_import.$rt_str("Bar")), js_Baz_import.j_Baz));
-    alert("hello javascript alert");
 },
 j_JsMain_make_VHLrpW = $what => {
     j_JsMain_$callClinit();
@@ -125,6 +109,21 @@ j_JsMain__clinit_ = () => {
 j_JsMain_export$js_body$_4_GAudPG = (var$1, var$2) => {
     let window = {  };
     window[var$1] = var$2;
+},
+j_JsMain$main$lambda$_2_1 = org_teavm_runtime_import.$rt_classWithoutFields(),
+j_JsMain$main$lambda$_2_1__init_ = var$0 => {
+    org_teavm_runtime_import.jl_Object__init_(var$0);
+},
+j_JsMain$main$lambda$_2_1__init_0 = () => {
+    let var_0 = new j_JsMain$main$lambda$_2_1();
+    j_JsMain$main$lambda$_2_1__init_(var_0);
+    return var_0;
+},
+j_JsMain$main$lambda$_2_1_accept_lVIoyP = (var$0, var$1, var$2) => {
+    j_JsMain$main$lambda$_2_1_accept_NfbYnN(var$0, var$1, var$2);
+},
+j_JsMain$main$lambda$_2_1_accept_NfbYnN = (var$0, var$1, var$2) => {
+    j_JsMain_lambda$main$0_NfbYnN(var$1, var$2);
 };
 function j_JsMain$main$lambda$_2_0() {
     org_teavm_runtime_import.jl_Object.call(this);
@@ -149,8 +148,8 @@ org_teavm_runtime_import.$rt_packages([
 ]);
 org_teavm_runtime_import.$rt_metadata([j_JsMain$JsMainCtor, 0, org_teavm_runtime_import.jl_Object, [org_teavm_runtime_import.otj_JSObject], 3, 3, 0, 0, 0,
 j_JsMain$_clinit_$lambda$_6_0, 0, org_teavm_runtime_import.jl_Object, [j_JsMain$JsMainCtor], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, org_teavm_runtime_import.$rt_wrapFunction0(j_JsMain$_clinit_$lambda$_6_0__init_), (o,r)=>o.$create_Wwumam=r, org_teavm_runtime_import.$rt_wrapFunction1(j_JsMain$_clinit_$lambda$_6_0_create_Wwumam)],
-j_JsMain$main$lambda$_2_1, 0, org_teavm_runtime_import.jl_Object, [org_teavm_runtime_import.juf_BiConsumer], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, org_teavm_runtime_import.$rt_wrapFunction0(j_JsMain$main$lambda$_2_1__init_), (o,r)=>o.$accept_lVIoyP=r, org_teavm_runtime_import.$rt_wrapFunction2(j_JsMain$main$lambda$_2_1_accept_lVIoyP), (o,r)=>o.$accept_NfbYnN=r, org_teavm_runtime_import.$rt_wrapFunction2(j_JsMain$main$lambda$_2_1_accept_NfbYnN)],
 j_JsMain, 0, org_teavm_runtime_import.jl_Object, [], 0, 3, 0, j_JsMain_$callClinit, [(o,r)=>o.$foo=r, org_teavm_runtime_import.$rt_wrapFunction0(j_JsMain_foo), (o,r)=>o.$_init__Wwumam=r, org_teavm_runtime_import.$rt_wrapFunction1(j_JsMain__init__Wwumam)],
+j_JsMain$main$lambda$_2_1, 0, org_teavm_runtime_import.jl_Object, [org_teavm_runtime_import.juf_BiConsumer], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, org_teavm_runtime_import.$rt_wrapFunction0(j_JsMain$main$lambda$_2_1__init_), (o,r)=>o.$accept_lVIoyP=r, org_teavm_runtime_import.$rt_wrapFunction2(j_JsMain$main$lambda$_2_1_accept_lVIoyP), (o,r)=>o.$accept_NfbYnN=r, org_teavm_runtime_import.$rt_wrapFunction2(j_JsMain$main$lambda$_2_1_accept_NfbYnN)],
 j_JsMain$main$lambda$_2_0, 0, org_teavm_runtime_import.jl_Object, [org_teavm_runtime_import.juf_Consumer], 0, 3, 0, 0, [(o,r)=>o.$_init__JQwxsu=r, org_teavm_runtime_import.$rt_wrapFunction1(j_JsMain$main$lambda$_2_0__init__JQwxsu), (o,r)=>o.$accept_yToRiJ=r, org_teavm_runtime_import.$rt_wrapFunction1(j_JsMain$main$lambda$_2_0_accept_yToRiJ), (o,r)=>o.$accept_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction1(j_JsMain$main$lambda$_2_0_accept_VHLrpW)]]);
 let $rt_export_main = org_teavm_runtime_import.$rt_mainStarter(j_JsMain_main_Slabyb);
 $rt_export_main.javaException = org_teavm_runtime_import.$rt_javaException;
@@ -166,21 +165,21 @@ exports.j_JsMain$_clinit_$lambda$_6_0__init_0 = j_JsMain$_clinit_$lambda$_6_0__i
 exports.j_JsMain$_clinit_$lambda$_6_0_create_Wwumam = j_JsMain$_clinit_$lambda$_6_0_create_Wwumam;
 exports.j_JsMain$_clinit_$lambda$_6_0_create$exported$0_GAudPG = j_JsMain$_clinit_$lambda$_6_0_create$exported$0_GAudPG;
 exports.j_JsMain$_clinit_$lambda$_6_0 = j_JsMain$_clinit_$lambda$_6_0;
-exports.j_JsMain$main$lambda$_2_1__init_ = j_JsMain$main$lambda$_2_1__init_;
-exports.j_JsMain$main$lambda$_2_1__init_0 = j_JsMain$main$lambda$_2_1__init_0;
-exports.j_JsMain$main$lambda$_2_1_accept_lVIoyP = j_JsMain$main$lambda$_2_1_accept_lVIoyP;
-exports.j_JsMain$main$lambda$_2_1_accept_NfbYnN = j_JsMain$main$lambda$_2_1_accept_NfbYnN;
-exports.j_JsMain$main$lambda$_2_1 = j_JsMain$main$lambda$_2_1;
+exports.j_JsMain$JsMainCtor = j_JsMain$JsMainCtor;
 exports.j_JsMain_foo = j_JsMain_foo;
 exports.j_JsMain__init__Wwumam = j_JsMain__init__Wwumam;
 exports.j_JsMain__init__Wwumam0 = j_JsMain__init__Wwumam0;
 exports.j_JsMain_main_Slabyb = j_JsMain_main_Slabyb;
 exports.j_JsMain = j_JsMain;
+exports.j_JsMain$main$lambda$_2_1__init_ = j_JsMain$main$lambda$_2_1__init_;
+exports.j_JsMain$main$lambda$_2_1__init_0 = j_JsMain$main$lambda$_2_1__init_0;
+exports.j_JsMain$main$lambda$_2_1_accept_lVIoyP = j_JsMain$main$lambda$_2_1_accept_lVIoyP;
+exports.j_JsMain$main$lambda$_2_1_accept_NfbYnN = j_JsMain$main$lambda$_2_1_accept_NfbYnN;
+exports.j_JsMain$main$lambda$_2_1 = j_JsMain$main$lambda$_2_1;
 exports.j_JsMain$main$lambda$_2_0__init__JQwxsu = j_JsMain$main$lambda$_2_0__init__JQwxsu;
 exports.j_JsMain$main$lambda$_2_0__init__JQwxsu0 = j_JsMain$main$lambda$_2_0__init__JQwxsu0;
 exports.j_JsMain$main$lambda$_2_0_accept_yToRiJ = j_JsMain$main$lambda$_2_0_accept_yToRiJ;
 exports.j_JsMain$main$lambda$_2_0_accept_VHLrpW = j_JsMain$main$lambda$_2_0_accept_VHLrpW;
 exports.j_JsMain$main$lambda$_2_0 = j_JsMain$main$lambda$_2_0;
-exports.j_JsMain$JsMainCtor = j_JsMain$JsMainCtor;
 exports.main = $rt_export_main;
 exports.main();
