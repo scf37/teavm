@@ -87,6 +87,8 @@ public abstract class TeaVMTask extends DefaultTask {
     @Optional
     public abstract ListProperty<String> getPreservedClasses();
 
+    @Input
+    @Optional
     public abstract Property<Boolean> getUseSplitting();
 
     @OutputDirectory
