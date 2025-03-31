@@ -33,6 +33,7 @@ public abstract class GenerateJavaScriptTask extends TeaVMTask {
         getSourceMap().convention(false);
         getSourceFilePolicy().convention(SourceFilePolicy.LINK_LOCAL_FILES);
         getEntryPointName().convention("main");
+        getUseSplitting().convention(false);
     }
 
     @Input
@@ -66,11 +67,16 @@ public abstract class GenerateJavaScriptTask extends TeaVMTask {
     @Optional
     public abstract Property<Integer> getMaxTopLevelNames();
 
+    @Input
+    @Optional
+    public abstract Property<Boolean> getUseSplitting();
+
     @Override
     protected void setupBuilder(BuildStrategy builder) {
         builder.setTargetType(TeaVMTargetType.JAVASCRIPT);
         builder.setObfuscated(getObfuscated().get());
         builder.setStrict(getStrict().get());
+        builder.setUseSplitting(getUseSplitting().get());
         if (getMaxTopLevelNames().isPresent()) {
             builder.setMaxTopLevelNames(getMaxTopLevelNames().get());
         }
