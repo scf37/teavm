@@ -16,8 +16,12 @@
 package js;
 
 public class Bar implements Iface {
+    private final String p;
+    public Bar(String p) {
+        this.p = p;
+    }
     @Override
     public String foo() {
-        return "Bar";
+        return "Bar" + p;
     }
 }

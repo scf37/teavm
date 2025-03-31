@@ -1,10 +1,10 @@
 "use strict";
-let js2_TableImpl_import = require("./js2.TableImpl.js");
+let jst_TableImpl_import = require("./jst.TableImpl.js");
 let org_teavm_runtime_import = require("./org.teavm.runtime.js");
 
 let j_Table = org_teavm_runtime_import.$rt_classWithoutFields(0),
 j_Table_newInstance = () => {
-    return js2_TableImpl_import.j_TableImpl__init_0();
+    return jst_TableImpl_import.j_TableImpl__init_0();
 };
 org_teavm_runtime_import.$rt_packages([
 ]);

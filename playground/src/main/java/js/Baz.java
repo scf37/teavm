@@ -16,6 +16,10 @@
 package js;
 
 public class Baz extends Bar {
+    public Baz(String p) {
+        super(p);
+    }
+
     @Override
     public String foo() {
         return "Baz";

@@ -1,6 +1,6 @@
 "use strict";
-let js2_Table_import = require("./js2.Table.js");
-let js2_TableRenderer_import = require("./js2.TableRenderer.js");
+let jst_Table_import = require("./jst.Table.js");
+let jst_TableRenderer_import = require("./jst.TableRenderer.js");
 let org_teavm_runtime_import = require("./org.teavm.runtime.js");
 
 let j_Main = org_teavm_runtime_import.$rt_classWithoutFields(),
@@ -15,12 +15,12 @@ j_Main_main_Slabyb = $args => {
 j_Main_renderTable = () => {
     let $table, $tableRenderer;
     j_Main_$callClinit();
-    $table = js2_Table_import.j_Table_newInstance();
-    $tableRenderer = js2_TableRenderer_import.j_TableRenderer_newInstance();
-    j_Main_fillTable_ZCrTeN($table);
+    $table = jst_Table_import.j_Table_newInstance();
+    $tableRenderer = jst_TableRenderer_import.j_TableRenderer_newInstance();
+    j_Main_fillTable_Fdfton($table);
     return $tableRenderer.$renderTable_guavLb($table.$getTable());
 },
-j_Main_fillTable_ZCrTeN = $table => {
+j_Main_fillTable_Fdfton = $table => {
     let $i, $j;
     j_Main_$callClinit();
     $i = 1;

@@ -1,5 +1,5 @@
 "use strict";
-let js2_TableRenderer_import = require("./js2.TableRenderer.js");
+let jst_TableRenderer_import = require("./jst.TableRenderer.js");
 let org_teavm_runtime_import = require("./org.teavm.runtime.js");
 
 let j_TableRendererImpl = org_teavm_runtime_import.$rt_classWithoutFields(),
@@ -76,7 +76,7 @@ j_TableRendererImpl_fill_CI = ($this, $c, $size) => {
 };
 org_teavm_runtime_import.$rt_packages([
 ]);
-org_teavm_runtime_import.$rt_metadata([j_TableRendererImpl, 0, org_teavm_runtime_import.jl_Object, [js2_TableRenderer_import.j_TableRenderer], 0, 0, 0, 0, [(o,r)=>o.$_init_=r, org_teavm_runtime_import.$rt_wrapFunction0(j_TableRendererImpl__init_), (o,r)=>o.$renderTable_guavLb=r, org_teavm_runtime_import.$rt_wrapFunction1(j_TableRendererImpl_renderTable_guavLb)]]);
+org_teavm_runtime_import.$rt_metadata([j_TableRendererImpl, 0, org_teavm_runtime_import.jl_Object, [jst_TableRenderer_import.j_TableRenderer], 0, 0, 0, 0, [(o,r)=>o.$_init_=r, org_teavm_runtime_import.$rt_wrapFunction0(j_TableRendererImpl__init_), (o,r)=>o.$renderTable_guavLb=r, org_teavm_runtime_import.$rt_wrapFunction1(j_TableRendererImpl_renderTable_guavLb)]]);
 exports.j_TableRendererImpl__init_ = j_TableRendererImpl__init_;
 exports.j_TableRendererImpl__init_0 = j_TableRendererImpl__init_0;
 exports.j_TableRendererImpl_renderTable_guavLb = j_TableRendererImpl_renderTable_guavLb;

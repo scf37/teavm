@@ -57,9 +57,9 @@ public class JsMain {
         map.put("world", 2);
         map.forEach((k, v) -> System.out.println(k + " " + v));
         // now, test virtual methods
-        Bar bar = new Bar();
+        Bar bar = new Bar("x");
         System.out.println(bar.foo());
-        Baz baz = new Baz();
+        Baz baz = new Baz("y");
         System.out.println(baz.foo());
         System.out.println(make("Bar").foo());
         System.out.println(make("Baz").foo());
@@ -75,14 +75,14 @@ public class JsMain {
         System.out.println(make("Bar") instanceof Bar);
         System.out.println(make("Bar") instanceof Baz);
 
-        Window.alert("hello javascript alert");
+        // Window.alert("hello javascript alert");
     }
 
     private static Iface make(String what) {
         if (what.equals("Bar")) {
-            return new Bar();
+            return new Bar("x");
         } else if (what.equals("Baz")) {
-            return new Baz();
+            return new Baz("y");
         }
         return null;
     }
