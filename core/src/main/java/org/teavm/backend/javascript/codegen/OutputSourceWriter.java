@@ -559,6 +559,11 @@ public class OutputSourceWriter extends SourceWriter implements LocationProvider
         if (SplittingJavaScriptTarget.currentClasses.contains(name)) {
             return null;
         }
+        // inner classes are put to the same file as outer class
+        int delimIndex = name.indexOf('$');
+        if (delimIndex != -1) {
+            name = name.substring(0, delimIndex);
+        }
         return ImportsRenderer.classNameToImportAlias(name) + ".";
     }
 }
