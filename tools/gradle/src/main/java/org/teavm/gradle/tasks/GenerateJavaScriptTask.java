@@ -15,7 +15,9 @@
  */
 package org.teavm.gradle.tasks;
 
+import java.util.Collections;
 import org.gradle.api.file.ConfigurableFileCollection;
+import org.gradle.api.provider.ListProperty;
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputFiles;
@@ -34,6 +36,7 @@ public abstract class GenerateJavaScriptTask extends TeaVMTask {
         getSourceFilePolicy().convention(SourceFilePolicy.LINK_LOCAL_FILES);
         getEntryPointName().convention("main");
         getUseSplitting().convention(false);
+        getTransformers().convention(Collections.emptyList());
     }
 
     @Input
@@ -71,12 +74,17 @@ public abstract class GenerateJavaScriptTask extends TeaVMTask {
     @Optional
     public abstract Property<Boolean> getUseSplitting();
 
+    @Input
+    @Optional
+    public abstract ListProperty<String> getTransformers();
+
     @Override
     protected void setupBuilder(BuildStrategy builder) {
         builder.setTargetType(TeaVMTargetType.JAVASCRIPT);
         builder.setObfuscated(getObfuscated().get());
         builder.setStrict(getStrict().get());
         builder.setUseSplitting(getUseSplitting().get());
+        builder.setTransformers(getTransformers().get().toArray(new String[0]));
         if (getMaxTopLevelNames().isPresent()) {
             builder.setMaxTopLevelNames(getMaxTopLevelNames().get());
         }

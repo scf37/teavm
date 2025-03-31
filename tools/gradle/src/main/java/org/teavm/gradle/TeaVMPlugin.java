@@ -143,6 +143,7 @@ public class TeaVMPlugin implements Plugin<Project> {
             task.getSourceFilePolicy().convention(js.getSourceFilePolicy());
             task.getMaxTopLevelNames().convention(js.getMaxTopLevelNames());
             task.getUseSplitting().convention(js.getUseSplitting());
+            task.getTransformers().convention(js.getTransformers());
             setupSources(task.getSourceFiles(), project);
         });
     }

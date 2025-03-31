@@ -18,6 +18,7 @@ package org.teavm.gradle.api;
 import groovy.lang.Closure;
 import groovy.lang.DelegatesTo;
 import org.gradle.api.Action;
+import org.gradle.api.provider.ListProperty;
 import org.gradle.api.provider.Property;
 
 public interface TeaVMJSConfiguration extends TeaVMWebConfiguration {
@@ -40,6 +41,8 @@ public interface TeaVMJSConfiguration extends TeaVMWebConfiguration {
     TeaVMDevServerConfiguration getDevServer();
 
     Property<Boolean> getUseSplitting();
+
+    ListProperty<String> getTransformers();
 
     void devServer(Action<TeaVMDevServerConfiguration> action);
 
