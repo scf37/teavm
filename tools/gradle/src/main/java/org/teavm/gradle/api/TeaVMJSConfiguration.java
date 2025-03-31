@@ -39,6 +39,8 @@ public interface TeaVMJSConfiguration extends TeaVMWebConfiguration {
 
     TeaVMDevServerConfiguration getDevServer();
 
+    Property<Boolean> getUseSplitting();
+
     void devServer(Action<TeaVMDevServerConfiguration> action);
 
     void devServer(@DelegatesTo(TeaVMDevServerConfiguration.class) Closure<?> action);
