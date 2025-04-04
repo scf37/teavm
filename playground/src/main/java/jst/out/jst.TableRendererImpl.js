@@ -40,10 +40,10 @@ j_TableRendererImpl_renderTable_guavLb = ($this, $data) => {
     return $sb.$toString();
 },
 j_TableRendererImpl_renderHeaderLine_BACbqG = ($this, $width, $cellWidth, $sb) => {
-    $sb.$append_VHLrpW(j_TableRendererImpl_fill_CI($this, 45, $cellWidth + 1 | 0));
-    $sb.$append_VHLrpW(org_teavm_runtime_import.$rt_str("+"));
-    $sb.$append_VHLrpW(j_TableRendererImpl_fill_CI($this, 45, org_teavm_runtime_import.$rt_imul($width - 1 | 0, $cellWidth) + 1 | 0));
-    $sb.$append_VHLrpW(org_teavm_runtime_import.$rt_str("\n"));
+    $sb.$append_VHLrpW0(j_TableRendererImpl_fill_CI($this, 45, $cellWidth + 1 | 0));
+    $sb.$append_VHLrpW0(org_teavm_runtime_import.$rt_str("+"));
+    $sb.$append_VHLrpW0(j_TableRendererImpl_fill_CI($this, 45, org_teavm_runtime_import.$rt_imul($width - 1 | 0, $cellWidth) + 1 | 0));
+    $sb.$append_VHLrpW0(org_teavm_runtime_import.$rt_str("\n"));
 },
 j_TableRendererImpl_renderRow_Jibwis = ($this, $row, $cellWidth, $sb) => {
     let $x, var$5, $cell;
@@ -52,11 +52,11 @@ j_TableRendererImpl_renderRow_Jibwis = ($this, $row, $cellWidth, $sb) => {
     while (var$5.$hasNext()) {
         $cell = var$5.$next();
         if ($x == 1)
-            $sb.$append_VHLrpW(org_teavm_runtime_import.$rt_str(" | "));
-        $sb.$append_VHLrpW(j_TableRendererImpl_padLeftTo_iFmOGb($this, $cell, $cellWidth));
+            $sb.$append_VHLrpW0(org_teavm_runtime_import.$rt_str(" | "));
+        $sb.$append_VHLrpW0(j_TableRendererImpl_padLeftTo_iFmOGb($this, $cell, $cellWidth));
         $x = $x + 1 | 0;
     }
-    $sb.$append_VHLrpW(org_teavm_runtime_import.$rt_str("\n"));
+    $sb.$append_VHLrpW0(org_teavm_runtime_import.$rt_str("\n"));
 },
 j_TableRendererImpl_padLeftTo_iFmOGb = ($this, $s, $size) => {
     let $pad, var$4, var$5;

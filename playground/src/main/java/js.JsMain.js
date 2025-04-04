@@ -182,4 +182,3 @@ exports.j_JsMain$main$lambda$_2_0_accept_yToRiJ = j_JsMain$main$lambda$_2_0_acce
 exports.j_JsMain$main$lambda$_2_0_accept_VHLrpW = j_JsMain$main$lambda$_2_0_accept_VHLrpW;
 exports.j_JsMain$main$lambda$_2_0 = j_JsMain$main$lambda$_2_0;
 exports.main = $rt_export_main;
-exports.main();

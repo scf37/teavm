@@ -437,7 +437,7 @@ public class TeaVMTool {
     public void generate() throws TeaVMToolException {
         try {
             if (useSplitting) {
-                SplittingJavaScriptTarget.useSplitting = true;
+                SplittingJavaScriptTarget.initSplitting();
                 // code splitting does not work with per-file obfuscation and optimizations
                 // other modules types are untested
                 setObfuscated(false);
@@ -570,7 +570,7 @@ public class TeaVMTool {
         } catch (IOException e) {
             throw new TeaVMToolException("IO error occurred", e);
         } finally {
-            SplittingJavaScriptTarget.useSplitting = false;
+            SplittingJavaScriptTarget.cleanupSplitting();
         }
     }
 

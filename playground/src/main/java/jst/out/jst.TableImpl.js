@@ -6,10 +6,10 @@ function j_TableImpl$Point() {
     let a = this; org_teavm_runtime_import.jl_Object.call(a);
     a.$x = 0;
     a.$y = 0;
-    a.$this$0 = null;
+    a.$this$01 = null;
 }
 let j_TableImpl$Point__init__tkTdPD = ($this, var$1, $x, $y) => {
-    $this.$this$0 = var$1;
+    $this.$this$01 = var$1;
     org_teavm_runtime_import.jl_Object__init_($this);
     $this.$x = $x;
     $this.$y = $y;

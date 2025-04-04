@@ -29,6 +29,8 @@ import org.teavm.backend.javascript.JSModuleType;
 import org.teavm.backend.javascript.JavaScriptTarget;
 import org.teavm.backend.javascript.ProviderContext;
 import org.teavm.backend.javascript.TeaVMJavaScriptHost;
+import org.teavm.backend.javascript.codegen.DefaultAliasProvider;
+import org.teavm.backend.javascript.codegen.DefaultNamingStrategy;
 import org.teavm.backend.javascript.spi.Generator;
 import org.teavm.backend.javascript.spi.Injector;
 import org.teavm.backend.javascript.spi.MethodContributor;
@@ -81,6 +83,25 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
      * Set of classes currently rendered by JavascriptTarget
      */
     public static Set<String> currentClasses;
+
+    /**
+     * Reused alias provider to keep names consistent between emitted files
+     */
+    public static DefaultNamingStrategy defaultNamingStrategy;
+
+    public static void initSplitting() {
+        useSplitting = true;
+    }
+
+    public static void cleanupSplitting() {
+        useSplitting = false;
+        fullSource = null;
+        runtimeLibraryExports = null;
+        runtimeLibraryClasses.clear();
+        isRenderingRuntime = false;
+        currentClasses = null;
+        defaultNamingStrategy = null;
+    }
 
 
     private JavaScriptTarget javaScriptTarget = new JavaScriptTarget();

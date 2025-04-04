@@ -20,3 +20,10 @@ problems:
 - teavm runtime depends on JRE
 - not all teavm runtime names start with $rt_ (e.g. Long_xxx functions)
 
+ISSUES
+- @JsBody only works in current class because teavm creates $js_body$ proxy in class which defined @JsBody
+   It does not work in split compilation because class hosting JsBody has no idea it needs to emit proxies
+   It works if JsBody declaration and usage is in the same class however. Probably due to inlining.
+- DONE AliasProvider: "uniqueness" stuff does not work - it is NOT stable across multiple class compilations
+    persist AliasProvider state between invocations, removing uniqueness suffix generation won't work - it is heavily used
+- DONE calling the tool from gradle plugin: somehow it persists state between invocations breaking compilation. Investigate.

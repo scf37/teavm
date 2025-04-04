@@ -28,10 +28,13 @@ public class ToolTest {
     public static void main(String[] args) throws TeaVMToolException {
         var log = new ConsoleTeaVMToolLog(false);
         TeaVMTool tool = new TeaVMTool();
-        tool.setMainClass("js.JsMain");
-        tool.setTargetDirectory(new File("playground/src/main/java"));
-//        tool.setMainClass("jst.Main");
-//        tool.setTargetDirectory(new File("playground/src/main/java/jst/out"));
+
+//        tool.setMainClass("js.JsMain");
+//        tool.setTargetDirectory(new File("playground/src/main/java"));
+
+        tool.setMainClass("jst.Main");
+        tool.setTargetDirectory(new File("playground/src/main/java/jst/out"));
+
         tool.setTargetType(TeaVMTargetType.JAVASCRIPT);
 
         tool.setTargetFileName("ToolTest.js");
