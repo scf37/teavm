@@ -79,8 +79,8 @@ $rt_classWithoutFields = superclass => {
         superclass.call(this);
     };
 },
-$rt_cls = cls => jl_Class_getClass_BSppjk(cls),
-rt_objcls_gcc_fix = jl_Object,
+$rt_cls = cls => java_lang_Class_getClass_LTJNGA(cls),
+rt_objcls_gcc_fix = java_lang_Object,
 $rt_objcls = () => rt_objcls_gcc_fix,
 $rt_getThread = () => {
 },
@@ -286,7 +286,7 @@ $rt_arraycls = cls => {
             str += "]";
             return str;
         };
-        JavaArray.prototype.$clone = function() {
+        JavaArray.prototype.$clone_yToRiJ = function() {
             let dataCopy;
             if ('slice' in this.data) {
                 dataCopy = this.data.slice();
@@ -502,9 +502,9 @@ $rt_substring = (string, start, end) => {
     $rt_substringSink = $rt_substringSink + result.charCodeAt(result.length - 1) | 0;
 },
 $rt_substringSink = 0,
-$rt_str = str => str === null ? null : jl_String__init__yToRiJ0(str),
+$rt_str = str => str === null ? null : java_lang_String__init__HFyQDR$1(str),
 $rt_ustr = str => str === null ? null : str.$nativeString,
-$rt_stringClassInit = () => jl_String_$callClinit(),
+$rt_stringClassInit = () => java_lang_String_$callClinit(),
 $rt_intern;
 {
     $rt_intern = str => str;
@@ -630,9 +630,9 @@ $rt_wrapException = err => {
     }
     return ex;
 },
-$rt_createException = message => jl_RuntimeException__init__VHLrpW0(message),
-$rt_throwableMessage = t => jl_Throwable_getMessage(t),
-$rt_throwableCause = t => jl_Throwable_getCause(t),
+$rt_createException = message => java_lang_RuntimeException__init__XjCHVS$1(message),
+$rt_throwableMessage = t => java_lang_Throwable_getMessage_VHLrpW(t),
+$rt_throwableCause = t => java_lang_Throwable_getCause_MBBfFS(t),
 $rt_stecls = () => $rt_objcls(),
 $rt_throwAIOOBE = () => $rt_throw($rt_createException($rt_str(""))),
 $rt_throwCCE = () => $rt_throw($rt_createException($rt_str(""))),
@@ -669,7 +669,7 @@ $rt_checkLowerBound = index => {
 },
 $rt_nullCheck = val => {
     if (val === null) {
-        $rt_throw(jl_NullPointerException__init_0());
+        $rt_throw(java_lang_NullPointerException__init__V$1());
     }
     return val;
 },
@@ -787,122 +787,122 @@ $rt_resuming = () => false,
 $rt_nativeThread = () => null,
 $rt_invalidPointer = () => {
 };
-function jl_Object() {
+function java_lang_Object() {
     this.$id$ = 0;
 }
-let jl_Object__init_ = $this => {
+let java_lang_Object__init__V = $this => {
     return;
 },
-jl_Object__init_0 = () => {
-    let var_0 = new jl_Object();
-    jl_Object__init_(var_0);
+java_lang_Object__init__V$1 = () => {
+    let var_0 = new java_lang_Object();
+    java_lang_Object__init__V(var_0);
     return var_0;
 },
-jl_Object_getClass = $this => {
-    return jl_Class_getClass_BSppjk($this.constructor);
+java_lang_Object_getClass_rQPqgt = $this => {
+    return java_lang_Class_getClass_LTJNGA($this.constructor);
 },
-jl_Object_toString = $this => {
+java_lang_Object_toString_VHLrpW = $this => {
     let var$1, var$2, var$3;
-    var$1 = jl_Class_getName(jl_Object_getClass($this));
-    var$2 = jl_Integer_toHexString_I(jl_Object_identity($this));
-    var$3 = jl_StringBuilder__init_0();
-    jl_StringBuilder_append_yToRiJ(jl_StringBuilder_append_C(jl_StringBuilder_append_yToRiJ(var$3, var$1), 64), var$2);
-    return jl_StringBuilder_toString(var$3);
+    var$1 = java_lang_Class_getName_VHLrpW(java_lang_Object_getClass_rQPqgt($this));
+    var$2 = java_lang_Integer_toHexString_iFmOGb(java_lang_Object_identity_I($this));
+    var$3 = java_lang_StringBuilder__init__V$1();
+    java_lang_StringBuilder_append_ZOYxhs(java_lang_StringBuilder_append_zwKTwE(java_lang_StringBuilder_append_ZOYxhs(var$3, var$1), 64), var$2);
+    return java_lang_StringBuilder_toString_VHLrpW(var$3);
 },
-jl_Object_identity = $this => {
+java_lang_Object_identity_I = $this => {
     let $platformThis;
     $platformThis = $this;
     if (!$platformThis.$id$)
         $platformThis.$id$ = $rt_nextId();
     return $this.$id$;
 },
-ot_runtime = $rt_classWithoutFields();
-function jl_Throwable() {
-    let a = this; jl_Object.call(a);
+org_teavm_runtime = $rt_classWithoutFields();
+function java_lang_Throwable() {
+    let a = this; java_lang_Object.call(a);
     a.$message = null;
     a.$cause = null;
     a.$suppressionEnabled = 0;
     a.$writableStackTrace = 0;
 }
-let jl_Throwable__init_ = $this => {
+let java_lang_Throwable__init__V = $this => {
     $this.$suppressionEnabled = 1;
     $this.$writableStackTrace = 1;
-    $this.$fillInStackTrace();
+    $this.$fillInStackTrace_MBBfFS();
 },
-jl_Throwable__init_0 = () => {
-    let var_0 = new jl_Throwable();
-    jl_Throwable__init_(var_0);
+java_lang_Throwable__init__V$1 = () => {
+    let var_0 = new java_lang_Throwable();
+    java_lang_Throwable__init__V(var_0);
     return var_0;
 },
-jl_Throwable__init__VHLrpW = ($this, $message) => {
+java_lang_Throwable__init__XjCHVS = ($this, $message) => {
     $this.$suppressionEnabled = 1;
     $this.$writableStackTrace = 1;
-    $this.$fillInStackTrace();
+    $this.$fillInStackTrace_MBBfFS();
     $this.$message = $message;
 },
-jl_Throwable__init__VHLrpW0 = var_0 => {
-    let var_1 = new jl_Throwable();
-    jl_Throwable__init__VHLrpW(var_1, var_0);
+java_lang_Throwable__init__XjCHVS$1 = var_0 => {
+    let var_1 = new java_lang_Throwable();
+    java_lang_Throwable__init__XjCHVS(var_1, var_0);
     return var_1;
 },
-jl_Throwable_fillInStackTrace = $this => {
+java_lang_Throwable_fillInStackTrace_MBBfFS = $this => {
     return $this;
 },
-jl_Throwable_getMessage = $this => {
+java_lang_Throwable_getMessage_VHLrpW = $this => {
     return $this.$message;
 },
-jl_Throwable_getCause = $this => {
+java_lang_Throwable_getCause_MBBfFS = $this => {
     return $this.$cause === $this ? null : $this.$cause;
 },
-jl_Exception = $rt_classWithoutFields(jl_Throwable),
-jl_Exception__init_ = $this => {
-    jl_Throwable__init_($this);
+java_lang_Exception = $rt_classWithoutFields(java_lang_Throwable),
+java_lang_Exception__init__V = $this => {
+    java_lang_Throwable__init__V($this);
 },
-jl_Exception__init_0 = () => {
-    let var_0 = new jl_Exception();
-    jl_Exception__init_(var_0);
+java_lang_Exception__init__V$1 = () => {
+    let var_0 = new java_lang_Exception();
+    java_lang_Exception__init__V(var_0);
     return var_0;
 },
-jl_Exception__init__VHLrpW = ($this, $message) => {
-    jl_Throwable__init__VHLrpW($this, $message);
+java_lang_Exception__init__XjCHVS = ($this, $message) => {
+    java_lang_Throwable__init__XjCHVS($this, $message);
 },
-jl_Exception__init__VHLrpW0 = var_0 => {
-    let var_1 = new jl_Exception();
-    jl_Exception__init__VHLrpW(var_1, var_0);
+java_lang_Exception__init__XjCHVS$1 = var_0 => {
+    let var_1 = new java_lang_Exception();
+    java_lang_Exception__init__XjCHVS(var_1, var_0);
     return var_1;
 },
-jl_RuntimeException = $rt_classWithoutFields(jl_Exception),
-jl_RuntimeException__init_ = $this => {
-    jl_Exception__init_($this);
+java_lang_RuntimeException = $rt_classWithoutFields(java_lang_Exception),
+java_lang_RuntimeException__init__V = $this => {
+    java_lang_Exception__init__V($this);
 },
-jl_RuntimeException__init_0 = () => {
-    let var_0 = new jl_RuntimeException();
-    jl_RuntimeException__init_(var_0);
+java_lang_RuntimeException__init__V$1 = () => {
+    let var_0 = new java_lang_RuntimeException();
+    java_lang_RuntimeException__init__V(var_0);
     return var_0;
 },
-jl_RuntimeException__init__VHLrpW = ($this, $message) => {
-    jl_Exception__init__VHLrpW($this, $message);
+java_lang_RuntimeException__init__XjCHVS = ($this, $message) => {
+    java_lang_Exception__init__XjCHVS($this, $message);
 },
-jl_RuntimeException__init__VHLrpW0 = var_0 => {
-    let var_1 = new jl_RuntimeException();
-    jl_RuntimeException__init__VHLrpW(var_1, var_0);
+java_lang_RuntimeException__init__XjCHVS$1 = var_0 => {
+    let var_1 = new java_lang_RuntimeException();
+    java_lang_RuntimeException__init__XjCHVS(var_1, var_0);
     return var_1;
 },
-jl_IndexOutOfBoundsException = $rt_classWithoutFields(jl_RuntimeException),
-jl_IndexOutOfBoundsException__init_ = $this => {
-    jl_RuntimeException__init_($this);
+java_lang_IndexOutOfBoundsException = $rt_classWithoutFields(java_lang_RuntimeException),
+java_lang_IndexOutOfBoundsException__init__V = $this => {
+    java_lang_RuntimeException__init__V($this);
 },
-jl_IndexOutOfBoundsException__init_0 = () => {
-    let var_0 = new jl_IndexOutOfBoundsException();
-    jl_IndexOutOfBoundsException__init_(var_0);
+java_lang_IndexOutOfBoundsException__init__V$1 = () => {
+    let var_0 = new java_lang_IndexOutOfBoundsException();
+    java_lang_IndexOutOfBoundsException__init__V(var_0);
     return var_0;
 },
-ju_Arrays = $rt_classWithoutFields(),
-ju_Arrays_copyOf__CI = ($array, $length) => {
+java_util_Arrays = $rt_classWithoutFields(),
+java_util_Arrays_copyOf__C_CI = ($array, $length) => {
     let var$3, $result, $sz, $i;
     var$3 = $array.data;
     $result = $rt_createCharArray($length);
-    $sz = jl_Math_min_II($length, var$3.length);
+    $sz = java_lang_Math_min_III($length, var$3.length);
     $i = 0;
     while ($i < $sz) {
         $result.data[$i] = var$3[$i];
@@ -910,11 +910,11 @@ ju_Arrays_copyOf__CI = ($array, $length) => {
     }
     return $result;
 },
-ju_Arrays_copyOf_xYnKPG = ($original, $newLength) => {
+java_util_Arrays_copyOf_MqkkEq = ($original, $newLength) => {
     let var$3, $result, $sz, $i;
     var$3 = $original.data;
-    $result = jlr_Array_newInstance_bvdtKY(jl_Class_getComponentType(jl_Object_getClass($original)), $newLength);
-    $sz = jl_Math_min_II($newLength, var$3.length);
+    $result = java_lang_reflect_Array_newInstance_AAjNOn(java_lang_Class_getComponentType_rQPqgt(java_lang_Object_getClass_rQPqgt($original)), $newLength);
+    $sz = java_lang_Math_min_III($newLength, var$3.length);
     $i = 0;
     while ($i < $sz) {
         $result.data[$i] = var$3[$i];
@@ -922,10 +922,10 @@ ju_Arrays_copyOf_xYnKPG = ($original, $newLength) => {
     }
     return $result;
 },
-ju_Arrays_fill__CIIC = ($a, $fromIndex, $toIndex, $val) => {
+java_util_Arrays_fill_TiCZqH = ($a, $fromIndex, $toIndex, $val) => {
     let var$5, var$6;
     if ($fromIndex > $toIndex)
-        $rt_throw(jl_IllegalArgumentException__init_0());
+        $rt_throw(java_lang_IllegalArgumentException__init__V$1());
     while ($fromIndex < $toIndex) {
         var$5 = $a.data;
         var$6 = $fromIndex + 1 | 0;
@@ -933,10 +933,10 @@ ju_Arrays_fill__CIIC = ($a, $fromIndex, $toIndex, $val) => {
         $fromIndex = var$6;
     }
 },
-ju_Arrays_fill__CC = ($a, $val) => {
-    ju_Arrays_fill__CIIC($a, 0, $a.data.length, $val);
+java_util_Arrays_fill_V_CC = ($a, $val) => {
+    java_util_Arrays_fill_TiCZqH($a, 0, $a.data.length, $val);
 },
-ju_Arrays_hashCode_MzFGbf = $a => {
+java_util_Arrays_hashCode_Xpebqu = $a => {
     let $hash, $i, var$4;
     if ($a === null)
         return 0;
@@ -946,22 +946,22 @@ ju_Arrays_hashCode_MzFGbf = $a => {
         var$4 = $a.data;
         if ($i >= var$4.length)
             break;
-        $hash = (31 * $hash | 0) + ju_Objects_hashCode_yToRiJ(var$4[$i]) | 0;
+        $hash = (31 * $hash | 0) + java_util_Objects_hashCode_CeygPn(var$4[$i]) | 0;
         $i = $i + 1 | 0;
     }
     return $hash;
 },
-jlr_Array = $rt_classWithoutFields(),
-jlr_Array_newInstance_bvdtKY = ($componentType, $length) => {
+java_lang_reflect_Array = $rt_classWithoutFields(),
+java_lang_reflect_Array_newInstance_AAjNOn = ($componentType, $length) => {
     if ($componentType === null)
-        $rt_throw(jl_NullPointerException__init_0());
+        $rt_throw(java_lang_NullPointerException__init__V$1());
     if ($componentType === $rt_cls($rt_voidcls))
-        $rt_throw(jl_IllegalArgumentException__init_0());
+        $rt_throw(java_lang_IllegalArgumentException__init__V$1());
     if ($length < 0)
-        $rt_throw(jl_NegativeArraySizeException__init_0());
-    return jlr_Array_newInstanceImpl_ljLRAM(jl_Class_getPlatformClass($componentType), $length);
+        $rt_throw(java_lang_NegativeArraySizeException__init__V$1());
+    return java_lang_reflect_Array_newInstanceImpl_lfJdlA(java_lang_Class_getPlatformClass_BSppjk($componentType), $length);
 },
-jlr_Array_newInstanceImpl_ljLRAM = (var$1, var$2) => {
+java_lang_reflect_Array_newInstanceImpl_lfJdlA = (var$1, var$2) => {
     if (var$1.$meta.primitive) {
         switch (var$1) {
         }
@@ -969,136 +969,136 @@ jlr_Array_newInstanceImpl_ljLRAM = (var$1, var$2) => {
     }
     return $rt_createArray(var$1, var$2);
 },
-jl_System = $rt_classWithoutFields(),
-jl_System_outCache = null,
-jl_System_out = () => {
-    if (jl_System_outCache === null)
-        jl_System_outCache = otcic_JSStdoutPrintStream__init_0();
-    return jl_System_outCache;
+java_lang_System = $rt_classWithoutFields(),
+java_lang_System_outCache = null,
+java_lang_System_out_JQwxsu = () => {
+    if (java_lang_System_outCache === null)
+        java_lang_System_outCache = org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1();
+    return java_lang_System_outCache;
 },
-ju_Iterator = $rt_classWithoutFields(0);
-function ju_AbstractList$1() {
-    let a = this; jl_Object.call(a);
+java_util_Iterator = $rt_classWithoutFields(0);
+function java_util_AbstractList$1() {
+    let a = this; java_lang_Object.call(a);
     a.$index = 0;
-    a.$modCount1 = 0;
-    a.$size1 = 0;
+    a.$modCount = 0;
+    a.$size = 0;
     a.$removeIndex = 0;
     a.$this$0 = null;
 }
-let ju_AbstractList$1__init__fOCyST = ($this, $this$0) => {
+let java_util_AbstractList$1__init__tWBmpm = ($this, $this$0) => {
     $this.$this$0 = $this$0;
-    jl_Object__init_($this);
-    $this.$modCount1 = $this.$this$0.$modCount0;
-    $this.$size1 = $this.$this$0.$size();
+    java_lang_Object__init__V($this);
+    $this.$modCount = $this.$this$0.$modCount;
+    $this.$size = $this.$this$0.$size_I();
     $this.$removeIndex = (-1);
 },
-ju_AbstractList$1__init__fOCyST0 = var_0 => {
-    let var_1 = new ju_AbstractList$1();
-    ju_AbstractList$1__init__fOCyST(var_1, var_0);
+java_util_AbstractList$1__init__tWBmpm$1 = var_0 => {
+    let var_1 = new java_util_AbstractList$1();
+    java_util_AbstractList$1__init__tWBmpm(var_1, var_0);
     return var_1;
 },
-ju_AbstractList$1_hasNext = $this => {
-    return $this.$index >= $this.$size1 ? 0 : 1;
+java_util_AbstractList$1_hasNext_Z = $this => {
+    return $this.$index >= $this.$size ? 0 : 1;
 },
-ju_AbstractList$1_next = $this => {
+java_util_AbstractList$1_next_yToRiJ = $this => {
     let var$1, var$2;
-    ju_AbstractList$1_checkConcurrentModification($this);
+    java_util_AbstractList$1_checkConcurrentModification_V($this);
     $this.$removeIndex = $this.$index;
     var$1 = $this.$this$0;
     var$2 = $this.$index;
     $this.$index = var$2 + 1 | 0;
-    return var$1.$get_I(var$2);
+    return var$1.$get_UosgRn(var$2);
 },
-ju_AbstractList$1_checkConcurrentModification = $this => {
-    if ($this.$modCount1 >= $this.$this$0.$modCount0)
+java_util_AbstractList$1_checkConcurrentModification_V = $this => {
+    if ($this.$modCount >= $this.$this$0.$modCount)
         return;
-    $rt_throw(ju_ConcurrentModificationException__init_0());
+    $rt_throw(java_util_ConcurrentModificationException__init__V$1());
 },
-jl_Iterable = $rt_classWithoutFields(0),
-ju_Collection = $rt_classWithoutFields(0),
-ju_AbstractCollection = $rt_classWithoutFields(),
-ju_AbstractCollection__init_ = $this => {
-    jl_Object__init_($this);
+java_lang_Iterable = $rt_classWithoutFields(0),
+java_util_Collection = $rt_classWithoutFields(0),
+java_util_AbstractCollection = $rt_classWithoutFields(),
+java_util_AbstractCollection__init__V = $this => {
+    java_lang_Object__init__V($this);
 },
-ju_AbstractCollection_isEmpty = $this => {
-    return $this.$size() ? 0 : 1;
+java_util_AbstractCollection_isEmpty_Z = $this => {
+    return $this.$size_I() ? 0 : 1;
 },
-ju_SequencedCollection = $rt_classWithoutFields(0),
-ju_List = $rt_classWithoutFields(0);
-function ju_AbstractList() {
-    ju_AbstractCollection.call(this);
-    this.$modCount0 = 0;
+java_util_SequencedCollection = $rt_classWithoutFields(0),
+java_util_List = $rt_classWithoutFields(0);
+function java_util_AbstractList() {
+    java_util_AbstractCollection.call(this);
+    this.$modCount = 0;
 }
-let ju_AbstractList__init_ = $this => {
-    ju_AbstractCollection__init_($this);
+let java_util_AbstractList__init__V = $this => {
+    java_util_AbstractCollection__init__V($this);
 },
-ju_AbstractList_iterator = $this => {
-    return ju_AbstractList$1__init__fOCyST0($this);
+java_util_AbstractList_iterator_nRSvFx = $this => {
+    return java_util_AbstractList$1__init__tWBmpm$1($this);
 },
-ji_Serializable = $rt_classWithoutFields(0),
-jl_Number = $rt_classWithoutFields(),
-jl_Number__init_ = $this => {
-    jl_Object__init_($this);
+java_io_Serializable = $rt_classWithoutFields(0),
+java_lang_Number = $rt_classWithoutFields(),
+java_lang_Number__init__V = $this => {
+    java_lang_Object__init__V($this);
 },
-jl_Comparable = $rt_classWithoutFields(0);
-function jl_Integer() {
-    jl_Number.call(this);
-    this.$value0 = 0;
+java_lang_Comparable = $rt_classWithoutFields(0);
+function java_lang_Integer() {
+    java_lang_Number.call(this);
+    this.$value = 0;
 }
-let jl_Integer_TYPE = null,
-jl_Integer_integerCache = null,
-jl_Integer_$callClinit = () => {
-    jl_Integer_$callClinit = $rt_eraseClinit(jl_Integer);
-    jl_Integer__clinit_();
+let java_lang_Integer_TYPE = null,
+java_lang_Integer_integerCache = null,
+java_lang_Integer_$callClinit = () => {
+    java_lang_Integer_$callClinit = $rt_eraseClinit(java_lang_Integer);
+    java_lang_Integer__clinit__V();
 },
-jl_Integer__init__I = ($this, $value) => {
-    jl_Integer_$callClinit();
-    jl_Number__init_($this);
-    $this.$value0 = $value;
+java_lang_Integer__init__VI = ($this, $value) => {
+    java_lang_Integer_$callClinit();
+    java_lang_Number__init__V($this);
+    $this.$value = $value;
 },
-jl_Integer__init__I0 = var_0 => {
-    let var_1 = new jl_Integer();
-    jl_Integer__init__I(var_1, var_0);
+java_lang_Integer__init__VI$1 = var_0 => {
+    let var_1 = new java_lang_Integer();
+    java_lang_Integer__init__VI(var_1, var_0);
     return var_1;
 },
-jl_Integer_hashCode_I = $value => {
-    jl_Integer_$callClinit();
+java_lang_Integer_hashCode_II = $value => {
+    java_lang_Integer_$callClinit();
     return $value;
 },
-jl_Integer_toHexString_I = $i => {
-    jl_Integer_$callClinit();
-    return otci_IntegerUtil_toUnsignedLogRadixString_II($i, 4);
+java_lang_Integer_toHexString_iFmOGb = $i => {
+    java_lang_Integer_$callClinit();
+    return org_teavm_classlib_impl_IntegerUtil_toUnsignedLogRadixString_KSkSDS($i, 4);
 },
-jl_Integer_valueOf_I = $i => {
-    jl_Integer_$callClinit();
+java_lang_Integer_valueOf_jxXMoQ = $i => {
+    java_lang_Integer_$callClinit();
     if ($i >= (-128) && $i <= 127) {
-        jl_Integer_ensureIntegerCache();
-        return jl_Integer_integerCache.data[$i + 128 | 0];
+        java_lang_Integer_ensureIntegerCache_V();
+        return java_lang_Integer_integerCache.data[$i + 128 | 0];
     }
-    return jl_Integer__init__I0($i);
+    return java_lang_Integer__init__VI$1($i);
 },
-jl_Integer_ensureIntegerCache = () => {
+java_lang_Integer_ensureIntegerCache_V = () => {
     let $j;
-    jl_Integer_$callClinit();
+    java_lang_Integer_$callClinit();
     a: {
-        if (jl_Integer_integerCache === null) {
-            jl_Integer_integerCache = $rt_createArray(jl_Integer, 256);
+        if (java_lang_Integer_integerCache === null) {
+            java_lang_Integer_integerCache = $rt_createArray(java_lang_Integer, 256);
             $j = 0;
             while (true) {
-                if ($j >= jl_Integer_integerCache.data.length)
+                if ($j >= java_lang_Integer_integerCache.data.length)
                     break a;
-                jl_Integer_integerCache.data[$j] = jl_Integer__init__I0($j - 128 | 0);
+                java_lang_Integer_integerCache.data[$j] = java_lang_Integer__init__VI$1($j - 128 | 0);
                 $j = $j + 1 | 0;
             }
         }
     }
 },
-jl_Integer_hashCode = $this => {
-    return jl_Integer_hashCode_I($this.$value0);
+java_lang_Integer_hashCode_I = $this => {
+    return java_lang_Integer_hashCode_II($this.$value);
 },
-jl_Integer_numberOfLeadingZeros_I = $i => {
+java_lang_Integer_numberOfLeadingZeros_II = $i => {
     let $n, var$3, var$4;
-    jl_Integer_$callClinit();
+    java_lang_Integer_$callClinit();
     if (!$i)
         return 32;
     $n = 0;
@@ -1126,180 +1126,180 @@ jl_Integer_numberOfLeadingZeros_I = $i => {
         $n = $n | 1;
     return (32 - $n | 0) - 1 | 0;
 },
-jl_Integer__clinit_ = () => {
-    jl_Integer_TYPE = $rt_cls($rt_intcls);
+java_lang_Integer__clinit__V = () => {
+    java_lang_Integer_TYPE = $rt_cls($rt_intcls);
 },
-jl_AutoCloseable = $rt_classWithoutFields(0),
-jl_NullPointerException = $rt_classWithoutFields(jl_RuntimeException),
-jl_NullPointerException__init_ = $this => {
-    jl_RuntimeException__init_($this);
+java_lang_AutoCloseable = $rt_classWithoutFields(0),
+java_lang_NullPointerException = $rt_classWithoutFields(java_lang_RuntimeException),
+java_lang_NullPointerException__init__V = $this => {
+    java_lang_RuntimeException__init__V($this);
 },
-jl_NullPointerException__init_0 = () => {
-    let var_0 = new jl_NullPointerException();
-    jl_NullPointerException__init_(var_0);
+java_lang_NullPointerException__init__V$1 = () => {
+    let var_0 = new java_lang_NullPointerException();
+    java_lang_NullPointerException__init__V(var_0);
     return var_0;
 },
-jl_Character = $rt_classWithoutFields(),
-jl_Character_TYPE = null,
-jl_Character_characterCache = null,
-jl_Character_$callClinit = () => {
-    jl_Character_$callClinit = $rt_eraseClinit(jl_Character);
-    jl_Character__clinit_();
+java_lang_Character = $rt_classWithoutFields(),
+java_lang_Character_TYPE = null,
+java_lang_Character_characterCache = null,
+java_lang_Character_$callClinit = () => {
+    java_lang_Character_$callClinit = $rt_eraseClinit(java_lang_Character);
+    java_lang_Character__clinit__V();
 },
-jl_Character_forDigit_II = ($digit, $radix) => {
-    jl_Character_$callClinit();
+java_lang_Character_forDigit_CII = ($digit, $radix) => {
+    java_lang_Character_$callClinit();
     if ($radix >= 2 && $radix <= 36 && $digit >= 0 && $digit < $radix)
         return $digit < 10 ? (48 + $digit | 0) & 65535 : ((97 + $digit | 0) - 10 | 0) & 65535;
     return 0;
 },
-jl_Character__clinit_ = () => {
-    jl_Character_TYPE = $rt_cls($rt_charcls);
-    jl_Character_characterCache = $rt_createArray(jl_Character, 128);
+java_lang_Character__clinit__V = () => {
+    java_lang_Character_TYPE = $rt_cls($rt_charcls);
+    java_lang_Character_characterCache = $rt_createArray(java_lang_Character, 128);
 },
-otci_IntegerUtil = $rt_classWithoutFields(),
-otci_IntegerUtil_toUnsignedLogRadixString_II = ($value, $radixLog2) => {
+org_teavm_classlib_impl_IntegerUtil = $rt_classWithoutFields(),
+org_teavm_classlib_impl_IntegerUtil_toUnsignedLogRadixString_KSkSDS = ($value, $radixLog2) => {
     let $radix, $mask, $sz, $chars, $pos, $target, var$9, $target_0;
     if (!$value)
         return $rt_str("0");
     $radix = 1 << $radixLog2;
     $mask = $radix - 1 | 0;
-    $sz = (((32 - jl_Integer_numberOfLeadingZeros_I($value) | 0) + $radixLog2 | 0) - 1 | 0) / $radixLog2 | 0;
+    $sz = (((32 - java_lang_Integer_numberOfLeadingZeros_II($value) | 0) + $radixLog2 | 0) - 1 | 0) / $radixLog2 | 0;
     $chars = $rt_createCharArray($sz);
     $pos = $rt_imul($sz - 1 | 0, $radixLog2);
     $target = 0;
     while ($pos >= 0) {
         var$9 = $chars.data;
         $target_0 = $target + 1 | 0;
-        var$9[$target] = jl_Character_forDigit_II(($value >>> $pos | 0) & $mask, $radix);
+        var$9[$target] = java_lang_Character_forDigit_CII(($value >>> $pos | 0) & $mask, $radix);
         $pos = $pos - $radixLog2 | 0;
         $target = $target_0;
     }
-    return jl_String__init___C0($chars);
+    return java_lang_String__init__V_C$1($chars);
 },
-ju_Map$Entry = $rt_classWithoutFields(0),
-ju_Map = $rt_classWithoutFields(0),
-ju_Map_getOrDefault_lVIoyP = ($this, $key, $defaultValue) => {
-    if ($this.$containsKey_yToRiJ($key))
-        $defaultValue = $this.$get_yToRiJ($key);
+java_util_Map$Entry = $rt_classWithoutFields(0),
+java_util_Map = $rt_classWithoutFields(0),
+java_util_Map_getOrDefault_tsMSwf = ($this, $key, $defaultValue) => {
+    if ($this.$containsKey_uKWEwg($key))
+        $defaultValue = $this.$get_lVIoyP($key);
     return $defaultValue;
 },
-jl_Math = $rt_classWithoutFields(),
-jl_Math_min_II = ($a, $b) => {
+java_lang_Math = $rt_classWithoutFields(),
+java_lang_Math_min_III = ($a, $b) => {
     if ($a < $b)
         $b = $a;
     return $b;
 },
-jl_Math_max_II = ($a, $b) => {
+java_lang_Math_max_III = ($a, $b) => {
     if ($a > $b)
         $b = $a;
     return $b;
 },
-jl_Cloneable = $rt_classWithoutFields(0),
-otji_JS = $rt_classWithoutFields(),
-jl_CharSequence = $rt_classWithoutFields(0),
-ju_Set = $rt_classWithoutFields(0),
-jl_StringIndexOutOfBoundsException = $rt_classWithoutFields(jl_IndexOutOfBoundsException),
-jl_StringIndexOutOfBoundsException__init_ = $this => {
-    jl_IndexOutOfBoundsException__init_($this);
+java_lang_Cloneable = $rt_classWithoutFields(0),
+org_teavm_jso_impl_JS = $rt_classWithoutFields(),
+java_lang_CharSequence = $rt_classWithoutFields(0),
+java_util_Set = $rt_classWithoutFields(0),
+java_lang_StringIndexOutOfBoundsException = $rt_classWithoutFields(java_lang_IndexOutOfBoundsException),
+java_lang_StringIndexOutOfBoundsException__init__V = $this => {
+    java_lang_IndexOutOfBoundsException__init__V($this);
 },
-jl_StringIndexOutOfBoundsException__init_0 = () => {
-    let var_0 = new jl_StringIndexOutOfBoundsException();
-    jl_StringIndexOutOfBoundsException__init_(var_0);
+java_lang_StringIndexOutOfBoundsException__init__V$1 = () => {
+    let var_0 = new java_lang_StringIndexOutOfBoundsException();
+    java_lang_StringIndexOutOfBoundsException__init__V(var_0);
     return var_0;
 },
-ji_Closeable = $rt_classWithoutFields(0),
-ji_Flushable = $rt_classWithoutFields(0),
-ji_OutputStream = $rt_classWithoutFields(),
-ji_OutputStream__init_ = $this => {
-    jl_Object__init_($this);
+java_io_Closeable = $rt_classWithoutFields(0),
+java_io_Flushable = $rt_classWithoutFields(0),
+java_io_OutputStream = $rt_classWithoutFields(),
+java_io_OutputStream__init__V = $this => {
+    java_lang_Object__init__V($this);
 };
-function ji_FilterOutputStream() {
-    ji_OutputStream.call(this);
+function java_io_FilterOutputStream() {
+    java_io_OutputStream.call(this);
     this.$out = null;
 }
-let ji_FilterOutputStream__init__jbQHLp = ($this, $out) => {
-    ji_OutputStream__init_($this);
+let java_io_FilterOutputStream__init__gjftmH = ($this, $out) => {
+    java_io_OutputStream__init__V($this);
     $this.$out = $out;
 },
-ji_FilterOutputStream__init__jbQHLp0 = var_0 => {
-    let var_1 = new ji_FilterOutputStream();
-    ji_FilterOutputStream__init__jbQHLp(var_1, var_0);
+java_io_FilterOutputStream__init__gjftmH$1 = var_0 => {
+    let var_1 = new java_io_FilterOutputStream();
+    java_io_FilterOutputStream__init__gjftmH(var_1, var_0);
     return var_1;
 },
-ju_Objects = $rt_classWithoutFields(),
-ju_Objects_hashCode_yToRiJ = $o => {
-    return $o !== null ? $o.$hashCode() : 0;
+java_util_Objects = $rt_classWithoutFields(),
+java_util_Objects_hashCode_CeygPn = $o => {
+    return $o !== null ? $o.$hashCode_I() : 0;
 },
-ju_Objects_hash_MzFGbf = $values => {
-    return ju_Arrays_hashCode_MzFGbf($values);
+java_util_Objects_hash_Xpebqu = $values => {
+    return java_util_Arrays_hashCode_Xpebqu($values);
 },
-ju_Objects_checkFromIndexSize_III = ($fromIndex, $size, $length) => {
+java_util_Objects_checkFromIndexSize_IIII = ($fromIndex, $size, $length) => {
     if ($fromIndex >= 0 && $size >= 0 && $size <= ($length - $fromIndex | 0))
         return $fromIndex;
-    $rt_throw(jl_IndexOutOfBoundsException__init_0());
+    $rt_throw(java_lang_IndexOutOfBoundsException__init__V$1());
 },
-jlr_Type = $rt_classWithoutFields(0);
-function jl_AbstractStringBuilder() {
-    let a = this; jl_Object.call(a);
+java_lang_reflect_Type = $rt_classWithoutFields(0);
+function java_lang_AbstractStringBuilder() {
+    let a = this; java_lang_Object.call(a);
     a.$buffer = null;
-    a.$length0 = 0;
+    a.$length = 0;
 }
-let jl_AbstractStringBuilder__init_ = $this => {
-    jl_AbstractStringBuilder__init__I($this, 16);
+let java_lang_AbstractStringBuilder__init__V = $this => {
+    java_lang_AbstractStringBuilder__init__VI($this, 16);
 },
-jl_AbstractStringBuilder__init_0 = () => {
-    let var_0 = new jl_AbstractStringBuilder();
-    jl_AbstractStringBuilder__init_(var_0);
+java_lang_AbstractStringBuilder__init__V$1 = () => {
+    let var_0 = new java_lang_AbstractStringBuilder();
+    java_lang_AbstractStringBuilder__init__V(var_0);
     return var_0;
 },
-jl_AbstractStringBuilder__init__I = ($this, $capacity) => {
-    jl_Object__init_($this);
+java_lang_AbstractStringBuilder__init__VI = ($this, $capacity) => {
+    java_lang_Object__init__V($this);
     $this.$buffer = $rt_createCharArray($capacity);
 },
-jl_AbstractStringBuilder__init__I0 = var_0 => {
-    let var_1 = new jl_AbstractStringBuilder();
-    jl_AbstractStringBuilder__init__I(var_1, var_0);
+java_lang_AbstractStringBuilder__init__VI$1 = var_0 => {
+    let var_1 = new java_lang_AbstractStringBuilder();
+    java_lang_AbstractStringBuilder__init__VI(var_1, var_0);
     return var_1;
 },
-jl_AbstractStringBuilder_append_yToRiJ = ($this, $obj) => {
-    return $this.$insert_CeygPn($this.$length0, $obj);
+java_lang_AbstractStringBuilder_append_nfyWfb = ($this, $obj) => {
+    return $this.$insert_KMHMoz($this.$length, $obj);
 },
-jl_AbstractStringBuilder_append_VHLrpW = ($this, $string) => {
-    return $this.$insert_nftnjR($this.$length0, $string);
+java_lang_AbstractStringBuilder_append_ZIxCSm = ($this, $string) => {
+    return $this.$insert_hzKion($this.$length, $string);
 },
-jl_AbstractStringBuilder_insert_nftnjR = ($this, $index, $string) => {
+java_lang_AbstractStringBuilder_insert_hzKion = ($this, $index, $string) => {
     let $i, var$4, var$5;
-    if ($index >= 0 && $index <= $this.$length0) {
+    if ($index >= 0 && $index <= $this.$length) {
         if ($string === null)
             $string = $rt_str("null");
-        else if ($string.$isEmpty())
+        else if ($string.$isEmpty_Z())
             return $this;
-        $this.$ensureCapacity_I($this.$length0 + $string.$length() | 0);
-        $i = $this.$length0 - 1 | 0;
+        $this.$ensureCapacity_VI($this.$length + $string.$length_I() | 0);
+        $i = $this.$length - 1 | 0;
         while ($i >= $index) {
-            $this.$buffer.data[$i + $string.$length() | 0] = $this.$buffer.data[$i];
+            $this.$buffer.data[$i + $string.$length_I() | 0] = $this.$buffer.data[$i];
             $i = $i + (-1) | 0;
         }
-        $this.$length0 = $this.$length0 + $string.$length() | 0;
+        $this.$length = $this.$length + $string.$length_I() | 0;
         $i = 0;
-        while ($i < $string.$length()) {
+        while ($i < $string.$length_I()) {
             var$4 = $this.$buffer.data;
             var$5 = $index + 1 | 0;
-            var$4[$index] = $string.$charAt_I($i);
+            var$4[$index] = $string.$charAt_CI($i);
             $i = $i + 1 | 0;
             $index = var$5;
         }
         return $this;
     }
-    $rt_throw(jl_StringIndexOutOfBoundsException__init_0());
+    $rt_throw(java_lang_StringIndexOutOfBoundsException__init__V$1());
 },
-jl_AbstractStringBuilder_append_I = ($this, $value) => {
-    return $this.$append_II($value, 10);
+java_lang_AbstractStringBuilder_append_oqxyew = ($this, $value) => {
+    return $this.$append_ylxaCJ($value, 10);
 },
-jl_AbstractStringBuilder_append_II = ($this, $value, $radix) => {
-    return $this.$insert_III($this.$length0, $value, $radix);
+java_lang_AbstractStringBuilder_append_ylxaCJ = ($this, $value, $radix) => {
+    return $this.$insert_JzPOxM($this.$length, $value, $radix);
 },
-jl_AbstractStringBuilder_insert_III = ($this, $target, $value, $radix) => {
+java_lang_AbstractStringBuilder_insert_JzPOxM = ($this, $target, $value, $radix) => {
     let $positive, var$5, var$6, $pos, $sz, $posLimit, var$10, var$11;
     $positive = 1;
     if ($value < 0) {
@@ -1309,15 +1309,15 @@ jl_AbstractStringBuilder_insert_III = ($this, $target, $value, $radix) => {
     a: {
         if ($rt_ucmp($value, $radix) < 0) {
             if ($positive)
-                jl_AbstractStringBuilder_insertSpace_II($this, $target, $target + 1 | 0);
+                java_lang_AbstractStringBuilder_insertSpace_VII($this, $target, $target + 1 | 0);
             else {
-                jl_AbstractStringBuilder_insertSpace_II($this, $target, $target + 2 | 0);
+                java_lang_AbstractStringBuilder_insertSpace_VII($this, $target, $target + 2 | 0);
                 var$5 = $this.$buffer.data;
                 var$6 = $target + 1 | 0;
                 var$5[$target] = 45;
                 $target = var$6;
             }
-            $this.$buffer.data[$target] = jl_Character_forDigit_II($value, $radix);
+            $this.$buffer.data[$target] = java_lang_Character_forDigit_CII($value, $radix);
         } else {
             $pos = 1;
             $sz = 1;
@@ -1337,7 +1337,7 @@ jl_AbstractStringBuilder_insert_III = ($this, $target, $value, $radix) => {
             }
             if (!$positive)
                 $sz = $sz + 1 | 0;
-            jl_AbstractStringBuilder_insertSpace_II($this, $target, $target + $sz | 0);
+            java_lang_AbstractStringBuilder_insertSpace_VII($this, $target, $target + $sz | 0);
             if ($positive)
                 var$11 = $target;
             else {
@@ -1350,7 +1350,7 @@ jl_AbstractStringBuilder_insert_III = ($this, $target, $value, $radix) => {
                     break a;
                 var$5 = $this.$buffer.data;
                 var$6 = var$11 + 1 | 0;
-                var$5[var$11] = jl_Character_forDigit_II($rt_udiv($value, var$10), $radix);
+                var$5[var$11] = java_lang_Character_forDigit_CII($rt_udiv($value, var$10), $radix);
                 $value = $rt_umod($value, var$10);
                 var$10 = $rt_udiv(var$10, $radix);
                 var$11 = var$6;
@@ -1359,179 +1359,179 @@ jl_AbstractStringBuilder_insert_III = ($this, $target, $value, $radix) => {
     }
     return $this;
 },
-jl_AbstractStringBuilder_append_C = ($this, $c) => {
-    return $this.$insert_IC($this.$length0, $c);
+java_lang_AbstractStringBuilder_append_OMqvAE = ($this, $c) => {
+    return $this.$insert_joXuZN($this.$length, $c);
 },
-jl_AbstractStringBuilder_insert_IC = ($this, $index, $c) => {
-    jl_AbstractStringBuilder_insertSpace_II($this, $index, $index + 1 | 0);
+java_lang_AbstractStringBuilder_insert_joXuZN = ($this, $index, $c) => {
+    java_lang_AbstractStringBuilder_insertSpace_VII($this, $index, $index + 1 | 0);
     $this.$buffer.data[$index] = $c;
     return $this;
 },
-jl_AbstractStringBuilder_insert_CeygPn = ($this, $index, $obj) => {
-    return $this.$insert_nftnjR($index, $obj === null ? $rt_str("null") : $obj.$toString());
+java_lang_AbstractStringBuilder_insert_KMHMoz = ($this, $index, $obj) => {
+    return $this.$insert_hzKion($index, $obj === null ? $rt_str("null") : $obj.$toString_VHLrpW());
 },
-jl_AbstractStringBuilder_ensureCapacity_I = ($this, $capacity) => {
+java_lang_AbstractStringBuilder_ensureCapacity_VI = ($this, $capacity) => {
     let $newLength;
     if ($this.$buffer.data.length >= $capacity)
         return;
-    $newLength = $this.$buffer.data.length >= 1073741823 ? 2147483647 : jl_Math_max_II($capacity, jl_Math_max_II($this.$buffer.data.length * 2 | 0, 5));
-    $this.$buffer = ju_Arrays_copyOf__CI($this.$buffer, $newLength);
+    $newLength = $this.$buffer.data.length >= 1073741823 ? 2147483647 : java_lang_Math_max_III($capacity, java_lang_Math_max_III($this.$buffer.data.length * 2 | 0, 5));
+    $this.$buffer = java_util_Arrays_copyOf__C_CI($this.$buffer, $newLength);
 },
-jl_AbstractStringBuilder_toString = $this => {
-    return jl_String__init___CII0($this.$buffer, 0, $this.$length0);
+java_lang_AbstractStringBuilder_toString_VHLrpW = $this => {
+    return java_lang_String__init__V_CII$1($this.$buffer, 0, $this.$length);
 },
-jl_AbstractStringBuilder_insertSpace_II = ($this, $start, $end) => {
+java_lang_AbstractStringBuilder_insertSpace_VII = ($this, $start, $end) => {
     let $sz, $i;
-    $sz = $this.$length0 - $start | 0;
-    $this.$ensureCapacity_I(($this.$length0 + $end | 0) - $start | 0);
+    $sz = $this.$length - $start | 0;
+    $this.$ensureCapacity_VI(($this.$length + $end | 0) - $start | 0);
     $i = $sz - 1 | 0;
     while ($i >= 0) {
         $this.$buffer.data[$end + $i | 0] = $this.$buffer.data[$start + $i | 0];
         $i = $i + (-1) | 0;
     }
-    $this.$length0 = $this.$length0 + ($end - $start | 0) | 0;
+    $this.$length = $this.$length + ($end - $start | 0) | 0;
 },
-jl_Appendable = $rt_classWithoutFields(0),
-jl_StringBuilder = $rt_classWithoutFields(jl_AbstractStringBuilder),
-jl_StringBuilder__init_ = $this => {
-    jl_AbstractStringBuilder__init_($this);
+java_lang_Appendable = $rt_classWithoutFields(0),
+java_lang_StringBuilder = $rt_classWithoutFields(java_lang_AbstractStringBuilder),
+java_lang_StringBuilder__init__V = $this => {
+    java_lang_AbstractStringBuilder__init__V($this);
 },
-jl_StringBuilder__init_0 = () => {
-    let var_0 = new jl_StringBuilder();
-    jl_StringBuilder__init_(var_0);
+java_lang_StringBuilder__init__V$1 = () => {
+    let var_0 = new java_lang_StringBuilder();
+    java_lang_StringBuilder__init__V(var_0);
     return var_0;
 },
-jl_StringBuilder_append_yToRiJ = ($this, $obj) => {
-    jl_AbstractStringBuilder_append_yToRiJ($this, $obj);
+java_lang_StringBuilder_append_ZOYxhs = ($this, $obj) => {
+    java_lang_AbstractStringBuilder_append_nfyWfb($this, $obj);
     return $this;
 },
-jl_StringBuilder_append_VHLrpW = ($this, $string) => {
-    jl_AbstractStringBuilder_append_VHLrpW($this, $string);
+java_lang_StringBuilder_append_hrVwXi = ($this, $string) => {
+    java_lang_AbstractStringBuilder_append_ZIxCSm($this, $string);
     return $this;
 },
-jl_StringBuilder_append_I = ($this, $value) => {
-    jl_AbstractStringBuilder_append_I($this, $value);
+java_lang_StringBuilder_append_ZSDQSM = ($this, $value) => {
+    java_lang_AbstractStringBuilder_append_oqxyew($this, $value);
     return $this;
 },
-jl_StringBuilder_append_C = ($this, $c) => {
-    jl_AbstractStringBuilder_append_C($this, $c);
+java_lang_StringBuilder_append_zwKTwE = ($this, $c) => {
+    java_lang_AbstractStringBuilder_append_OMqvAE($this, $c);
     return $this;
 },
-jl_StringBuilder_insert_CeygPn = ($this, $index, $obj) => {
-    jl_AbstractStringBuilder_insert_CeygPn($this, $index, $obj);
+java_lang_StringBuilder_insert_JDogxs = ($this, $index, $obj) => {
+    java_lang_AbstractStringBuilder_insert_KMHMoz($this, $index, $obj);
     return $this;
 },
-jl_StringBuilder_insert_IC = ($this, $index, $c) => {
-    jl_AbstractStringBuilder_insert_IC($this, $index, $c);
+java_lang_StringBuilder_insert_CiShRV = ($this, $index, $c) => {
+    java_lang_AbstractStringBuilder_insert_joXuZN($this, $index, $c);
     return $this;
 },
-jl_StringBuilder_insert_nftnjR = ($this, $index, $string) => {
-    jl_AbstractStringBuilder_insert_nftnjR($this, $index, $string);
+java_lang_StringBuilder_insert_yVTRbO = ($this, $index, $string) => {
+    java_lang_AbstractStringBuilder_insert_hzKion($this, $index, $string);
     return $this;
 },
-jl_StringBuilder_toString = $this => {
-    return jl_AbstractStringBuilder_toString($this);
+java_lang_StringBuilder_toString_VHLrpW = $this => {
+    return java_lang_AbstractStringBuilder_toString_VHLrpW($this);
 },
-jl_StringBuilder_ensureCapacity_I = ($this, var$1) => {
-    jl_AbstractStringBuilder_ensureCapacity_I($this, var$1);
+java_lang_StringBuilder_ensureCapacity_VI = ($this, var$1) => {
+    java_lang_AbstractStringBuilder_ensureCapacity_VI($this, var$1);
 },
-jl_StringBuilder_insert_CeygPn0 = ($this, var$1, var$2) => {
-    return $this.$insert_CeygPn0(var$1, var$2);
+java_lang_StringBuilder_insert_KMHMoz = ($this, var$1, var$2) => {
+    return $this.$insert_JDogxs(var$1, var$2);
 },
-jl_StringBuilder_insert_IC0 = ($this, var$1, var$2) => {
-    return $this.$insert_IC0(var$1, var$2);
+java_lang_StringBuilder_insert_joXuZN = ($this, var$1, var$2) => {
+    return $this.$insert_CiShRV(var$1, var$2);
 },
-jl_StringBuilder_insert_nftnjR0 = ($this, var$1, var$2) => {
-    return $this.$insert_nftnjR0(var$1, var$2);
+java_lang_StringBuilder_insert_hzKion = ($this, var$1, var$2) => {
+    return $this.$insert_yVTRbO(var$1, var$2);
 };
-function ju_MapEntry() {
-    let a = this; jl_Object.call(a);
+function java_util_MapEntry() {
+    let a = this; java_lang_Object.call(a);
     a.$key = null;
     a.$value = null;
 }
-let ju_MapEntry__init__lVIoyP = ($this, $theKey, $theValue) => {
-    jl_Object__init_($this);
+let java_util_MapEntry__init__PLTLFS = ($this, $theKey, $theValue) => {
+    java_lang_Object__init__V($this);
     $this.$key = $theKey;
     $this.$value = $theValue;
 },
-ju_MapEntry__init__lVIoyP0 = (var_0, var_1) => {
-    let var_2 = new ju_MapEntry();
-    ju_MapEntry__init__lVIoyP(var_2, var_0, var_1);
+java_util_MapEntry__init__PLTLFS$1 = (var_0, var_1) => {
+    let var_2 = new java_util_MapEntry();
+    java_util_MapEntry__init__PLTLFS(var_2, var_0, var_1);
     return var_2;
 },
-ju_ConcurrentModificationException = $rt_classWithoutFields(jl_RuntimeException),
-ju_ConcurrentModificationException__init_ = $this => {
-    jl_RuntimeException__init_($this);
+java_util_ConcurrentModificationException = $rt_classWithoutFields(java_lang_RuntimeException),
+java_util_ConcurrentModificationException__init__V = $this => {
+    java_lang_RuntimeException__init__V($this);
 },
-ju_ConcurrentModificationException__init_0 = () => {
-    let var_0 = new ju_ConcurrentModificationException();
-    ju_ConcurrentModificationException__init_(var_0);
+java_util_ConcurrentModificationException__init__V$1 = () => {
+    let var_0 = new java_util_ConcurrentModificationException();
+    java_util_ConcurrentModificationException__init__V(var_0);
     return var_0;
 },
-jlr_AnnotatedElement = $rt_classWithoutFields(0);
-function ji_PrintStream() {
-    let a = this; ji_FilterOutputStream.call(a);
+java_lang_reflect_AnnotatedElement = $rt_classWithoutFields(0);
+function java_io_PrintStream() {
+    let a = this; java_io_FilterOutputStream.call(a);
     a.$autoFlush = 0;
     a.$sb = null;
-    a.$buffer0 = null;
+    a.$buffer = null;
     a.$charset = null;
 }
-let ji_PrintStream__init__DdDNGq = ($this, $out, $autoFlush, $charset) => {
-    ji_FilterOutputStream__init__jbQHLp($this, $out);
-    $this.$sb = jl_StringBuilder__init_0();
-    $this.$buffer0 = $rt_createCharArray(32);
+let java_io_PrintStream__init__RHOATE = ($this, $out, $autoFlush, $charset) => {
+    java_io_FilterOutputStream__init__gjftmH($this, $out);
+    $this.$sb = java_lang_StringBuilder__init__V$1();
+    $this.$buffer = $rt_createCharArray(32);
     $this.$autoFlush = $autoFlush;
     $this.$charset = $charset;
 },
-ji_PrintStream__init__DdDNGq0 = (var_0, var_1, var_2) => {
-    let var_3 = new ji_PrintStream();
-    ji_PrintStream__init__DdDNGq(var_3, var_0, var_1, var_2);
+java_io_PrintStream__init__RHOATE$1 = (var_0, var_1, var_2) => {
+    let var_3 = new java_io_PrintStream();
+    java_io_PrintStream__init__RHOATE(var_3, var_0, var_1, var_2);
     return var_3;
 },
-otcic_JsConsolePrintStream = $rt_classWithoutFields(ji_PrintStream),
-otcic_JsConsolePrintStream__init_ = $this => {
-    ji_PrintStream__init__DdDNGq($this, null, 0, null);
+org_teavm_classlib_impl_console_JsConsolePrintStream = $rt_classWithoutFields(java_io_PrintStream),
+org_teavm_classlib_impl_console_JsConsolePrintStream__init__V = $this => {
+    java_io_PrintStream__init__RHOATE($this, null, 0, null);
 },
-otcic_JsConsolePrintStream_println_VHLrpW = ($this, $s) => {
-    $this.$print_VHLrpW($s);
-    $this.$print_VHLrpW($rt_str("\n"));
+org_teavm_classlib_impl_console_JsConsolePrintStream_println_XjCHVS = ($this, $s) => {
+    $this.$print_XjCHVS($s);
+    $this.$print_XjCHVS($rt_str("\n"));
 },
-otcic_JSStdoutPrintStream = $rt_classWithoutFields(otcic_JsConsolePrintStream),
-otcic_JSStdoutPrintStream__init_ = $this => {
-    otcic_JsConsolePrintStream__init_($this);
+org_teavm_classlib_impl_console_JSStdoutPrintStream = $rt_classWithoutFields(org_teavm_classlib_impl_console_JsConsolePrintStream),
+org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V = $this => {
+    org_teavm_classlib_impl_console_JsConsolePrintStream__init__V($this);
 },
-otcic_JSStdoutPrintStream__init_0 = () => {
-    let var_0 = new otcic_JSStdoutPrintStream();
-    otcic_JSStdoutPrintStream__init_(var_0);
+org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1 = () => {
+    let var_0 = new org_teavm_classlib_impl_console_JSStdoutPrintStream();
+    org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V(var_0);
     return var_0;
 },
-otcic_JSStdoutPrintStream_print_VHLrpW = ($this, $s) => {
+org_teavm_classlib_impl_console_JSStdoutPrintStream_print_XjCHVS = ($this, $s) => {
     if ($s === null)
         $s = $rt_str("null");
     $rt_putStdout($rt_ustr($s));
 },
-ju_AbstractSet = $rt_classWithoutFields(ju_AbstractCollection),
-ju_AbstractSet__init_ = $this => {
-    ju_AbstractCollection__init_($this);
+java_util_AbstractSet = $rt_classWithoutFields(java_util_AbstractCollection),
+java_util_AbstractSet__init__V = $this => {
+    java_util_AbstractCollection__init__V($this);
 };
-function ju_HashMap$1() {
-    ju_AbstractSet.call(this);
-    this.$this$00 = null;
+function java_util_HashMap$1() {
+    java_util_AbstractSet.call(this);
+    this.$this$0 = null;
 }
-let ju_HashMap$1__init__RxMTza = ($this, $this$0) => {
-    $this.$this$00 = $this$0;
-    ju_AbstractSet__init_($this);
+let java_util_HashMap$1__init__WqYpIS = ($this, $this$0) => {
+    $this.$this$0 = $this$0;
+    java_util_AbstractSet__init__V($this);
 },
-ju_HashMap$1__init__RxMTza0 = var_0 => {
-    let var_1 = new ju_HashMap$1();
-    ju_HashMap$1__init__RxMTza(var_1, var_0);
+java_util_HashMap$1__init__WqYpIS$1 = var_0 => {
+    let var_1 = new java_util_HashMap$1();
+    java_util_HashMap$1__init__WqYpIS(var_1, var_0);
     return var_1;
 },
-ju_HashMap$1_iterator = $this => {
-    return ju_HashMap$KeyIterator__init__RxMTza0($this.$this$00);
+java_util_HashMap$1_iterator_nRSvFx = $this => {
+    return java_util_HashMap$KeyIterator__init__WqYpIS$1($this.$this$0);
 };
-function ju_HashMap$AbstractMapIterator() {
-    let a = this; jl_Object.call(a);
+function java_util_HashMap$AbstractMapIterator() {
+    let a = this; java_lang_Object.call(a);
     a.$position = 0;
     a.$expectedModCount = 0;
     a.$futureEntry = null;
@@ -1539,18 +1539,18 @@ function ju_HashMap$AbstractMapIterator() {
     a.$prevEntry = null;
     a.$associatedMap = null;
 }
-let ju_HashMap$AbstractMapIterator__init__RxMTza = ($this, $hm) => {
-    jl_Object__init_($this);
+let java_util_HashMap$AbstractMapIterator__init__WqYpIS = ($this, $hm) => {
+    java_lang_Object__init__V($this);
     $this.$associatedMap = $hm;
     $this.$expectedModCount = $hm.$modCount;
     $this.$futureEntry = null;
 },
-ju_HashMap$AbstractMapIterator__init__RxMTza0 = var_0 => {
-    let var_1 = new ju_HashMap$AbstractMapIterator();
-    ju_HashMap$AbstractMapIterator__init__RxMTza(var_1, var_0);
+java_util_HashMap$AbstractMapIterator__init__WqYpIS$1 = var_0 => {
+    let var_1 = new java_util_HashMap$AbstractMapIterator();
+    java_util_HashMap$AbstractMapIterator__init__WqYpIS(var_1, var_0);
     return var_1;
 },
-ju_HashMap$AbstractMapIterator_hasNext = $this => {
+java_util_HashMap$AbstractMapIterator_hasNext_Z = $this => {
     if ($this.$futureEntry !== null)
         return 1;
     while ($this.$position < $this.$associatedMap.$elementData.data.length) {
@@ -1560,92 +1560,92 @@ ju_HashMap$AbstractMapIterator_hasNext = $this => {
     }
     return 0;
 },
-ju_HashMap$AbstractMapIterator_checkConcurrentMod = $this => {
+java_util_HashMap$AbstractMapIterator_checkConcurrentMod_V = $this => {
     if ($this.$expectedModCount == $this.$associatedMap.$modCount)
         return;
-    $rt_throw(ju_ConcurrentModificationException__init_0());
+    $rt_throw(java_util_ConcurrentModificationException__init__V$1());
 },
-ju_HashMap$AbstractMapIterator_makeNext = $this => {
+java_util_HashMap$AbstractMapIterator_makeNext_V = $this => {
     let var$1, var$2;
-    ju_HashMap$AbstractMapIterator_checkConcurrentMod($this);
-    if (!$this.$hasNext())
-        $rt_throw(ju_NoSuchElementException__init_0());
+    java_util_HashMap$AbstractMapIterator_checkConcurrentMod_V($this);
+    if (!$this.$hasNext_Z())
+        $rt_throw(java_util_NoSuchElementException__init__V$1());
     if ($this.$futureEntry === null) {
         var$1 = $this.$associatedMap.$elementData.data;
         var$2 = $this.$position;
         $this.$position = var$2 + 1 | 0;
         $this.$currentEntry = var$1[var$2];
-        $this.$futureEntry = $this.$currentEntry.$next0;
+        $this.$futureEntry = $this.$currentEntry.$next;
         $this.$prevEntry = null;
     } else {
         if ($this.$currentEntry !== null)
             $this.$prevEntry = $this.$currentEntry;
         $this.$currentEntry = $this.$futureEntry;
-        $this.$futureEntry = $this.$futureEntry.$next0;
+        $this.$futureEntry = $this.$futureEntry.$next;
     }
 },
-ju_HashMap$KeyIterator = $rt_classWithoutFields(ju_HashMap$AbstractMapIterator),
-ju_HashMap$KeyIterator__init__RxMTza = ($this, $map) => {
-    ju_HashMap$AbstractMapIterator__init__RxMTza($this, $map);
+java_util_HashMap$KeyIterator = $rt_classWithoutFields(java_util_HashMap$AbstractMapIterator),
+java_util_HashMap$KeyIterator__init__WqYpIS = ($this, $map) => {
+    java_util_HashMap$AbstractMapIterator__init__WqYpIS($this, $map);
 },
-ju_HashMap$KeyIterator__init__RxMTza0 = var_0 => {
-    let var_1 = new ju_HashMap$KeyIterator();
-    ju_HashMap$KeyIterator__init__RxMTza(var_1, var_0);
+java_util_HashMap$KeyIterator__init__WqYpIS$1 = var_0 => {
+    let var_1 = new java_util_HashMap$KeyIterator();
+    java_util_HashMap$KeyIterator__init__WqYpIS(var_1, var_0);
     return var_1;
 },
-ju_HashMap$KeyIterator_next = $this => {
-    ju_HashMap$AbstractMapIterator_makeNext($this);
+java_util_HashMap$KeyIterator_next_yToRiJ = $this => {
+    java_util_HashMap$AbstractMapIterator_makeNext_V($this);
     return $this.$currentEntry.$key;
 };
-function ju_HashMap$HashEntry() {
-    let a = this; ju_MapEntry.call(a);
+function java_util_HashMap$HashEntry() {
+    let a = this; java_util_MapEntry.call(a);
     a.$origKeyHash = 0;
-    a.$next0 = null;
+    a.$next = null;
 }
-let ju_HashMap$HashEntry__init__UosgRn = ($this, $theKey, $hash) => {
-    ju_MapEntry__init__lVIoyP($this, $theKey, null);
+let java_util_HashMap$HashEntry__init__moeQBN = ($this, $theKey, $hash) => {
+    java_util_MapEntry__init__PLTLFS($this, $theKey, null);
     $this.$origKeyHash = $hash;
 },
-ju_HashMap$HashEntry__init__UosgRn0 = (var_0, var_1) => {
-    let var_2 = new ju_HashMap$HashEntry();
-    ju_HashMap$HashEntry__init__UosgRn(var_2, var_0, var_1);
+java_util_HashMap$HashEntry__init__moeQBN$1 = (var_0, var_1) => {
+    let var_2 = new java_util_HashMap$HashEntry();
+    java_util_HashMap$HashEntry__init__moeQBN(var_2, var_0, var_1);
     return var_2;
 };
-function ju_AbstractMap() {
-    jl_Object.call(this);
+function java_util_AbstractMap() {
+    java_lang_Object.call(this);
     this.$cachedKeySet = null;
 }
-let ju_AbstractMap__init_ = $this => {
-    jl_Object__init_($this);
+let java_util_AbstractMap__init__V = $this => {
+    java_lang_Object__init__V($this);
 };
-function ju_HashMap() {
-    let a = this; ju_AbstractMap.call(a);
+function java_util_HashMap() {
+    let a = this; java_util_AbstractMap.call(a);
     a.$elementCount = 0;
     a.$elementData = null;
     a.$modCount = 0;
     a.$loadFactor = 0.0;
     a.$threshold = 0;
 }
-let ju_HashMap_newElementArray_I = ($this, $s) => {
-    return $rt_createArray(ju_HashMap$HashEntry, $s);
+let java_util_HashMap_newElementArray_HaDQXJ = ($this, $s) => {
+    return $rt_createArray(java_util_HashMap$HashEntry, $s);
 },
-ju_HashMap__init_ = $this => {
-    ju_HashMap__init__I($this, 16);
+java_util_HashMap__init__V = $this => {
+    java_util_HashMap__init__VI($this, 16);
 },
-ju_HashMap__init_0 = () => {
-    let var_0 = new ju_HashMap();
-    ju_HashMap__init_(var_0);
+java_util_HashMap__init__V$1 = () => {
+    let var_0 = new java_util_HashMap();
+    java_util_HashMap__init__V(var_0);
     return var_0;
 },
-ju_HashMap__init__I = ($this, $capacity) => {
-    ju_HashMap__init__IF($this, $capacity, 0.75);
+java_util_HashMap__init__VI = ($this, $capacity) => {
+    java_util_HashMap__init__VIF($this, $capacity, 0.75);
 },
-ju_HashMap__init__I0 = var_0 => {
-    let var_1 = new ju_HashMap();
-    ju_HashMap__init__I(var_1, var_0);
+java_util_HashMap__init__VI$1 = var_0 => {
+    let var_1 = new java_util_HashMap();
+    java_util_HashMap__init__VI(var_1, var_0);
     return var_1;
 },
-ju_HashMap_calculateCapacity_I = $x => {
+java_util_HashMap_calculateCapacity_II = $x => {
     let var$2, var$3;
     if ($x >= 1073741824)
         return 1073741824;
@@ -1659,114 +1659,114 @@ ju_HashMap_calculateCapacity_I = $x => {
     var$3 = var$3 | var$3 >> 16;
     return var$3 + 1 | 0;
 },
-ju_HashMap__init__IF = ($this, $capacity, $loadFactor) => {
+java_util_HashMap__init__VIF = ($this, $capacity, $loadFactor) => {
     let var$3;
-    ju_AbstractMap__init_($this);
+    java_util_AbstractMap__init__V($this);
     if ($capacity >= 0 && $loadFactor > 0.0) {
-        var$3 = ju_HashMap_calculateCapacity_I($capacity);
+        var$3 = java_util_HashMap_calculateCapacity_II($capacity);
         $this.$elementCount = 0;
-        $this.$elementData = $this.$newElementArray_I(var$3);
+        $this.$elementData = $this.$newElementArray_HaDQXJ(var$3);
         $this.$loadFactor = $loadFactor;
-        ju_HashMap_computeThreshold($this);
+        java_util_HashMap_computeThreshold_V($this);
         return;
     }
-    $rt_throw(jl_IllegalArgumentException__init_0());
+    $rt_throw(java_lang_IllegalArgumentException__init__V$1());
 },
-ju_HashMap__init__IF0 = (var_0, var_1) => {
-    let var_2 = new ju_HashMap();
-    ju_HashMap__init__IF(var_2, var_0, var_1);
+java_util_HashMap__init__VIF$1 = (var_0, var_1) => {
+    let var_2 = new java_util_HashMap();
+    java_util_HashMap__init__VIF(var_2, var_0, var_1);
     return var_2;
 },
-ju_HashMap_computeThreshold = $this => {
+java_util_HashMap_computeThreshold_V = $this => {
     $this.$threshold = $this.$elementData.data.length * $this.$loadFactor | 0;
 },
-ju_HashMap_containsKey_yToRiJ = ($this, $key) => {
+java_util_HashMap_containsKey_uKWEwg = ($this, $key) => {
     let $m;
-    $m = ju_HashMap_entryByKey_yToRiJ($this, $key);
+    $m = java_util_HashMap_entryByKey_oGTkjE($this, $key);
     return $m === null ? 0 : 1;
 },
-ju_HashMap_get_yToRiJ = ($this, $key) => {
+java_util_HashMap_get_lVIoyP = ($this, $key) => {
     let $m;
-    $m = ju_HashMap_entryByKey_yToRiJ($this, $key);
+    $m = java_util_HashMap_entryByKey_oGTkjE($this, $key);
     if ($m === null)
         return null;
     return $m.$value;
 },
-ju_HashMap_entryByKey_yToRiJ = ($this, $key) => {
+java_util_HashMap_entryByKey_oGTkjE = ($this, $key) => {
     let $m, $hash, $index;
     if ($key === null)
-        $m = ju_HashMap_findNullKeyEntry($this);
+        $m = java_util_HashMap_findNullKeyEntry_QqMKmf($this);
     else {
-        $hash = $key.$hashCode();
+        $hash = $key.$hashCode_I();
         $index = $hash & ($this.$elementData.data.length - 1 | 0);
-        $m = ju_HashMap_findNonNullKeyEntry_vgXoLz($this, $key, $index, $hash);
+        $m = java_util_HashMap_findNonNullKeyEntry_RrVLlf($this, $key, $index, $hash);
     }
     return $m;
 },
-ju_HashMap_findNonNullKeyEntry_vgXoLz = ($this, $key, $index, $keyHash) => {
+java_util_HashMap_findNonNullKeyEntry_RrVLlf = ($this, $key, $index, $keyHash) => {
     let $m;
     $m = $this.$elementData.data[$index];
-    while ($m !== null && !($m.$origKeyHash == $keyHash && ju_HashMap_areEqualKeys_lVIoyP($key, $m.$key))) {
-        $m = $m.$next0;
+    while ($m !== null && !($m.$origKeyHash == $keyHash && java_util_HashMap_areEqualKeys_UWKivJ($key, $m.$key))) {
+        $m = $m.$next;
     }
     return $m;
 },
-ju_HashMap_findNullKeyEntry = $this => {
+java_util_HashMap_findNullKeyEntry_QqMKmf = $this => {
     let $m;
     $m = $this.$elementData.data[0];
     while ($m !== null && $m.$key !== null) {
-        $m = $m.$next0;
+        $m = $m.$next;
     }
     return $m;
 },
-ju_HashMap_keySet = $this => {
+java_util_HashMap_keySet_wfeRzl = $this => {
     if ($this.$cachedKeySet === null)
-        $this.$cachedKeySet = ju_HashMap$1__init__RxMTza0($this);
+        $this.$cachedKeySet = java_util_HashMap$1__init__WqYpIS$1($this);
     return $this.$cachedKeySet;
 },
-ju_HashMap_put_lVIoyP = ($this, $key, $value) => {
-    return ju_HashMap_putImpl_lVIoyP($this, $key, $value);
+java_util_HashMap_put_tsMSwf = ($this, $key, $value) => {
+    return java_util_HashMap_putImpl_tsMSwf($this, $key, $value);
 },
-ju_HashMap_putImpl_lVIoyP = ($this, $key, $value) => {
+java_util_HashMap_putImpl_tsMSwf = ($this, $key, $value) => {
     let $entry, var$4, $hash, $index, $result;
     if ($key === null) {
-        $entry = ju_HashMap_findNullKeyEntry($this);
+        $entry = java_util_HashMap_findNullKeyEntry_QqMKmf($this);
         if ($entry === null) {
             $this.$modCount = $this.$modCount + 1 | 0;
-            $entry = ju_HashMap_createHashedEntry_vgXoLz($this, null, 0, 0);
+            $entry = java_util_HashMap_createHashedEntry_RrVLlf($this, null, 0, 0);
             var$4 = $this.$elementCount + 1 | 0;
             $this.$elementCount = var$4;
             if (var$4 > $this.$threshold)
-                $this.$rehash();
+                $this.$rehash_V();
         }
     } else {
-        $hash = $key.$hashCode();
+        $hash = $key.$hashCode_I();
         $index = $hash & ($this.$elementData.data.length - 1 | 0);
-        $entry = ju_HashMap_findNonNullKeyEntry_vgXoLz($this, $key, $index, $hash);
+        $entry = java_util_HashMap_findNonNullKeyEntry_RrVLlf($this, $key, $index, $hash);
         if ($entry === null) {
             $this.$modCount = $this.$modCount + 1 | 0;
-            $entry = ju_HashMap_createHashedEntry_vgXoLz($this, $key, $index, $hash);
+            $entry = java_util_HashMap_createHashedEntry_RrVLlf($this, $key, $index, $hash);
             var$4 = $this.$elementCount + 1 | 0;
             $this.$elementCount = var$4;
             if (var$4 > $this.$threshold)
-                $this.$rehash();
+                $this.$rehash_V();
         }
     }
     $result = $entry.$value;
     $entry.$value = $value;
     return $result;
 },
-ju_HashMap_createHashedEntry_vgXoLz = ($this, $key, $index, $hash) => {
+java_util_HashMap_createHashedEntry_RrVLlf = ($this, $key, $index, $hash) => {
     let $entry;
-    $entry = ju_HashMap$HashEntry__init__UosgRn0($key, $hash);
-    $entry.$next0 = $this.$elementData.data[$index];
+    $entry = java_util_HashMap$HashEntry__init__moeQBN$1($key, $hash);
+    $entry.$next = $this.$elementData.data[$index];
     $this.$elementData.data[$index] = $entry;
     return $entry;
 },
-ju_HashMap_rehash_I = ($this, $capacity) => {
+java_util_HashMap_rehash_VI = ($this, $capacity) => {
     let $length, $newData, $i, $entry, var$6, $index, $next;
-    $length = ju_HashMap_calculateCapacity_I(!$capacity ? 1 : $capacity << 1);
-    $newData = $this.$newElementArray_I($length);
+    $length = java_util_HashMap_calculateCapacity_II(!$capacity ? 1 : $capacity << 1);
+    $newData = $this.$newElementArray_HaDQXJ($length);
     $i = 0;
     while ($i < $this.$elementData.data.length) {
         $entry = $this.$elementData.data[$i];
@@ -1774,309 +1774,311 @@ ju_HashMap_rehash_I = ($this, $capacity) => {
         while ($entry !== null) {
             var$6 = $newData.data;
             $index = $entry.$origKeyHash & ($length - 1 | 0);
-            $next = $entry.$next0;
-            $entry.$next0 = var$6[$index];
+            $next = $entry.$next;
+            $entry.$next = var$6[$index];
             var$6[$index] = $entry;
             $entry = $next;
         }
         $i = $i + 1 | 0;
     }
     $this.$elementData = $newData;
-    ju_HashMap_computeThreshold($this);
+    java_util_HashMap_computeThreshold_V($this);
 },
-ju_HashMap_rehash = $this => {
-    $this.$rehash_I($this.$elementData.data.length);
+java_util_HashMap_rehash_V = $this => {
+    $this.$rehash_VI($this.$elementData.data.length);
 },
-ju_HashMap_areEqualKeys_lVIoyP = ($key1, $key2) => {
-    return $key1 !== $key2 && !$key1.$equals_yToRiJ($key2) ? 0 : 1;
+java_util_HashMap_areEqualKeys_UWKivJ = ($key1, $key2) => {
+    return $key1 !== $key2 && !$key1.$equals_uKWEwg($key2) ? 0 : 1;
 },
-jl_ClassCastException = $rt_classWithoutFields(jl_RuntimeException),
-ju_RandomAccess = $rt_classWithoutFields(0);
-function ju_ArrayList() {
-    let a = this; ju_AbstractList.call(a);
+java_lang_ClassCastException = $rt_classWithoutFields(java_lang_RuntimeException),
+java_util_RandomAccess = $rt_classWithoutFields(0);
+function java_util_ArrayList() {
+    let a = this; java_util_AbstractList.call(a);
     a.$array = null;
-    a.$size0 = 0;
+    a.$size = 0;
 }
-let ju_ArrayList__init__I = ($this, $initialCapacity) => {
-    ju_AbstractList__init_($this);
+let java_util_ArrayList__init__VI = ($this, $initialCapacity) => {
+    java_util_AbstractList__init__V($this);
     if ($initialCapacity >= 0) {
-        $this.$array = $rt_createArray(jl_Object, $initialCapacity);
+        $this.$array = $rt_createArray(java_lang_Object, $initialCapacity);
         return;
     }
-    $rt_throw(jl_IllegalArgumentException__init_0());
+    $rt_throw(java_lang_IllegalArgumentException__init__V$1());
 },
-ju_ArrayList__init__I0 = var_0 => {
-    let var_1 = new ju_ArrayList();
-    ju_ArrayList__init__I(var_1, var_0);
+java_util_ArrayList__init__VI$1 = var_0 => {
+    let var_1 = new java_util_ArrayList();
+    java_util_ArrayList__init__VI(var_1, var_0);
     return var_1;
 },
-ju_ArrayList_ensureCapacity_I = ($this, $minCapacity) => {
+java_util_ArrayList_ensureCapacity_VI = ($this, $minCapacity) => {
     let $newLength;
     if ($this.$array.data.length < $minCapacity) {
-        $newLength = $this.$array.data.length >= 1073741823 ? 2147483647 : jl_Math_max_II($minCapacity, jl_Math_max_II($this.$array.data.length * 2 | 0, 5));
-        $this.$array = ju_Arrays_copyOf_xYnKPG($this.$array, $newLength);
+        $newLength = $this.$array.data.length >= 1073741823 ? 2147483647 : java_lang_Math_max_III($minCapacity, java_lang_Math_max_III($this.$array.data.length * 2 | 0, 5));
+        $this.$array = java_util_Arrays_copyOf_MqkkEq($this.$array, $newLength);
     }
 },
-ju_ArrayList_get_I = ($this, $index) => {
-    ju_ArrayList_checkIndex_I($this, $index);
+java_util_ArrayList_get_UosgRn = ($this, $index) => {
+    java_util_ArrayList_checkIndex_VI($this, $index);
     return $this.$array.data[$index];
 },
-ju_ArrayList_size = $this => {
-    return $this.$size0;
+java_util_ArrayList_size_I = $this => {
+    return $this.$size;
 },
-ju_ArrayList_add_yToRiJ = ($this, $element) => {
+java_util_ArrayList_add_uKWEwg = ($this, $element) => {
     let var$2, var$3;
-    $this.$ensureCapacity_I($this.$size0 + 1 | 0);
+    $this.$ensureCapacity_VI($this.$size + 1 | 0);
     var$2 = $this.$array.data;
-    var$3 = $this.$size0;
-    $this.$size0 = var$3 + 1 | 0;
+    var$3 = $this.$size;
+    $this.$size = var$3 + 1 | 0;
     var$2[var$3] = $element;
-    $this.$modCount0 = $this.$modCount0 + 1 | 0;
+    $this.$modCount = $this.$modCount + 1 | 0;
     return 1;
 },
-ju_ArrayList_checkIndex_I = ($this, $index) => {
-    if ($index >= 0 && $index < $this.$size0)
+java_util_ArrayList_checkIndex_VI = ($this, $index) => {
+    if ($index >= 0 && $index < $this.$size)
         return;
-    $rt_throw(jl_IndexOutOfBoundsException__init_0());
+    $rt_throw(java_lang_IndexOutOfBoundsException__init__V$1());
 },
-otp_Platform = $rt_classWithoutFields(),
-otp_Platform_getArrayItem_BSppjk = $cls => {
+org_teavm_platform_Platform = $rt_classWithoutFields(),
+org_teavm_platform_Platform_getArrayItem_PKtewy = $cls => {
     return $cls.$meta.item;
 },
-otp_Platform_getName_BSppjk = $cls => {
+org_teavm_platform_Platform_getName_xWEGZR = $cls => {
     return $rt_str($cls.$meta.name);
 },
-jnc_Charset = $rt_classWithoutFields(),
-ju_Comparator = $rt_classWithoutFields(0),
-jl_String$_clinit_$lambda$_115_0 = $rt_classWithoutFields(),
-jl_String$_clinit_$lambda$_115_0__init_ = var$0 => {
-    jl_Object__init_(var$0);
+java_nio_charset_Charset = $rt_classWithoutFields(),
+java_util_Comparator = $rt_classWithoutFields(0),
+java_lang_String$_clinit_$lambda$_115_0 = $rt_classWithoutFields(),
+java_lang_String$_clinit_$lambda$_115_0__init__V = var$0 => {
+    java_lang_Object__init__V(var$0);
 },
-jl_String$_clinit_$lambda$_115_0__init_0 = () => {
-    let var_0 = new jl_String$_clinit_$lambda$_115_0();
-    jl_String$_clinit_$lambda$_115_0__init_(var_0);
+java_lang_String$_clinit_$lambda$_115_0__init__V$1 = () => {
+    let var_0 = new java_lang_String$_clinit_$lambda$_115_0();
+    java_lang_String$_clinit_$lambda$_115_0__init__V(var_0);
     return var_0;
 },
-jl_String = $rt_classWithoutFields(),
-jl_String_EMPTY_CHARS = null,
-jl_String_EMPTY = null,
-jl_String_CASE_INSENSITIVE_ORDER = null,
-jl_String_$callClinit = () => {
-    jl_String_$callClinit = $rt_eraseClinit(jl_String);
-    jl_String__clinit_();
+java_lang_String = $rt_classWithoutFields(),
+java_lang_String_EMPTY_CHARS = null,
+java_lang_String_EMPTY = null,
+java_lang_String_CASE_INSENSITIVE_ORDER = null,
+java_lang_String_$callClinit = () => {
+    java_lang_String_$callClinit = $rt_eraseClinit(java_lang_String);
+    java_lang_String__clinit__V();
 },
-jl_String__init_ = $this => {
-    jl_String_$callClinit();
-    jl_Object__init_($this);
+java_lang_String__init__V = $this => {
+    java_lang_String_$callClinit();
+    java_lang_Object__init__V($this);
     $this.$nativeString = "";
 },
-jl_String__init_0 = () => {
-    let var_0 = new jl_String();
-    jl_String__init_(var_0);
+java_lang_String__init__V$1 = () => {
+    let var_0 = new java_lang_String();
+    java_lang_String__init__V(var_0);
     return var_0;
 },
-jl_String__init___C = ($this, $characters) => {
+java_lang_String__init__V_C = ($this, $characters) => {
     let var$2;
-    jl_String_$callClinit();
+    java_lang_String_$callClinit();
     var$2 = $characters.data;
-    jl_Object__init_($this);
+    java_lang_Object__init__V($this);
     $this.$nativeString = $rt_charArrayToString($characters.data, 0, var$2.length);
 },
-jl_String__init___C0 = var_0 => {
-    let var_1 = new jl_String();
-    jl_String__init___C(var_1, var_0);
+java_lang_String__init__V_C$1 = var_0 => {
+    let var_1 = new java_lang_String();
+    java_lang_String__init__V_C(var_1, var_0);
     return var_1;
 },
-jl_String__init__yToRiJ = (var$0, var$1) => {
+java_lang_String__init__HFyQDR = (var$0, var$1) => {
     var$0.$nativeString = var$1;
 },
-jl_String__init__yToRiJ0 = var_0 => {
-    let var_1 = new jl_String();
-    jl_String__init__yToRiJ(var_1, var_0);
+java_lang_String__init__HFyQDR$1 = var_0 => {
+    let var_1 = new java_lang_String();
+    java_lang_String__init__HFyQDR(var_1, var_0);
     return var_1;
 },
-jl_String__init___CII = (var$0, var$1, $offset, $count) => {
+java_lang_String__init__V_CII = (var$0, var$1, $offset, $count) => {
     let var$4;
-    jl_String_$callClinit();
+    java_lang_String_$callClinit();
     var$4 = var$1.data;
-    jl_Object__init_(var$0);
-    ju_Objects_checkFromIndexSize_III($offset, $count, var$4.length);
+    java_lang_Object__init__V(var$0);
+    java_util_Objects_checkFromIndexSize_IIII($offset, $count, var$4.length);
     var$0.$nativeString = $rt_charArrayToString(var$1.data, $offset, $count);
 },
-jl_String__init___CII0 = (var_0, var_1, var_2) => {
-    let var_3 = new jl_String();
-    jl_String__init___CII(var_3, var_0, var_1, var_2);
+java_lang_String__init__V_CII$1 = (var_0, var_1, var_2) => {
+    let var_3 = new java_lang_String();
+    java_lang_String__init__V_CII(var_3, var_0, var_1, var_2);
     return var_3;
 },
-jl_String_charAt_I = ($this, $index) => {
+java_lang_String_charAt_CI = ($this, $index) => {
     if ($index >= 0 && $index < $this.$nativeString.length)
         return $this.$nativeString.charCodeAt($index);
-    $rt_throw(jl_StringIndexOutOfBoundsException__init_0());
+    $rt_throw(java_lang_StringIndexOutOfBoundsException__init__V$1());
 },
-jl_String_length = $this => {
+java_lang_String_length_I = $this => {
     return $this.$nativeString.length;
 },
-jl_String_isEmpty = $this => {
+java_lang_String_isEmpty_Z = $this => {
     return $this.$nativeString.length ? 0 : 1;
 },
-jl_String_toString = $this => {
+java_lang_String_toString_VHLrpW = $this => {
     return $this;
 },
-jl_String_valueOf_I = $i => {
-    jl_String_$callClinit();
-    return ((jl_StringBuilder__init_0()).$append_I0($i)).$toString();
+java_lang_String_valueOf_iFmOGb = $i => {
+    java_lang_String_$callClinit();
+    return ((java_lang_StringBuilder__init__V$1()).$append_ZSDQSM($i)).$toString_VHLrpW();
 },
-jl_String__clinit_ = () => {
-    jl_String_EMPTY_CHARS = $rt_createCharArray(0);
-    jl_String_EMPTY = jl_String__init_0();
-    jl_String_CASE_INSENSITIVE_ORDER = jl_String$_clinit_$lambda$_115_0__init_0();
+java_lang_String__clinit__V = () => {
+    java_lang_String_EMPTY_CHARS = $rt_createCharArray(0);
+    java_lang_String_EMPTY = java_lang_String__init__V$1();
+    java_lang_String_CASE_INSENSITIVE_ORDER = java_lang_String$_clinit_$lambda$_115_0__init__V$1();
 },
-ju_NoSuchElementException = $rt_classWithoutFields(jl_RuntimeException),
-ju_NoSuchElementException__init_ = $this => {
-    jl_RuntimeException__init_($this);
+java_util_NoSuchElementException = $rt_classWithoutFields(java_lang_RuntimeException),
+java_util_NoSuchElementException__init__V = $this => {
+    java_lang_RuntimeException__init__V($this);
 },
-ju_NoSuchElementException__init_0 = () => {
-    let var_0 = new ju_NoSuchElementException();
-    ju_NoSuchElementException__init_(var_0);
+java_util_NoSuchElementException__init__V$1 = () => {
+    let var_0 = new java_util_NoSuchElementException();
+    java_util_NoSuchElementException__init__V(var_0);
     return var_0;
 },
-jl_NegativeArraySizeException = $rt_classWithoutFields(jl_RuntimeException),
-jl_NegativeArraySizeException__init_ = $this => {
-    jl_RuntimeException__init_($this);
+java_lang_NegativeArraySizeException = $rt_classWithoutFields(java_lang_RuntimeException),
+java_lang_NegativeArraySizeException__init__V = $this => {
+    java_lang_RuntimeException__init__V($this);
 },
-jl_NegativeArraySizeException__init_0 = () => {
-    let var_0 = new jl_NegativeArraySizeException();
-    jl_NegativeArraySizeException__init_(var_0);
+java_lang_NegativeArraySizeException__init__V$1 = () => {
+    let var_0 = new java_lang_NegativeArraySizeException();
+    java_lang_NegativeArraySizeException__init__V(var_0);
     return var_0;
 },
-jl_IllegalArgumentException = $rt_classWithoutFields(jl_RuntimeException),
-jl_IllegalArgumentException__init_ = $this => {
-    jl_RuntimeException__init_($this);
+java_lang_IllegalArgumentException = $rt_classWithoutFields(java_lang_RuntimeException),
+java_lang_IllegalArgumentException__init__V = $this => {
+    java_lang_RuntimeException__init__V($this);
 },
-jl_IllegalArgumentException__init_0 = () => {
-    let var_0 = new jl_IllegalArgumentException();
-    jl_IllegalArgumentException__init_(var_0);
+java_lang_IllegalArgumentException__init__V$1 = () => {
+    let var_0 = new java_lang_IllegalArgumentException();
+    java_lang_IllegalArgumentException__init__V(var_0);
     return var_0;
 },
-jl_IllegalArgumentException__init__VHLrpW = ($this, $message) => {
-    jl_RuntimeException__init__VHLrpW($this, $message);
+java_lang_IllegalArgumentException__init__XjCHVS = ($this, $message) => {
+    java_lang_RuntimeException__init__XjCHVS($this, $message);
 },
-jl_IllegalArgumentException__init__VHLrpW0 = var_0 => {
-    let var_1 = new jl_IllegalArgumentException();
-    jl_IllegalArgumentException__init__VHLrpW(var_1, var_0);
+java_lang_IllegalArgumentException__init__XjCHVS$1 = var_0 => {
+    let var_1 = new java_lang_IllegalArgumentException();
+    java_lang_IllegalArgumentException__init__XjCHVS(var_1, var_0);
     return var_1;
 };
-function jl_Class() {
-    let a = this; jl_Object.call(a);
+function java_lang_Class() {
+    let a = this; java_lang_Object.call(a);
     a.$name = null;
     a.$platformClass = null;
 }
-let jl_Class__init__BSppjk = ($this, $platformClass) => {
+let java_lang_Class__init__YHHWXM = ($this, $platformClass) => {
     let var$2;
-    jl_Object__init_($this);
+    java_lang_Object__init__V($this);
     $this.$platformClass = $platformClass;
     var$2 = $this;
     $platformClass.classObject = var$2;
 },
-jl_Class__init__BSppjk0 = var_0 => {
-    let var_1 = new jl_Class();
-    jl_Class__init__BSppjk(var_1, var_0);
+java_lang_Class__init__YHHWXM$1 = var_0 => {
+    let var_1 = new java_lang_Class();
+    java_lang_Class__init__YHHWXM(var_1, var_0);
     return var_1;
 },
-jl_Class_getClass_BSppjk = $cls => {
+java_lang_Class_getClass_LTJNGA = $cls => {
     let $result;
     if ($cls === null)
         return null;
     $result = $cls.classObject;
     if ($result === null)
-        $result = jl_Class__init__BSppjk0($cls);
+        $result = java_lang_Class__init__YHHWXM$1($cls);
     return $result;
 },
-jl_Class_getPlatformClass = $this => {
+java_lang_Class_getPlatformClass_BSppjk = $this => {
     return $this.$platformClass;
 },
-jl_Class_getName = $this => {
+java_lang_Class_getName_VHLrpW = $this => {
     if ($this.$name === null)
-        $this.$name = otp_Platform_getName_BSppjk($this.$platformClass);
+        $this.$name = org_teavm_platform_Platform_getName_xWEGZR($this.$platformClass);
     return $this.$name;
 },
-jl_Class_getComponentType = $this => {
-    return jl_Class_getClass_BSppjk(otp_Platform_getArrayItem_BSppjk($this.$platformClass));
+java_lang_Class_getComponentType_rQPqgt = $this => {
+    return java_lang_Class_getClass_LTJNGA(org_teavm_platform_Platform_getArrayItem_PKtewy($this.$platformClass));
 };
 $rt_packages([-1, "java", 0, "lang"
 ]);
-$rt_metadata([jl_Object, "Object", 1, 0, [], 0, 3, 0, 0, [(o,r)=>o.$getClass=r, $rt_wrapFunction0(jl_Object_getClass), (o,r)=>o.$toString=r, $rt_wrapFunction0(jl_Object_toString), (o,r)=>o.$identity=r, $rt_wrapFunction0(jl_Object_identity)],
-ot_runtime, 0, jl_Object, [], 0, 0, 0, 0, 0,
-jl_Throwable, 0, jl_Object, [], 0, 3, 0, 0, [(o,r)=>o.$fillInStackTrace=r, $rt_wrapFunction0(jl_Throwable_fillInStackTrace), (o,r)=>o.$getMessage=r, $rt_wrapFunction0(jl_Throwable_getMessage), (o,r)=>o.$getCause=r, $rt_wrapFunction0(jl_Throwable_getCause)],
-jl_Exception, 0, jl_Throwable, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_Exception__init_), (o,r)=>o.$_init__VHLrpW=r, $rt_wrapFunction1(jl_Exception__init__VHLrpW)],
-jl_RuntimeException, 0, jl_Exception, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_RuntimeException__init_), (o,r)=>o.$_init__VHLrpW=r, $rt_wrapFunction1(jl_RuntimeException__init__VHLrpW)],
-jl_IndexOutOfBoundsException, 0, jl_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_IndexOutOfBoundsException__init_)],
-ju_Arrays, 0, jl_Object, [], 0, 3, 0, 0, 0,
-jlr_Array, 0, jl_Object, [], 4, 3, 0, 0, 0,
-jl_System, 0, jl_Object, [], 4, 3, 0, 0, 0,
-ju_Iterator, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ju_AbstractList$1, 0, jl_Object, [ju_Iterator], 0, 0, 0, 0, [(o,r)=>o.$_init__fOCyST=r, $rt_wrapFunction1(ju_AbstractList$1__init__fOCyST), (o,r)=>o.$hasNext=r, $rt_wrapFunction0(ju_AbstractList$1_hasNext), (o,r)=>o.$next=r, $rt_wrapFunction0(ju_AbstractList$1_next)],
-jl_Iterable, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ju_Collection, 0, jl_Object, [jl_Iterable], 3, 3, 0, 0, 0,
-ju_AbstractCollection, 0, jl_Object, [ju_Collection], 1, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(ju_AbstractCollection__init_), (o,r)=>o.$isEmpty=r, $rt_wrapFunction0(ju_AbstractCollection_isEmpty)],
-ju_SequencedCollection, 0, jl_Object, [ju_Collection], 3, 3, 0, 0, 0,
-ju_List, 0, jl_Object, [ju_SequencedCollection], 3, 3, 0, 0, 0,
-ju_AbstractList, 0, ju_AbstractCollection, [ju_List], 1, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(ju_AbstractList__init_), (o,r)=>o.$iterator=r, $rt_wrapFunction0(ju_AbstractList_iterator)],
-ji_Serializable, 0, jl_Object, [], 3, 3, 0, 0, 0,
-jl_Number, 0, jl_Object, [ji_Serializable], 1, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_Number__init_)],
-jl_Comparable, 0, jl_Object, [], 3, 3, 0, 0, 0,
-jl_Integer, 0, jl_Number, [jl_Comparable], 0, 3, 0, jl_Integer_$callClinit, [(o,r)=>o.$_init__I=r, $rt_wrapFunction1(jl_Integer__init__I), (o,r)=>o.$hashCode=r, $rt_wrapFunction0(jl_Integer_hashCode)],
-jl_AutoCloseable, 0, jl_Object, [], 3, 3, 0, 0, 0,
-jl_NullPointerException, 0, jl_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_NullPointerException__init_)],
-jl_Character, 0, jl_Object, [jl_Comparable], 0, 3, 0, jl_Character_$callClinit, 0,
-otci_IntegerUtil, 0, jl_Object, [], 4, 3, 0, 0, 0,
-ju_Map$Entry, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ju_Map, 0, jl_Object, [], 3, 3, 0, 0, [(o,r)=>o.$getOrDefault_lVIoyP=r, $rt_wrapFunction2(ju_Map_getOrDefault_lVIoyP)],
-jl_Math, 0, jl_Object, [], 4, 3, 0, 0, 0,
-jl_Cloneable, 0, jl_Object, [], 3, 3, 0, 0, 0,
-otji_JS, 0, jl_Object, [], 4, 3, 0, 0, 0,
-jl_CharSequence, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ju_Set, 0, jl_Object, [ju_Collection], 3, 3, 0, 0, 0,
-jl_StringIndexOutOfBoundsException, 0, jl_IndexOutOfBoundsException, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_StringIndexOutOfBoundsException__init_)],
-ji_Closeable, 0, jl_Object, [jl_AutoCloseable], 3, 3, 0, 0, 0,
-ji_Flushable, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ji_OutputStream, 0, jl_Object, [ji_Closeable, ji_Flushable], 1, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(ji_OutputStream__init_)],
-ji_FilterOutputStream, 0, ji_OutputStream, [], 0, 3, 0, 0, [(o,r)=>o.$_init__jbQHLp=r, $rt_wrapFunction1(ji_FilterOutputStream__init__jbQHLp)],
-ju_Objects, 0, jl_Object, [], 4, 3, 0, 0, 0,
-jlr_Type, 0, jl_Object, [], 3, 3, 0, 0, 0,
-jl_AbstractStringBuilder, 0, jl_Object, [ji_Serializable, jl_CharSequence], 0, 0, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_AbstractStringBuilder__init_), (o,r)=>o.$_init__I=r, $rt_wrapFunction1(jl_AbstractStringBuilder__init__I), (o,r)=>o.$append_yToRiJ0=r, $rt_wrapFunction1(jl_AbstractStringBuilder_append_yToRiJ), (o,r)=>o.$append_VHLrpW=r, $rt_wrapFunction1(jl_AbstractStringBuilder_append_VHLrpW), (o,r)=>o.$insert_nftnjR=r, $rt_wrapFunction2(jl_AbstractStringBuilder_insert_nftnjR), (o,r)=>o.$append_I=r,
-$rt_wrapFunction1(jl_AbstractStringBuilder_append_I), (o,r)=>o.$append_II=r, $rt_wrapFunction2(jl_AbstractStringBuilder_append_II), (o,r)=>o.$insert_III=r, $rt_wrapFunction3(jl_AbstractStringBuilder_insert_III), (o,r)=>o.$append_C0=r, $rt_wrapFunction1(jl_AbstractStringBuilder_append_C), (o,r)=>o.$insert_IC=r, $rt_wrapFunction2(jl_AbstractStringBuilder_insert_IC), (o,r)=>o.$insert_CeygPn=r, $rt_wrapFunction2(jl_AbstractStringBuilder_insert_CeygPn), (o,r)=>o.$ensureCapacity_I=r, $rt_wrapFunction1(jl_AbstractStringBuilder_ensureCapacity_I),
-(o,r)=>o.$toString=r, $rt_wrapFunction0(jl_AbstractStringBuilder_toString)],
-jl_Appendable, 0, jl_Object, [], 3, 3, 0, 0, 0,
-jl_StringBuilder, 0, jl_AbstractStringBuilder, [jl_Appendable], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_StringBuilder__init_), (o,r)=>o.$append_yToRiJ=r, $rt_wrapFunction1(jl_StringBuilder_append_yToRiJ), (o,r)=>o.$append_VHLrpW0=r, $rt_wrapFunction1(jl_StringBuilder_append_VHLrpW), (o,r)=>o.$append_I0=r, $rt_wrapFunction1(jl_StringBuilder_append_I), (o,r)=>o.$append_C=r, $rt_wrapFunction1(jl_StringBuilder_append_C), (o,r)=>o.$insert_CeygPn0=r, $rt_wrapFunction2(jl_StringBuilder_insert_CeygPn),
-(o,r)=>o.$insert_IC0=r, $rt_wrapFunction2(jl_StringBuilder_insert_IC), (o,r)=>o.$insert_nftnjR0=r, $rt_wrapFunction2(jl_StringBuilder_insert_nftnjR), (o,r)=>o.$toString=r, $rt_wrapFunction0(jl_StringBuilder_toString), (o,r)=>o.$ensureCapacity_I=r, $rt_wrapFunction1(jl_StringBuilder_ensureCapacity_I), (o,r)=>o.$insert_CeygPn=r, $rt_wrapFunction2(jl_StringBuilder_insert_CeygPn0), (o,r)=>o.$insert_IC=r, $rt_wrapFunction2(jl_StringBuilder_insert_IC0), (o,r)=>o.$insert_nftnjR=r, $rt_wrapFunction2(jl_StringBuilder_insert_nftnjR0)],
-ju_MapEntry, 0, jl_Object, [ju_Map$Entry, jl_Cloneable], 0, 0, 0, 0, [(o,r)=>o.$_init__lVIoyP=r, $rt_wrapFunction2(ju_MapEntry__init__lVIoyP)],
-ju_ConcurrentModificationException, 0, jl_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(ju_ConcurrentModificationException__init_)],
-jlr_AnnotatedElement, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ji_PrintStream, 0, ji_FilterOutputStream, [jl_Appendable], 0, 3, 0, 0, [(o,r)=>o.$_init__DdDNGq=r, $rt_wrapFunction3(ji_PrintStream__init__DdDNGq)],
-otcic_JsConsolePrintStream, 0, ji_PrintStream, [], 1, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(otcic_JsConsolePrintStream__init_), (o,r)=>o.$println_VHLrpW=r, $rt_wrapFunction1(otcic_JsConsolePrintStream_println_VHLrpW)],
-otcic_JSStdoutPrintStream, 0, otcic_JsConsolePrintStream, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(otcic_JSStdoutPrintStream__init_), (o,r)=>o.$print_VHLrpW=r, $rt_wrapFunction1(otcic_JSStdoutPrintStream_print_VHLrpW)],
-ju_AbstractSet, 0, ju_AbstractCollection, [ju_Set], 1, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(ju_AbstractSet__init_)],
-ju_HashMap$1, 0, ju_AbstractSet, [], 0, 0, 0, 0, [(o,r)=>o.$_init__RxMTza=r, $rt_wrapFunction1(ju_HashMap$1__init__RxMTza), (o,r)=>o.$iterator=r, $rt_wrapFunction0(ju_HashMap$1_iterator)]]);
-$rt_metadata([ju_HashMap$AbstractMapIterator, 0, jl_Object, [], 0, 0, 0, 0, [(o,r)=>o.$_init__RxMTza=r, $rt_wrapFunction1(ju_HashMap$AbstractMapIterator__init__RxMTza), (o,r)=>o.$hasNext=r, $rt_wrapFunction0(ju_HashMap$AbstractMapIterator_hasNext), (o,r)=>o.$checkConcurrentMod=r, $rt_wrapFunction0(ju_HashMap$AbstractMapIterator_checkConcurrentMod), (o,r)=>o.$makeNext=r, $rt_wrapFunction0(ju_HashMap$AbstractMapIterator_makeNext)],
-ju_HashMap$KeyIterator, 0, ju_HashMap$AbstractMapIterator, [ju_Iterator], 0, 0, 0, 0, [(o,r)=>o.$_init__RxMTza=r, $rt_wrapFunction1(ju_HashMap$KeyIterator__init__RxMTza), (o,r)=>o.$next=r, $rt_wrapFunction0(ju_HashMap$KeyIterator_next)],
-ju_HashMap$HashEntry, 0, ju_MapEntry, [], 0, 0, 0, 0, [(o,r)=>o.$_init__UosgRn=r, $rt_wrapFunction2(ju_HashMap$HashEntry__init__UosgRn)],
-ju_AbstractMap, 0, jl_Object, [ju_Map], 1, 3, 0, 0, [(o,r)=>o.$getOrDefault_lVIoyP=r, $rt_wrapFunction2(ju_Map_getOrDefault_lVIoyP), (o,r)=>o.$_init_=r, $rt_wrapFunction0(ju_AbstractMap__init_)],
-ju_HashMap, 0, ju_AbstractMap, [jl_Cloneable, ji_Serializable], 0, 3, 0, 0, [(o,r)=>o.$getOrDefault_lVIoyP=r, $rt_wrapFunction2(ju_Map_getOrDefault_lVIoyP), (o,r)=>o.$newElementArray_I=r, $rt_wrapFunction1(ju_HashMap_newElementArray_I), (o,r)=>o.$_init_=r, $rt_wrapFunction0(ju_HashMap__init_), (o,r)=>o.$_init__I=r, $rt_wrapFunction1(ju_HashMap__init__I), (o,r)=>o.$_init__IF=r, $rt_wrapFunction2(ju_HashMap__init__IF), (o,r)=>o.$containsKey_yToRiJ=r, $rt_wrapFunction1(ju_HashMap_containsKey_yToRiJ), (o,r)=>o.$get_yToRiJ=r,
-$rt_wrapFunction1(ju_HashMap_get_yToRiJ), (o,r)=>o.$entryByKey_yToRiJ=r, $rt_wrapFunction1(ju_HashMap_entryByKey_yToRiJ), (o,r)=>o.$findNonNullKeyEntry_vgXoLz=r, $rt_wrapFunction3(ju_HashMap_findNonNullKeyEntry_vgXoLz), (o,r)=>o.$findNullKeyEntry=r, $rt_wrapFunction0(ju_HashMap_findNullKeyEntry), (o,r)=>o.$keySet=r, $rt_wrapFunction0(ju_HashMap_keySet), (o,r)=>o.$put_lVIoyP=r, $rt_wrapFunction2(ju_HashMap_put_lVIoyP), (o,r)=>o.$rehash_I=r, $rt_wrapFunction1(ju_HashMap_rehash_I), (o,r)=>o.$rehash=r, $rt_wrapFunction0(ju_HashMap_rehash)],
-jl_ClassCastException, 0, jl_RuntimeException, [], 0, 3, 0, 0, 0,
-ju_RandomAccess, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ju_ArrayList, 0, ju_AbstractList, [jl_Cloneable, ji_Serializable, ju_RandomAccess], 0, 3, 0, 0, [(o,r)=>o.$_init__I=r, $rt_wrapFunction1(ju_ArrayList__init__I), (o,r)=>o.$ensureCapacity_I=r, $rt_wrapFunction1(ju_ArrayList_ensureCapacity_I), (o,r)=>o.$get_I=r, $rt_wrapFunction1(ju_ArrayList_get_I), (o,r)=>o.$size=r, $rt_wrapFunction0(ju_ArrayList_size), (o,r)=>o.$add_yToRiJ=r, $rt_wrapFunction1(ju_ArrayList_add_yToRiJ)],
-otp_Platform, 0, jl_Object, [], 4, 3, 0, 0, 0,
-jnc_Charset, 0, jl_Object, [jl_Comparable], 1, 3, 0, 0, 0,
-ju_Comparator, 0, jl_Object, [], 3, 3, 0, 0, 0,
-jl_String$_clinit_$lambda$_115_0, 0, jl_Object, [ju_Comparator], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_String$_clinit_$lambda$_115_0__init_)],
-jl_String, 0, jl_Object, [ji_Serializable, jl_Comparable, jl_CharSequence], 0, 3, 0, jl_String_$callClinit, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_String__init_), (o,r)=>o.$_init___C=r, $rt_wrapFunction1(jl_String__init___C), (o,r)=>o.$_init__yToRiJ=r, $rt_wrapFunction1(jl_String__init__yToRiJ), (o,r)=>o.$_init___CII=r, $rt_wrapFunction3(jl_String__init___CII), (o,r)=>o.$charAt_I=r, $rt_wrapFunction1(jl_String_charAt_I), (o,r)=>o.$length=r, $rt_wrapFunction0(jl_String_length), (o,r)=>o.$isEmpty=r, $rt_wrapFunction0(jl_String_isEmpty),
-(o,r)=>o.$toString=r, $rt_wrapFunction0(jl_String_toString)],
-ju_NoSuchElementException, 0, jl_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(ju_NoSuchElementException__init_)],
-jl_NegativeArraySizeException, 0, jl_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_NegativeArraySizeException__init_)],
-jl_IllegalArgumentException, 0, jl_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init_=r, $rt_wrapFunction0(jl_IllegalArgumentException__init_), (o,r)=>o.$_init__VHLrpW=r, $rt_wrapFunction1(jl_IllegalArgumentException__init__VHLrpW)],
-jl_Class, 0, jl_Object, [jlr_AnnotatedElement, jlr_Type], 4, 3, 0, 0, [(o,r)=>o.$getPlatformClass=r, $rt_wrapFunction0(jl_Class_getPlatformClass), (o,r)=>o.$getName=r, $rt_wrapFunction0(jl_Class_getName), (o,r)=>o.$getComponentType=r, $rt_wrapFunction0(jl_Class_getComponentType)]]);
+$rt_metadata([java_lang_Object, "Object", 1, 0, [], 0, 3, 0, 0, [(o,r)=>o.$getClass_rQPqgt=r, $rt_wrapFunction0(java_lang_Object_getClass_rQPqgt), (o,r)=>o.$toString_VHLrpW=r, $rt_wrapFunction0(java_lang_Object_toString_VHLrpW), (o,r)=>o.$identity_I=r, $rt_wrapFunction0(java_lang_Object_identity_I)],
+org_teavm_runtime, 0, java_lang_Object, [], 0, 0, 0, 0, 0,
+java_lang_Throwable, 0, java_lang_Object, [], 0, 3, 0, 0, [(o,r)=>o.$fillInStackTrace_MBBfFS=r, $rt_wrapFunction0(java_lang_Throwable_fillInStackTrace_MBBfFS), (o,r)=>o.$getMessage_VHLrpW=r, $rt_wrapFunction0(java_lang_Throwable_getMessage_VHLrpW), (o,r)=>o.$getCause_MBBfFS=r, $rt_wrapFunction0(java_lang_Throwable_getCause_MBBfFS)],
+java_lang_Exception, 0, java_lang_Throwable, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_Exception__init__V), (o,r)=>o.$_init__XjCHVS=r, $rt_wrapFunction1(java_lang_Exception__init__XjCHVS)],
+java_lang_RuntimeException, 0, java_lang_Exception, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_RuntimeException__init__V), (o,r)=>o.$_init__XjCHVS=r, $rt_wrapFunction1(java_lang_RuntimeException__init__XjCHVS)],
+java_lang_IndexOutOfBoundsException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_IndexOutOfBoundsException__init__V)],
+java_util_Arrays, 0, java_lang_Object, [], 0, 3, 0, 0, 0,
+java_lang_reflect_Array, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
+java_lang_System, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
+java_util_Iterator, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_util_AbstractList$1, 0, java_lang_Object, [java_util_Iterator], 0, 0, 0, 0, [(o,r)=>o.$_init__tWBmpm=r, $rt_wrapFunction1(java_util_AbstractList$1__init__tWBmpm), (o,r)=>o.$hasNext_Z=r, $rt_wrapFunction0(java_util_AbstractList$1_hasNext_Z), (o,r)=>o.$next_yToRiJ=r, $rt_wrapFunction0(java_util_AbstractList$1_next_yToRiJ)],
+java_lang_Iterable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_util_Collection, 0, java_lang_Object, [java_lang_Iterable], 3, 3, 0, 0, 0,
+java_util_AbstractCollection, 0, java_lang_Object, [java_util_Collection], 1, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_AbstractCollection__init__V), (o,r)=>o.$isEmpty_Z=r, $rt_wrapFunction0(java_util_AbstractCollection_isEmpty_Z)],
+java_util_SequencedCollection, 0, java_lang_Object, [java_util_Collection], 3, 3, 0, 0, 0,
+java_util_List, 0, java_lang_Object, [java_util_SequencedCollection], 3, 3, 0, 0, 0,
+java_util_AbstractList, 0, java_util_AbstractCollection, [java_util_List], 1, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_AbstractList__init__V), (o,r)=>o.$iterator_nRSvFx=r, $rt_wrapFunction0(java_util_AbstractList_iterator_nRSvFx)],
+java_io_Serializable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_lang_Number, 0, java_lang_Object, [java_io_Serializable], 1, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_Number__init__V)],
+java_lang_Comparable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_lang_Integer, 0, java_lang_Number, [java_lang_Comparable], 0, 3, 0, java_lang_Integer_$callClinit, [(o,r)=>o.$_init__VI=r, $rt_wrapFunction1(java_lang_Integer__init__VI), (o,r)=>o.$hashCode_I=r, $rt_wrapFunction0(java_lang_Integer_hashCode_I)],
+java_lang_AutoCloseable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_lang_NullPointerException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_NullPointerException__init__V)],
+java_lang_Character, 0, java_lang_Object, [java_lang_Comparable], 0, 3, 0, java_lang_Character_$callClinit, 0,
+org_teavm_classlib_impl_IntegerUtil, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
+java_util_Map$Entry, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_util_Map, 0, java_lang_Object, [], 3, 3, 0, 0, [(o,r)=>o.$getOrDefault_tsMSwf=r, $rt_wrapFunction2(java_util_Map_getOrDefault_tsMSwf)],
+java_lang_Math, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
+java_lang_Cloneable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+org_teavm_jso_impl_JS, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
+java_lang_CharSequence, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_util_Set, 0, java_lang_Object, [java_util_Collection], 3, 3, 0, 0, 0,
+java_lang_StringIndexOutOfBoundsException, 0, java_lang_IndexOutOfBoundsException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_StringIndexOutOfBoundsException__init__V)],
+java_io_Closeable, 0, java_lang_Object, [java_lang_AutoCloseable], 3, 3, 0, 0, 0,
+java_io_Flushable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_io_OutputStream, 0, java_lang_Object, [java_io_Closeable, java_io_Flushable], 1, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_io_OutputStream__init__V)],
+java_io_FilterOutputStream, 0, java_io_OutputStream, [], 0, 3, 0, 0, [(o,r)=>o.$_init__gjftmH=r, $rt_wrapFunction1(java_io_FilterOutputStream__init__gjftmH)],
+java_util_Objects, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
+java_lang_reflect_Type, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_lang_AbstractStringBuilder, 0, java_lang_Object, [java_io_Serializable, java_lang_CharSequence], 0, 0, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_AbstractStringBuilder__init__V), (o,r)=>o.$_init__VI=r, $rt_wrapFunction1(java_lang_AbstractStringBuilder__init__VI), (o,r)=>o.$append_nfyWfb=r, $rt_wrapFunction1(java_lang_AbstractStringBuilder_append_nfyWfb), (o,r)=>o.$append_ZIxCSm=r, $rt_wrapFunction1(java_lang_AbstractStringBuilder_append_ZIxCSm), (o,r)=>o.$insert_hzKion=r, $rt_wrapFunction2(java_lang_AbstractStringBuilder_insert_hzKion),
+(o,r)=>o.$append_oqxyew=r, $rt_wrapFunction1(java_lang_AbstractStringBuilder_append_oqxyew), (o,r)=>o.$append_ylxaCJ=r, $rt_wrapFunction2(java_lang_AbstractStringBuilder_append_ylxaCJ), (o,r)=>o.$insert_JzPOxM=r, $rt_wrapFunction3(java_lang_AbstractStringBuilder_insert_JzPOxM), (o,r)=>o.$append_OMqvAE=r, $rt_wrapFunction1(java_lang_AbstractStringBuilder_append_OMqvAE), (o,r)=>o.$insert_joXuZN=r, $rt_wrapFunction2(java_lang_AbstractStringBuilder_insert_joXuZN), (o,r)=>o.$insert_KMHMoz=r, $rt_wrapFunction2(java_lang_AbstractStringBuilder_insert_KMHMoz),
+(o,r)=>o.$ensureCapacity_VI=r, $rt_wrapFunction1(java_lang_AbstractStringBuilder_ensureCapacity_VI), (o,r)=>o.$toString_VHLrpW=r, $rt_wrapFunction0(java_lang_AbstractStringBuilder_toString_VHLrpW)],
+java_lang_Appendable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_lang_StringBuilder, 0, java_lang_AbstractStringBuilder, [java_lang_Appendable], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_StringBuilder__init__V), (o,r)=>o.$append_ZOYxhs=r, $rt_wrapFunction1(java_lang_StringBuilder_append_ZOYxhs), (o,r)=>o.$append_hrVwXi=r, $rt_wrapFunction1(java_lang_StringBuilder_append_hrVwXi), (o,r)=>o.$append_ZSDQSM=r, $rt_wrapFunction1(java_lang_StringBuilder_append_ZSDQSM), (o,r)=>o.$append_zwKTwE=r, $rt_wrapFunction1(java_lang_StringBuilder_append_zwKTwE),
+(o,r)=>o.$insert_JDogxs=r, $rt_wrapFunction2(java_lang_StringBuilder_insert_JDogxs), (o,r)=>o.$insert_CiShRV=r, $rt_wrapFunction2(java_lang_StringBuilder_insert_CiShRV), (o,r)=>o.$insert_yVTRbO=r, $rt_wrapFunction2(java_lang_StringBuilder_insert_yVTRbO), (o,r)=>o.$toString_VHLrpW=r, $rt_wrapFunction0(java_lang_StringBuilder_toString_VHLrpW), (o,r)=>o.$ensureCapacity_VI=r, $rt_wrapFunction1(java_lang_StringBuilder_ensureCapacity_VI), (o,r)=>o.$insert_KMHMoz=r, $rt_wrapFunction2(java_lang_StringBuilder_insert_KMHMoz),
+(o,r)=>o.$insert_joXuZN=r, $rt_wrapFunction2(java_lang_StringBuilder_insert_joXuZN), (o,r)=>o.$insert_hzKion=r, $rt_wrapFunction2(java_lang_StringBuilder_insert_hzKion)],
+java_util_MapEntry, 0, java_lang_Object, [java_util_Map$Entry, java_lang_Cloneable], 0, 0, 0, 0, [(o,r)=>o.$_init__PLTLFS=r, $rt_wrapFunction2(java_util_MapEntry__init__PLTLFS)],
+java_util_ConcurrentModificationException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_ConcurrentModificationException__init__V)],
+java_lang_reflect_AnnotatedElement, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_io_PrintStream, 0, java_io_FilterOutputStream, [java_lang_Appendable], 0, 3, 0, 0, [(o,r)=>o.$_init__RHOATE=r, $rt_wrapFunction3(java_io_PrintStream__init__RHOATE)],
+org_teavm_classlib_impl_console_JsConsolePrintStream, 0, java_io_PrintStream, [], 1, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(org_teavm_classlib_impl_console_JsConsolePrintStream__init__V), (o,r)=>o.$println_XjCHVS=r, $rt_wrapFunction1(org_teavm_classlib_impl_console_JsConsolePrintStream_println_XjCHVS)],
+org_teavm_classlib_impl_console_JSStdoutPrintStream, 0, org_teavm_classlib_impl_console_JsConsolePrintStream, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V), (o,r)=>o.$print_XjCHVS=r, $rt_wrapFunction1(org_teavm_classlib_impl_console_JSStdoutPrintStream_print_XjCHVS)],
+java_util_AbstractSet, 0, java_util_AbstractCollection, [java_util_Set], 1, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_AbstractSet__init__V)],
+java_util_HashMap$1, 0, java_util_AbstractSet, [], 0, 0, 0, 0, [(o,r)=>o.$_init__WqYpIS=r, $rt_wrapFunction1(java_util_HashMap$1__init__WqYpIS), (o,r)=>o.$iterator_nRSvFx=r, $rt_wrapFunction0(java_util_HashMap$1_iterator_nRSvFx)]]);
+$rt_metadata([java_util_HashMap$AbstractMapIterator, 0, java_lang_Object, [], 0, 0, 0, 0, [(o,r)=>o.$_init__WqYpIS=r, $rt_wrapFunction1(java_util_HashMap$AbstractMapIterator__init__WqYpIS), (o,r)=>o.$hasNext_Z=r, $rt_wrapFunction0(java_util_HashMap$AbstractMapIterator_hasNext_Z), (o,r)=>o.$checkConcurrentMod_V=r, $rt_wrapFunction0(java_util_HashMap$AbstractMapIterator_checkConcurrentMod_V), (o,r)=>o.$makeNext_V=r, $rt_wrapFunction0(java_util_HashMap$AbstractMapIterator_makeNext_V)],
+java_util_HashMap$KeyIterator, 0, java_util_HashMap$AbstractMapIterator, [java_util_Iterator], 0, 0, 0, 0, [(o,r)=>o.$_init__WqYpIS=r, $rt_wrapFunction1(java_util_HashMap$KeyIterator__init__WqYpIS), (o,r)=>o.$next_yToRiJ=r, $rt_wrapFunction0(java_util_HashMap$KeyIterator_next_yToRiJ)],
+java_util_HashMap$HashEntry, 0, java_util_MapEntry, [], 0, 0, 0, 0, [(o,r)=>o.$_init__moeQBN=r, $rt_wrapFunction2(java_util_HashMap$HashEntry__init__moeQBN)],
+java_util_AbstractMap, 0, java_lang_Object, [java_util_Map], 1, 3, 0, 0, [(o,r)=>o.$getOrDefault_tsMSwf=r, $rt_wrapFunction2(java_util_Map_getOrDefault_tsMSwf), (o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_AbstractMap__init__V)],
+java_util_HashMap, 0, java_util_AbstractMap, [java_lang_Cloneable, java_io_Serializable], 0, 3, 0, 0, [(o,r)=>o.$getOrDefault_tsMSwf=r, $rt_wrapFunction2(java_util_Map_getOrDefault_tsMSwf), (o,r)=>o.$newElementArray_HaDQXJ=r, $rt_wrapFunction1(java_util_HashMap_newElementArray_HaDQXJ), (o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_HashMap__init__V), (o,r)=>o.$_init__VI=r, $rt_wrapFunction1(java_util_HashMap__init__VI), (o,r)=>o.$_init__VIF=r, $rt_wrapFunction2(java_util_HashMap__init__VIF), (o,r)=>o.$containsKey_uKWEwg=r,
+$rt_wrapFunction1(java_util_HashMap_containsKey_uKWEwg), (o,r)=>o.$get_lVIoyP=r, $rt_wrapFunction1(java_util_HashMap_get_lVIoyP), (o,r)=>o.$entryByKey_oGTkjE=r, $rt_wrapFunction1(java_util_HashMap_entryByKey_oGTkjE), (o,r)=>o.$findNonNullKeyEntry_RrVLlf=r, $rt_wrapFunction3(java_util_HashMap_findNonNullKeyEntry_RrVLlf), (o,r)=>o.$findNullKeyEntry_QqMKmf=r, $rt_wrapFunction0(java_util_HashMap_findNullKeyEntry_QqMKmf), (o,r)=>o.$keySet_wfeRzl=r, $rt_wrapFunction0(java_util_HashMap_keySet_wfeRzl), (o,r)=>o.$put_tsMSwf=r,
+$rt_wrapFunction2(java_util_HashMap_put_tsMSwf), (o,r)=>o.$rehash_VI=r, $rt_wrapFunction1(java_util_HashMap_rehash_VI), (o,r)=>o.$rehash_V=r, $rt_wrapFunction0(java_util_HashMap_rehash_V)],
+java_lang_ClassCastException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, 0,
+java_util_RandomAccess, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_util_ArrayList, 0, java_util_AbstractList, [java_lang_Cloneable, java_io_Serializable, java_util_RandomAccess], 0, 3, 0, 0, [(o,r)=>o.$_init__VI=r, $rt_wrapFunction1(java_util_ArrayList__init__VI), (o,r)=>o.$ensureCapacity_VI=r, $rt_wrapFunction1(java_util_ArrayList_ensureCapacity_VI), (o,r)=>o.$get_UosgRn=r, $rt_wrapFunction1(java_util_ArrayList_get_UosgRn), (o,r)=>o.$size_I=r, $rt_wrapFunction0(java_util_ArrayList_size_I), (o,r)=>o.$add_uKWEwg=r, $rt_wrapFunction1(java_util_ArrayList_add_uKWEwg)],
+org_teavm_platform_Platform, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
+java_nio_charset_Charset, 0, java_lang_Object, [java_lang_Comparable], 1, 3, 0, 0, 0,
+java_util_Comparator, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+java_lang_String$_clinit_$lambda$_115_0, 0, java_lang_Object, [java_util_Comparator], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_String$_clinit_$lambda$_115_0__init__V)],
+java_lang_String, 0, java_lang_Object, [java_io_Serializable, java_lang_Comparable, java_lang_CharSequence], 0, 3, 0, java_lang_String_$callClinit, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_String__init__V), (o,r)=>o.$_init__V_C=r, $rt_wrapFunction1(java_lang_String__init__V_C), (o,r)=>o.$_init__HFyQDR=r, $rt_wrapFunction1(java_lang_String__init__HFyQDR), (o,r)=>o.$_init__V_CII=r, $rt_wrapFunction3(java_lang_String__init__V_CII), (o,r)=>o.$charAt_CI=r, $rt_wrapFunction1(java_lang_String_charAt_CI),
+(o,r)=>o.$length_I=r, $rt_wrapFunction0(java_lang_String_length_I), (o,r)=>o.$isEmpty_Z=r, $rt_wrapFunction0(java_lang_String_isEmpty_Z), (o,r)=>o.$toString_VHLrpW=r, $rt_wrapFunction0(java_lang_String_toString_VHLrpW)],
+java_util_NoSuchElementException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_NoSuchElementException__init__V)],
+java_lang_NegativeArraySizeException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_NegativeArraySizeException__init__V)],
+java_lang_IllegalArgumentException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_lang_IllegalArgumentException__init__V), (o,r)=>o.$_init__XjCHVS=r, $rt_wrapFunction1(java_lang_IllegalArgumentException__init__XjCHVS)],
+java_lang_Class, 0, java_lang_Object, [java_lang_reflect_AnnotatedElement, java_lang_reflect_Type], 4, 3, 0, 0, [(o,r)=>o.$getPlatformClass_BSppjk=r, $rt_wrapFunction0(java_lang_Class_getPlatformClass_BSppjk), (o,r)=>o.$getName_VHLrpW=r, $rt_wrapFunction0(java_lang_Class_getName_VHLrpW), (o,r)=>o.$getComponentType_rQPqgt=r, $rt_wrapFunction0(java_lang_Class_getComponentType_rQPqgt)]]);
 let $rt_booleanArrayCls = $rt_arraycls($rt_booleancls),
 $rt_charArrayCls = $rt_arraycls($rt_charcls),
 $rt_byteArrayCls = $rt_arraycls($rt_bytecls),
@@ -2085,250 +2087,250 @@ $rt_intArrayCls = $rt_arraycls($rt_intcls),
 $rt_longArrayCls = $rt_arraycls($rt_longcls),
 $rt_floatArrayCls = $rt_arraycls($rt_floatcls),
 $rt_doubleArrayCls = $rt_arraycls($rt_doublecls);
-jl_String.prototype.toString = function() {
+java_lang_String.prototype.toString = function() {
     return $rt_ustr(this);
 };
-jl_String.prototype.valueOf = jl_String.prototype.toString;
-jl_Object.prototype.toString = function() {
-    return $rt_ustr(jl_Object_toString(this));
+java_lang_String.prototype.valueOf = java_lang_String.prototype.toString;
+java_lang_Object.prototype.toString = function() {
+    return $rt_ustr(java_lang_Object_toString_VHLrpW(this));
 };
-jl_Object.prototype.__teavm_class__ = function() {
+java_lang_Object.prototype.__teavm_class__ = function() {
     return $dbg_class(this);
 };
-jl_Integer_$callClinit();
-jl_Character_$callClinit();
-jl_String_$callClinit();
-exports.ot_runtime = ot_runtime;
-exports.jl_IndexOutOfBoundsException__init_ = jl_IndexOutOfBoundsException__init_;
-exports.jl_IndexOutOfBoundsException__init_0 = jl_IndexOutOfBoundsException__init_0;
-exports.jl_IndexOutOfBoundsException = jl_IndexOutOfBoundsException;
-exports.ju_Arrays_copyOf__CI = ju_Arrays_copyOf__CI;
-exports.ju_Arrays_copyOf_xYnKPG = ju_Arrays_copyOf_xYnKPG;
-exports.ju_Arrays_fill__CIIC = ju_Arrays_fill__CIIC;
-exports.ju_Arrays_fill__CC = ju_Arrays_fill__CC;
-exports.ju_Arrays_hashCode_MzFGbf = ju_Arrays_hashCode_MzFGbf;
-exports.ju_Arrays = ju_Arrays;
-exports.jlr_Array_newInstance_bvdtKY = jlr_Array_newInstance_bvdtKY;
-exports.jlr_Array = jlr_Array;
-exports.jl_System_out = jl_System_out;
-exports.jl_System = jl_System;
-exports.ju_AbstractList$1__init__fOCyST = ju_AbstractList$1__init__fOCyST;
-exports.ju_AbstractList$1__init__fOCyST0 = ju_AbstractList$1__init__fOCyST0;
-exports.ju_AbstractList$1_hasNext = ju_AbstractList$1_hasNext;
-exports.ju_AbstractList$1_next = ju_AbstractList$1_next;
-exports.ju_AbstractList$1 = ju_AbstractList$1;
-exports.ju_AbstractList__init_ = ju_AbstractList__init_;
-exports.ju_AbstractList_iterator = ju_AbstractList_iterator;
-exports.ju_AbstractList = ju_AbstractList;
-exports.jl_Integer__init__I = jl_Integer__init__I;
-exports.jl_Integer__init__I0 = jl_Integer__init__I0;
-exports.jl_Integer_hashCode_I = jl_Integer_hashCode_I;
-exports.jl_Integer_toHexString_I = jl_Integer_toHexString_I;
-exports.jl_Integer_valueOf_I = jl_Integer_valueOf_I;
-exports.jl_Integer_hashCode = jl_Integer_hashCode;
-exports.jl_Integer_numberOfLeadingZeros_I = jl_Integer_numberOfLeadingZeros_I;
-exports.jl_Integer = jl_Integer;
-exports.jl_Integer_TYPE = jl_Integer_TYPE;
-exports.jl_AutoCloseable = jl_AutoCloseable;
-exports.jl_NullPointerException__init_ = jl_NullPointerException__init_;
-exports.jl_NullPointerException__init_0 = jl_NullPointerException__init_0;
-exports.jl_NullPointerException = jl_NullPointerException;
-exports.ju_AbstractCollection__init_ = ju_AbstractCollection__init_;
-exports.ju_AbstractCollection_isEmpty = ju_AbstractCollection_isEmpty;
-exports.ju_AbstractCollection = ju_AbstractCollection;
-exports.jl_Character_forDigit_II = jl_Character_forDigit_II;
-exports.jl_Character = jl_Character;
-exports.jl_Character_TYPE = jl_Character_TYPE;
-exports.otci_IntegerUtil_toUnsignedLogRadixString_II = otci_IntegerUtil_toUnsignedLogRadixString_II;
-exports.otci_IntegerUtil = otci_IntegerUtil;
-exports.ju_Map$Entry = ju_Map$Entry;
-exports.ju_Map_getOrDefault_lVIoyP = ju_Map_getOrDefault_lVIoyP;
-exports.ju_Map = ju_Map;
-exports.jl_Math_min_II = jl_Math_min_II;
-exports.jl_Math_max_II = jl_Math_max_II;
-exports.jl_Math = jl_Math;
-exports.jl_Cloneable = jl_Cloneable;
-exports.otji_JS = otji_JS;
-exports.jl_CharSequence = jl_CharSequence;
-exports.ju_Collection = ju_Collection;
-exports.ju_Set = ju_Set;
-exports.jl_StringIndexOutOfBoundsException__init_ = jl_StringIndexOutOfBoundsException__init_;
-exports.jl_StringIndexOutOfBoundsException__init_0 = jl_StringIndexOutOfBoundsException__init_0;
-exports.jl_StringIndexOutOfBoundsException = jl_StringIndexOutOfBoundsException;
-exports.ji_FilterOutputStream__init__jbQHLp = ji_FilterOutputStream__init__jbQHLp;
-exports.ji_FilterOutputStream__init__jbQHLp0 = ji_FilterOutputStream__init__jbQHLp0;
-exports.ji_FilterOutputStream = ji_FilterOutputStream;
-exports.jl_Exception__init_ = jl_Exception__init_;
-exports.jl_Exception__init_0 = jl_Exception__init_0;
-exports.jl_Exception__init__VHLrpW = jl_Exception__init__VHLrpW;
-exports.jl_Exception__init__VHLrpW0 = jl_Exception__init__VHLrpW0;
-exports.jl_Exception = jl_Exception;
-exports.ji_Serializable = ji_Serializable;
-exports.ju_Objects_hashCode_yToRiJ = ju_Objects_hashCode_yToRiJ;
-exports.ju_Objects_hash_MzFGbf = ju_Objects_hash_MzFGbf;
-exports.ju_Objects_checkFromIndexSize_III = ju_Objects_checkFromIndexSize_III;
-exports.ju_Objects = ju_Objects;
-exports.ju_List = ju_List;
-exports.jlr_Type = jlr_Type;
-exports.jl_StringBuilder__init_ = jl_StringBuilder__init_;
-exports.jl_StringBuilder__init_0 = jl_StringBuilder__init_0;
-exports.jl_StringBuilder_append_yToRiJ = jl_StringBuilder_append_yToRiJ;
-exports.jl_StringBuilder_append_VHLrpW = jl_StringBuilder_append_VHLrpW;
-exports.jl_StringBuilder_append_I = jl_StringBuilder_append_I;
-exports.jl_StringBuilder_append_C = jl_StringBuilder_append_C;
-exports.jl_StringBuilder_insert_CeygPn = jl_StringBuilder_insert_CeygPn;
-exports.jl_StringBuilder_insert_IC = jl_StringBuilder_insert_IC;
-exports.jl_StringBuilder_insert_nftnjR = jl_StringBuilder_insert_nftnjR;
-exports.jl_StringBuilder_toString = jl_StringBuilder_toString;
-exports.jl_StringBuilder_ensureCapacity_I = jl_StringBuilder_ensureCapacity_I;
-exports.jl_StringBuilder_insert_CeygPn0 = jl_StringBuilder_insert_CeygPn0;
-exports.jl_StringBuilder_insert_IC0 = jl_StringBuilder_insert_IC0;
-exports.jl_StringBuilder_insert_nftnjR0 = jl_StringBuilder_insert_nftnjR0;
-exports.jl_StringBuilder = jl_StringBuilder;
-exports.ju_MapEntry__init__lVIoyP = ju_MapEntry__init__lVIoyP;
-exports.ju_MapEntry__init__lVIoyP0 = ju_MapEntry__init__lVIoyP0;
-exports.ju_MapEntry = ju_MapEntry;
-exports.ju_ConcurrentModificationException__init_ = ju_ConcurrentModificationException__init_;
-exports.ju_ConcurrentModificationException__init_0 = ju_ConcurrentModificationException__init_0;
-exports.ju_ConcurrentModificationException = ju_ConcurrentModificationException;
-exports.ju_SequencedCollection = ju_SequencedCollection;
-exports.jlr_AnnotatedElement = jlr_AnnotatedElement;
-exports.jl_Throwable_fillInStackTrace = jl_Throwable_fillInStackTrace;
-exports.jl_Throwable_getMessage = jl_Throwable_getMessage;
-exports.jl_Throwable_getCause = jl_Throwable_getCause;
-exports.jl_Throwable = jl_Throwable;
-exports.otcic_JSStdoutPrintStream__init_ = otcic_JSStdoutPrintStream__init_;
-exports.otcic_JSStdoutPrintStream__init_0 = otcic_JSStdoutPrintStream__init_0;
-exports.otcic_JSStdoutPrintStream_print_VHLrpW = otcic_JSStdoutPrintStream_print_VHLrpW;
-exports.otcic_JSStdoutPrintStream = otcic_JSStdoutPrintStream;
-exports.ju_AbstractSet__init_ = ju_AbstractSet__init_;
-exports.ju_AbstractSet = ju_AbstractSet;
-exports.ju_HashMap$1__init__RxMTza = ju_HashMap$1__init__RxMTza;
-exports.ju_HashMap$1__init__RxMTza0 = ju_HashMap$1__init__RxMTza0;
-exports.ju_HashMap$1_iterator = ju_HashMap$1_iterator;
-exports.ju_HashMap$1 = ju_HashMap$1;
-exports.ju_HashMap$KeyIterator__init__RxMTza = ju_HashMap$KeyIterator__init__RxMTza;
-exports.ju_HashMap$KeyIterator__init__RxMTza0 = ju_HashMap$KeyIterator__init__RxMTza0;
-exports.ju_HashMap$KeyIterator_next = ju_HashMap$KeyIterator_next;
-exports.ju_HashMap$KeyIterator = ju_HashMap$KeyIterator;
-exports.ju_HashMap$HashEntry__init__UosgRn = ju_HashMap$HashEntry__init__UosgRn;
-exports.ju_HashMap$HashEntry__init__UosgRn0 = ju_HashMap$HashEntry__init__UosgRn0;
-exports.ju_HashMap$HashEntry = ju_HashMap$HashEntry;
-exports.ju_HashMap$AbstractMapIterator__init__RxMTza = ju_HashMap$AbstractMapIterator__init__RxMTza;
-exports.ju_HashMap$AbstractMapIterator__init__RxMTza0 = ju_HashMap$AbstractMapIterator__init__RxMTza0;
-exports.ju_HashMap$AbstractMapIterator_hasNext = ju_HashMap$AbstractMapIterator_hasNext;
-exports.ju_HashMap$AbstractMapIterator_checkConcurrentMod = ju_HashMap$AbstractMapIterator_checkConcurrentMod;
-exports.ju_HashMap$AbstractMapIterator_makeNext = ju_HashMap$AbstractMapIterator_makeNext;
-exports.ju_HashMap$AbstractMapIterator = ju_HashMap$AbstractMapIterator;
-exports.ju_HashMap_newElementArray_I = ju_HashMap_newElementArray_I;
-exports.ju_HashMap__init_ = ju_HashMap__init_;
-exports.ju_HashMap__init_0 = ju_HashMap__init_0;
-exports.ju_HashMap__init__I = ju_HashMap__init__I;
-exports.ju_HashMap__init__I0 = ju_HashMap__init__I0;
-exports.ju_HashMap__init__IF = ju_HashMap__init__IF;
-exports.ju_HashMap__init__IF0 = ju_HashMap__init__IF0;
-exports.ju_HashMap_containsKey_yToRiJ = ju_HashMap_containsKey_yToRiJ;
-exports.ju_HashMap_get_yToRiJ = ju_HashMap_get_yToRiJ;
-exports.ju_HashMap_entryByKey_yToRiJ = ju_HashMap_entryByKey_yToRiJ;
-exports.ju_HashMap_findNonNullKeyEntry_vgXoLz = ju_HashMap_findNonNullKeyEntry_vgXoLz;
-exports.ju_HashMap_findNullKeyEntry = ju_HashMap_findNullKeyEntry;
-exports.ju_HashMap_keySet = ju_HashMap_keySet;
-exports.ju_HashMap_put_lVIoyP = ju_HashMap_put_lVIoyP;
-exports.ju_HashMap_rehash_I = ju_HashMap_rehash_I;
-exports.ju_HashMap_rehash = ju_HashMap_rehash;
-exports.ju_HashMap_areEqualKeys_lVIoyP = ju_HashMap_areEqualKeys_lVIoyP;
-exports.ju_HashMap = ju_HashMap;
-exports.jl_ClassCastException = jl_ClassCastException;
-exports.jl_Iterable = jl_Iterable;
-exports.ju_ArrayList__init__I = ju_ArrayList__init__I;
-exports.ju_ArrayList__init__I0 = ju_ArrayList__init__I0;
-exports.ju_ArrayList_ensureCapacity_I = ju_ArrayList_ensureCapacity_I;
-exports.ju_ArrayList_get_I = ju_ArrayList_get_I;
-exports.ju_ArrayList_size = ju_ArrayList_size;
-exports.ju_ArrayList_add_yToRiJ = ju_ArrayList_add_yToRiJ;
-exports.ju_ArrayList = ju_ArrayList;
-exports.otcic_JsConsolePrintStream__init_ = otcic_JsConsolePrintStream__init_;
-exports.otcic_JsConsolePrintStream_println_VHLrpW = otcic_JsConsolePrintStream_println_VHLrpW;
-exports.otcic_JsConsolePrintStream = otcic_JsConsolePrintStream;
-exports.ju_RandomAccess = ju_RandomAccess;
-exports.otp_Platform_getArrayItem_BSppjk = otp_Platform_getArrayItem_BSppjk;
-exports.otp_Platform_getName_BSppjk = otp_Platform_getName_BSppjk;
-exports.otp_Platform = otp_Platform;
-exports.jnc_Charset = jnc_Charset;
-exports.jl_AbstractStringBuilder__init_ = jl_AbstractStringBuilder__init_;
-exports.jl_AbstractStringBuilder__init_0 = jl_AbstractStringBuilder__init_0;
-exports.jl_AbstractStringBuilder__init__I = jl_AbstractStringBuilder__init__I;
-exports.jl_AbstractStringBuilder__init__I0 = jl_AbstractStringBuilder__init__I0;
-exports.jl_AbstractStringBuilder_append_yToRiJ = jl_AbstractStringBuilder_append_yToRiJ;
-exports.jl_AbstractStringBuilder_append_VHLrpW = jl_AbstractStringBuilder_append_VHLrpW;
-exports.jl_AbstractStringBuilder_insert_nftnjR = jl_AbstractStringBuilder_insert_nftnjR;
-exports.jl_AbstractStringBuilder_append_I = jl_AbstractStringBuilder_append_I;
-exports.jl_AbstractStringBuilder_append_II = jl_AbstractStringBuilder_append_II;
-exports.jl_AbstractStringBuilder_insert_III = jl_AbstractStringBuilder_insert_III;
-exports.jl_AbstractStringBuilder_append_C = jl_AbstractStringBuilder_append_C;
-exports.jl_AbstractStringBuilder_insert_IC = jl_AbstractStringBuilder_insert_IC;
-exports.jl_AbstractStringBuilder_insert_CeygPn = jl_AbstractStringBuilder_insert_CeygPn;
-exports.jl_AbstractStringBuilder_ensureCapacity_I = jl_AbstractStringBuilder_ensureCapacity_I;
-exports.jl_AbstractStringBuilder_toString = jl_AbstractStringBuilder_toString;
-exports.jl_AbstractStringBuilder = jl_AbstractStringBuilder;
-exports.jl_String$_clinit_$lambda$_115_0__init_ = jl_String$_clinit_$lambda$_115_0__init_;
-exports.jl_String$_clinit_$lambda$_115_0__init_0 = jl_String$_clinit_$lambda$_115_0__init_0;
-exports.jl_String$_clinit_$lambda$_115_0 = jl_String$_clinit_$lambda$_115_0;
-exports.jl_String__init_ = jl_String__init_;
-exports.jl_String__init_0 = jl_String__init_0;
-exports.jl_String__init___C = jl_String__init___C;
-exports.jl_String__init___C0 = jl_String__init___C0;
-exports.jl_String__init___CII = jl_String__init___CII;
-exports.jl_String__init___CII0 = jl_String__init___CII0;
-exports.jl_String_charAt_I = jl_String_charAt_I;
-exports.jl_String_length = jl_String_length;
-exports.jl_String_isEmpty = jl_String_isEmpty;
-exports.jl_String_toString = jl_String_toString;
-exports.jl_String_valueOf_I = jl_String_valueOf_I;
-exports.jl_String = jl_String;
-exports.jl_String_CASE_INSENSITIVE_ORDER = jl_String_CASE_INSENSITIVE_ORDER;
-exports.jl_Number__init_ = jl_Number__init_;
-exports.jl_Number = jl_Number;
-exports.ju_NoSuchElementException__init_ = ju_NoSuchElementException__init_;
-exports.ju_NoSuchElementException__init_0 = ju_NoSuchElementException__init_0;
-exports.ju_NoSuchElementException = ju_NoSuchElementException;
-exports.ji_Flushable = ji_Flushable;
-exports.jl_NegativeArraySizeException__init_ = jl_NegativeArraySizeException__init_;
-exports.jl_NegativeArraySizeException__init_0 = jl_NegativeArraySizeException__init_0;
-exports.jl_NegativeArraySizeException = jl_NegativeArraySizeException;
-exports.ji_PrintStream__init__DdDNGq = ji_PrintStream__init__DdDNGq;
-exports.ji_PrintStream__init__DdDNGq0 = ji_PrintStream__init__DdDNGq0;
-exports.ji_PrintStream = ji_PrintStream;
-exports.ji_OutputStream__init_ = ji_OutputStream__init_;
-exports.ji_OutputStream = ji_OutputStream;
-exports.ju_Iterator = ju_Iterator;
-exports.jl_Appendable = jl_Appendable;
-exports.jl_RuntimeException__init_ = jl_RuntimeException__init_;
-exports.jl_RuntimeException__init_0 = jl_RuntimeException__init_0;
-exports.jl_RuntimeException__init__VHLrpW = jl_RuntimeException__init__VHLrpW;
-exports.jl_RuntimeException__init__VHLrpW0 = jl_RuntimeException__init__VHLrpW0;
-exports.jl_RuntimeException = jl_RuntimeException;
-exports.jl_IllegalArgumentException__init_ = jl_IllegalArgumentException__init_;
-exports.jl_IllegalArgumentException__init_0 = jl_IllegalArgumentException__init_0;
-exports.jl_IllegalArgumentException__init__VHLrpW = jl_IllegalArgumentException__init__VHLrpW;
-exports.jl_IllegalArgumentException__init__VHLrpW0 = jl_IllegalArgumentException__init__VHLrpW0;
-exports.jl_IllegalArgumentException = jl_IllegalArgumentException;
-exports.ju_AbstractMap__init_ = ju_AbstractMap__init_;
-exports.ju_AbstractMap = ju_AbstractMap;
-exports.ji_Closeable = ji_Closeable;
-exports.jl_Class_getClass_BSppjk = jl_Class_getClass_BSppjk;
-exports.jl_Class_getPlatformClass = jl_Class_getPlatformClass;
-exports.jl_Class_getName = jl_Class_getName;
-exports.jl_Class_getComponentType = jl_Class_getComponentType;
-exports.jl_Class = jl_Class;
-exports.jl_Object__init_ = jl_Object__init_;
-exports.jl_Object__init_0 = jl_Object__init_0;
-exports.jl_Object_getClass = jl_Object_getClass;
-exports.jl_Object_toString = jl_Object_toString;
-exports.jl_Object_identity = jl_Object_identity;
-exports.jl_Object = jl_Object;
-exports.jl_Comparable = jl_Comparable;
-exports.ju_Comparator = ju_Comparator;
+java_lang_Integer_$callClinit();
+java_lang_Character_$callClinit();
+java_lang_String_$callClinit();
+exports.org_teavm_runtime = org_teavm_runtime;
+exports.java_lang_IndexOutOfBoundsException__init__V = java_lang_IndexOutOfBoundsException__init__V;
+exports.java_lang_IndexOutOfBoundsException__init__V$1 = java_lang_IndexOutOfBoundsException__init__V$1;
+exports.java_lang_IndexOutOfBoundsException = java_lang_IndexOutOfBoundsException;
+exports.java_util_Arrays_copyOf__C_CI = java_util_Arrays_copyOf__C_CI;
+exports.java_util_Arrays_copyOf_MqkkEq = java_util_Arrays_copyOf_MqkkEq;
+exports.java_util_Arrays_fill_TiCZqH = java_util_Arrays_fill_TiCZqH;
+exports.java_util_Arrays_fill_V_CC = java_util_Arrays_fill_V_CC;
+exports.java_util_Arrays_hashCode_Xpebqu = java_util_Arrays_hashCode_Xpebqu;
+exports.java_util_Arrays = java_util_Arrays;
+exports.java_lang_reflect_Array_newInstance_AAjNOn = java_lang_reflect_Array_newInstance_AAjNOn;
+exports.java_lang_reflect_Array = java_lang_reflect_Array;
+exports.java_lang_System_out_JQwxsu = java_lang_System_out_JQwxsu;
+exports.java_lang_System = java_lang_System;
+exports.java_util_AbstractList$1__init__tWBmpm = java_util_AbstractList$1__init__tWBmpm;
+exports.java_util_AbstractList$1__init__tWBmpm$1 = java_util_AbstractList$1__init__tWBmpm$1;
+exports.java_util_AbstractList$1_hasNext_Z = java_util_AbstractList$1_hasNext_Z;
+exports.java_util_AbstractList$1_next_yToRiJ = java_util_AbstractList$1_next_yToRiJ;
+exports.java_util_AbstractList$1 = java_util_AbstractList$1;
+exports.java_util_AbstractList__init__V = java_util_AbstractList__init__V;
+exports.java_util_AbstractList_iterator_nRSvFx = java_util_AbstractList_iterator_nRSvFx;
+exports.java_util_AbstractList = java_util_AbstractList;
+exports.java_lang_Integer__init__VI = java_lang_Integer__init__VI;
+exports.java_lang_Integer__init__VI$1 = java_lang_Integer__init__VI$1;
+exports.java_lang_Integer_hashCode_II = java_lang_Integer_hashCode_II;
+exports.java_lang_Integer_toHexString_iFmOGb = java_lang_Integer_toHexString_iFmOGb;
+exports.java_lang_Integer_valueOf_jxXMoQ = java_lang_Integer_valueOf_jxXMoQ;
+exports.java_lang_Integer_hashCode_I = java_lang_Integer_hashCode_I;
+exports.java_lang_Integer_numberOfLeadingZeros_II = java_lang_Integer_numberOfLeadingZeros_II;
+exports.java_lang_Integer = java_lang_Integer;
+exports.java_lang_Integer_TYPE = java_lang_Integer_TYPE;
+exports.java_lang_AutoCloseable = java_lang_AutoCloseable;
+exports.java_lang_NullPointerException__init__V = java_lang_NullPointerException__init__V;
+exports.java_lang_NullPointerException__init__V$1 = java_lang_NullPointerException__init__V$1;
+exports.java_lang_NullPointerException = java_lang_NullPointerException;
+exports.java_util_AbstractCollection__init__V = java_util_AbstractCollection__init__V;
+exports.java_util_AbstractCollection_isEmpty_Z = java_util_AbstractCollection_isEmpty_Z;
+exports.java_util_AbstractCollection = java_util_AbstractCollection;
+exports.java_lang_Character_forDigit_CII = java_lang_Character_forDigit_CII;
+exports.java_lang_Character = java_lang_Character;
+exports.java_lang_Character_TYPE = java_lang_Character_TYPE;
+exports.org_teavm_classlib_impl_IntegerUtil_toUnsignedLogRadixString_KSkSDS = org_teavm_classlib_impl_IntegerUtil_toUnsignedLogRadixString_KSkSDS;
+exports.org_teavm_classlib_impl_IntegerUtil = org_teavm_classlib_impl_IntegerUtil;
+exports.java_util_Map$Entry = java_util_Map$Entry;
+exports.java_util_Map_getOrDefault_tsMSwf = java_util_Map_getOrDefault_tsMSwf;
+exports.java_util_Map = java_util_Map;
+exports.java_lang_Math_min_III = java_lang_Math_min_III;
+exports.java_lang_Math_max_III = java_lang_Math_max_III;
+exports.java_lang_Math = java_lang_Math;
+exports.java_lang_Cloneable = java_lang_Cloneable;
+exports.org_teavm_jso_impl_JS = org_teavm_jso_impl_JS;
+exports.java_lang_CharSequence = java_lang_CharSequence;
+exports.java_util_Collection = java_util_Collection;
+exports.java_util_Set = java_util_Set;
+exports.java_lang_StringIndexOutOfBoundsException__init__V = java_lang_StringIndexOutOfBoundsException__init__V;
+exports.java_lang_StringIndexOutOfBoundsException__init__V$1 = java_lang_StringIndexOutOfBoundsException__init__V$1;
+exports.java_lang_StringIndexOutOfBoundsException = java_lang_StringIndexOutOfBoundsException;
+exports.java_io_FilterOutputStream__init__gjftmH = java_io_FilterOutputStream__init__gjftmH;
+exports.java_io_FilterOutputStream__init__gjftmH$1 = java_io_FilterOutputStream__init__gjftmH$1;
+exports.java_io_FilterOutputStream = java_io_FilterOutputStream;
+exports.java_lang_Exception__init__V = java_lang_Exception__init__V;
+exports.java_lang_Exception__init__V$1 = java_lang_Exception__init__V$1;
+exports.java_lang_Exception__init__XjCHVS = java_lang_Exception__init__XjCHVS;
+exports.java_lang_Exception__init__XjCHVS$1 = java_lang_Exception__init__XjCHVS$1;
+exports.java_lang_Exception = java_lang_Exception;
+exports.java_io_Serializable = java_io_Serializable;
+exports.java_util_Objects_hashCode_CeygPn = java_util_Objects_hashCode_CeygPn;
+exports.java_util_Objects_hash_Xpebqu = java_util_Objects_hash_Xpebqu;
+exports.java_util_Objects_checkFromIndexSize_IIII = java_util_Objects_checkFromIndexSize_IIII;
+exports.java_util_Objects = java_util_Objects;
+exports.java_util_List = java_util_List;
+exports.java_lang_reflect_Type = java_lang_reflect_Type;
+exports.java_lang_StringBuilder__init__V = java_lang_StringBuilder__init__V;
+exports.java_lang_StringBuilder__init__V$1 = java_lang_StringBuilder__init__V$1;
+exports.java_lang_StringBuilder_append_ZOYxhs = java_lang_StringBuilder_append_ZOYxhs;
+exports.java_lang_StringBuilder_append_hrVwXi = java_lang_StringBuilder_append_hrVwXi;
+exports.java_lang_StringBuilder_append_ZSDQSM = java_lang_StringBuilder_append_ZSDQSM;
+exports.java_lang_StringBuilder_append_zwKTwE = java_lang_StringBuilder_append_zwKTwE;
+exports.java_lang_StringBuilder_insert_JDogxs = java_lang_StringBuilder_insert_JDogxs;
+exports.java_lang_StringBuilder_insert_CiShRV = java_lang_StringBuilder_insert_CiShRV;
+exports.java_lang_StringBuilder_insert_yVTRbO = java_lang_StringBuilder_insert_yVTRbO;
+exports.java_lang_StringBuilder_toString_VHLrpW = java_lang_StringBuilder_toString_VHLrpW;
+exports.java_lang_StringBuilder_ensureCapacity_VI = java_lang_StringBuilder_ensureCapacity_VI;
+exports.java_lang_StringBuilder_insert_KMHMoz = java_lang_StringBuilder_insert_KMHMoz;
+exports.java_lang_StringBuilder_insert_joXuZN = java_lang_StringBuilder_insert_joXuZN;
+exports.java_lang_StringBuilder_insert_hzKion = java_lang_StringBuilder_insert_hzKion;
+exports.java_lang_StringBuilder = java_lang_StringBuilder;
+exports.java_util_MapEntry__init__PLTLFS = java_util_MapEntry__init__PLTLFS;
+exports.java_util_MapEntry__init__PLTLFS$1 = java_util_MapEntry__init__PLTLFS$1;
+exports.java_util_MapEntry = java_util_MapEntry;
+exports.java_util_ConcurrentModificationException__init__V = java_util_ConcurrentModificationException__init__V;
+exports.java_util_ConcurrentModificationException__init__V$1 = java_util_ConcurrentModificationException__init__V$1;
+exports.java_util_ConcurrentModificationException = java_util_ConcurrentModificationException;
+exports.java_util_SequencedCollection = java_util_SequencedCollection;
+exports.java_lang_reflect_AnnotatedElement = java_lang_reflect_AnnotatedElement;
+exports.java_lang_Throwable_fillInStackTrace_MBBfFS = java_lang_Throwable_fillInStackTrace_MBBfFS;
+exports.java_lang_Throwable_getMessage_VHLrpW = java_lang_Throwable_getMessage_VHLrpW;
+exports.java_lang_Throwable_getCause_MBBfFS = java_lang_Throwable_getCause_MBBfFS;
+exports.java_lang_Throwable = java_lang_Throwable;
+exports.org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V = org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V;
+exports.org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1 = org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1;
+exports.org_teavm_classlib_impl_console_JSStdoutPrintStream_print_XjCHVS = org_teavm_classlib_impl_console_JSStdoutPrintStream_print_XjCHVS;
+exports.org_teavm_classlib_impl_console_JSStdoutPrintStream = org_teavm_classlib_impl_console_JSStdoutPrintStream;
+exports.java_util_AbstractSet__init__V = java_util_AbstractSet__init__V;
+exports.java_util_AbstractSet = java_util_AbstractSet;
+exports.java_util_HashMap$1__init__WqYpIS = java_util_HashMap$1__init__WqYpIS;
+exports.java_util_HashMap$1__init__WqYpIS$1 = java_util_HashMap$1__init__WqYpIS$1;
+exports.java_util_HashMap$1_iterator_nRSvFx = java_util_HashMap$1_iterator_nRSvFx;
+exports.java_util_HashMap$1 = java_util_HashMap$1;
+exports.java_util_HashMap$KeyIterator__init__WqYpIS = java_util_HashMap$KeyIterator__init__WqYpIS;
+exports.java_util_HashMap$KeyIterator__init__WqYpIS$1 = java_util_HashMap$KeyIterator__init__WqYpIS$1;
+exports.java_util_HashMap$KeyIterator_next_yToRiJ = java_util_HashMap$KeyIterator_next_yToRiJ;
+exports.java_util_HashMap$KeyIterator = java_util_HashMap$KeyIterator;
+exports.java_util_HashMap$HashEntry__init__moeQBN = java_util_HashMap$HashEntry__init__moeQBN;
+exports.java_util_HashMap$HashEntry__init__moeQBN$1 = java_util_HashMap$HashEntry__init__moeQBN$1;
+exports.java_util_HashMap$HashEntry = java_util_HashMap$HashEntry;
+exports.java_util_HashMap$AbstractMapIterator__init__WqYpIS = java_util_HashMap$AbstractMapIterator__init__WqYpIS;
+exports.java_util_HashMap$AbstractMapIterator__init__WqYpIS$1 = java_util_HashMap$AbstractMapIterator__init__WqYpIS$1;
+exports.java_util_HashMap$AbstractMapIterator_hasNext_Z = java_util_HashMap$AbstractMapIterator_hasNext_Z;
+exports.java_util_HashMap$AbstractMapIterator_checkConcurrentMod_V = java_util_HashMap$AbstractMapIterator_checkConcurrentMod_V;
+exports.java_util_HashMap$AbstractMapIterator_makeNext_V = java_util_HashMap$AbstractMapIterator_makeNext_V;
+exports.java_util_HashMap$AbstractMapIterator = java_util_HashMap$AbstractMapIterator;
+exports.java_util_HashMap_newElementArray_HaDQXJ = java_util_HashMap_newElementArray_HaDQXJ;
+exports.java_util_HashMap__init__V = java_util_HashMap__init__V;
+exports.java_util_HashMap__init__V$1 = java_util_HashMap__init__V$1;
+exports.java_util_HashMap__init__VI = java_util_HashMap__init__VI;
+exports.java_util_HashMap__init__VI$1 = java_util_HashMap__init__VI$1;
+exports.java_util_HashMap__init__VIF = java_util_HashMap__init__VIF;
+exports.java_util_HashMap__init__VIF$1 = java_util_HashMap__init__VIF$1;
+exports.java_util_HashMap_containsKey_uKWEwg = java_util_HashMap_containsKey_uKWEwg;
+exports.java_util_HashMap_get_lVIoyP = java_util_HashMap_get_lVIoyP;
+exports.java_util_HashMap_entryByKey_oGTkjE = java_util_HashMap_entryByKey_oGTkjE;
+exports.java_util_HashMap_findNonNullKeyEntry_RrVLlf = java_util_HashMap_findNonNullKeyEntry_RrVLlf;
+exports.java_util_HashMap_findNullKeyEntry_QqMKmf = java_util_HashMap_findNullKeyEntry_QqMKmf;
+exports.java_util_HashMap_keySet_wfeRzl = java_util_HashMap_keySet_wfeRzl;
+exports.java_util_HashMap_put_tsMSwf = java_util_HashMap_put_tsMSwf;
+exports.java_util_HashMap_rehash_VI = java_util_HashMap_rehash_VI;
+exports.java_util_HashMap_rehash_V = java_util_HashMap_rehash_V;
+exports.java_util_HashMap_areEqualKeys_UWKivJ = java_util_HashMap_areEqualKeys_UWKivJ;
+exports.java_util_HashMap = java_util_HashMap;
+exports.java_lang_ClassCastException = java_lang_ClassCastException;
+exports.java_lang_Iterable = java_lang_Iterable;
+exports.java_util_ArrayList__init__VI = java_util_ArrayList__init__VI;
+exports.java_util_ArrayList__init__VI$1 = java_util_ArrayList__init__VI$1;
+exports.java_util_ArrayList_ensureCapacity_VI = java_util_ArrayList_ensureCapacity_VI;
+exports.java_util_ArrayList_get_UosgRn = java_util_ArrayList_get_UosgRn;
+exports.java_util_ArrayList_size_I = java_util_ArrayList_size_I;
+exports.java_util_ArrayList_add_uKWEwg = java_util_ArrayList_add_uKWEwg;
+exports.java_util_ArrayList = java_util_ArrayList;
+exports.org_teavm_classlib_impl_console_JsConsolePrintStream__init__V = org_teavm_classlib_impl_console_JsConsolePrintStream__init__V;
+exports.org_teavm_classlib_impl_console_JsConsolePrintStream_println_XjCHVS = org_teavm_classlib_impl_console_JsConsolePrintStream_println_XjCHVS;
+exports.org_teavm_classlib_impl_console_JsConsolePrintStream = org_teavm_classlib_impl_console_JsConsolePrintStream;
+exports.java_util_RandomAccess = java_util_RandomAccess;
+exports.org_teavm_platform_Platform_getArrayItem_PKtewy = org_teavm_platform_Platform_getArrayItem_PKtewy;
+exports.org_teavm_platform_Platform_getName_xWEGZR = org_teavm_platform_Platform_getName_xWEGZR;
+exports.org_teavm_platform_Platform = org_teavm_platform_Platform;
+exports.java_nio_charset_Charset = java_nio_charset_Charset;
+exports.java_lang_AbstractStringBuilder__init__V = java_lang_AbstractStringBuilder__init__V;
+exports.java_lang_AbstractStringBuilder__init__V$1 = java_lang_AbstractStringBuilder__init__V$1;
+exports.java_lang_AbstractStringBuilder__init__VI = java_lang_AbstractStringBuilder__init__VI;
+exports.java_lang_AbstractStringBuilder__init__VI$1 = java_lang_AbstractStringBuilder__init__VI$1;
+exports.java_lang_AbstractStringBuilder_append_nfyWfb = java_lang_AbstractStringBuilder_append_nfyWfb;
+exports.java_lang_AbstractStringBuilder_append_ZIxCSm = java_lang_AbstractStringBuilder_append_ZIxCSm;
+exports.java_lang_AbstractStringBuilder_insert_hzKion = java_lang_AbstractStringBuilder_insert_hzKion;
+exports.java_lang_AbstractStringBuilder_append_oqxyew = java_lang_AbstractStringBuilder_append_oqxyew;
+exports.java_lang_AbstractStringBuilder_append_ylxaCJ = java_lang_AbstractStringBuilder_append_ylxaCJ;
+exports.java_lang_AbstractStringBuilder_insert_JzPOxM = java_lang_AbstractStringBuilder_insert_JzPOxM;
+exports.java_lang_AbstractStringBuilder_append_OMqvAE = java_lang_AbstractStringBuilder_append_OMqvAE;
+exports.java_lang_AbstractStringBuilder_insert_joXuZN = java_lang_AbstractStringBuilder_insert_joXuZN;
+exports.java_lang_AbstractStringBuilder_insert_KMHMoz = java_lang_AbstractStringBuilder_insert_KMHMoz;
+exports.java_lang_AbstractStringBuilder_ensureCapacity_VI = java_lang_AbstractStringBuilder_ensureCapacity_VI;
+exports.java_lang_AbstractStringBuilder_toString_VHLrpW = java_lang_AbstractStringBuilder_toString_VHLrpW;
+exports.java_lang_AbstractStringBuilder = java_lang_AbstractStringBuilder;
+exports.java_lang_String$_clinit_$lambda$_115_0__init__V = java_lang_String$_clinit_$lambda$_115_0__init__V;
+exports.java_lang_String$_clinit_$lambda$_115_0__init__V$1 = java_lang_String$_clinit_$lambda$_115_0__init__V$1;
+exports.java_lang_String$_clinit_$lambda$_115_0 = java_lang_String$_clinit_$lambda$_115_0;
+exports.java_lang_String__init__V = java_lang_String__init__V;
+exports.java_lang_String__init__V$1 = java_lang_String__init__V$1;
+exports.java_lang_String__init__V_C = java_lang_String__init__V_C;
+exports.java_lang_String__init__V_C$1 = java_lang_String__init__V_C$1;
+exports.java_lang_String__init__V_CII = java_lang_String__init__V_CII;
+exports.java_lang_String__init__V_CII$1 = java_lang_String__init__V_CII$1;
+exports.java_lang_String_charAt_CI = java_lang_String_charAt_CI;
+exports.java_lang_String_length_I = java_lang_String_length_I;
+exports.java_lang_String_isEmpty_Z = java_lang_String_isEmpty_Z;
+exports.java_lang_String_toString_VHLrpW = java_lang_String_toString_VHLrpW;
+exports.java_lang_String_valueOf_iFmOGb = java_lang_String_valueOf_iFmOGb;
+exports.java_lang_String = java_lang_String;
+exports.java_lang_String_CASE_INSENSITIVE_ORDER = java_lang_String_CASE_INSENSITIVE_ORDER;
+exports.java_lang_Number__init__V = java_lang_Number__init__V;
+exports.java_lang_Number = java_lang_Number;
+exports.java_util_NoSuchElementException__init__V = java_util_NoSuchElementException__init__V;
+exports.java_util_NoSuchElementException__init__V$1 = java_util_NoSuchElementException__init__V$1;
+exports.java_util_NoSuchElementException = java_util_NoSuchElementException;
+exports.java_io_Flushable = java_io_Flushable;
+exports.java_lang_NegativeArraySizeException__init__V = java_lang_NegativeArraySizeException__init__V;
+exports.java_lang_NegativeArraySizeException__init__V$1 = java_lang_NegativeArraySizeException__init__V$1;
+exports.java_lang_NegativeArraySizeException = java_lang_NegativeArraySizeException;
+exports.java_io_PrintStream__init__RHOATE = java_io_PrintStream__init__RHOATE;
+exports.java_io_PrintStream__init__RHOATE$1 = java_io_PrintStream__init__RHOATE$1;
+exports.java_io_PrintStream = java_io_PrintStream;
+exports.java_io_OutputStream__init__V = java_io_OutputStream__init__V;
+exports.java_io_OutputStream = java_io_OutputStream;
+exports.java_util_Iterator = java_util_Iterator;
+exports.java_lang_Appendable = java_lang_Appendable;
+exports.java_lang_RuntimeException__init__V = java_lang_RuntimeException__init__V;
+exports.java_lang_RuntimeException__init__V$1 = java_lang_RuntimeException__init__V$1;
+exports.java_lang_RuntimeException__init__XjCHVS = java_lang_RuntimeException__init__XjCHVS;
+exports.java_lang_RuntimeException__init__XjCHVS$1 = java_lang_RuntimeException__init__XjCHVS$1;
+exports.java_lang_RuntimeException = java_lang_RuntimeException;
+exports.java_lang_IllegalArgumentException__init__V = java_lang_IllegalArgumentException__init__V;
+exports.java_lang_IllegalArgumentException__init__V$1 = java_lang_IllegalArgumentException__init__V$1;
+exports.java_lang_IllegalArgumentException__init__XjCHVS = java_lang_IllegalArgumentException__init__XjCHVS;
+exports.java_lang_IllegalArgumentException__init__XjCHVS$1 = java_lang_IllegalArgumentException__init__XjCHVS$1;
+exports.java_lang_IllegalArgumentException = java_lang_IllegalArgumentException;
+exports.java_util_AbstractMap__init__V = java_util_AbstractMap__init__V;
+exports.java_util_AbstractMap = java_util_AbstractMap;
+exports.java_io_Closeable = java_io_Closeable;
+exports.java_lang_Class_getClass_LTJNGA = java_lang_Class_getClass_LTJNGA;
+exports.java_lang_Class_getPlatformClass_BSppjk = java_lang_Class_getPlatformClass_BSppjk;
+exports.java_lang_Class_getName_VHLrpW = java_lang_Class_getName_VHLrpW;
+exports.java_lang_Class_getComponentType_rQPqgt = java_lang_Class_getComponentType_rQPqgt;
+exports.java_lang_Class = java_lang_Class;
+exports.java_lang_Object__init__V = java_lang_Object__init__V;
+exports.java_lang_Object__init__V$1 = java_lang_Object__init__V$1;
+exports.java_lang_Object_getClass_rQPqgt = java_lang_Object_getClass_rQPqgt;
+exports.java_lang_Object_toString_VHLrpW = java_lang_Object_toString_VHLrpW;
+exports.java_lang_Object_identity_I = java_lang_Object_identity_I;
+exports.java_lang_Object = java_lang_Object;
+exports.java_lang_Comparable = java_lang_Comparable;
+exports.java_util_Comparator = java_util_Comparator;
 exports.$rt_numberConversionView = $rt_numberConversionView;
 exports.Long_fromNumber = Long_fromNumber;
 exports.$rt_createcls = $rt_createcls;

@@ -47,7 +47,7 @@ public class MinifyingAliasProvider implements AliasProvider {
     }
 
     @Override
-    public ScopedName getStaticMethodAlias(MethodReference method) {
+    public ScopedName getStaticMethodAlias(MethodReference method, byte classifier) {
         return createTopLevelName();
     }
 

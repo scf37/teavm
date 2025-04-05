@@ -79,7 +79,7 @@ public class DefaultNamingStrategy implements NamingStrategy {
         }
 
         return privateAliases.computeIfAbsent(new Key(classifier, method),
-                key -> aliasProvider.getStaticMethodAlias(key.data));
+                key -> aliasProvider.getStaticMethodAlias(key.data, classifier));
     }
 
     @Override

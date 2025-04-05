@@ -3,48 +3,48 @@ let jst_Table_import = require("./jst.Table.js");
 let jst_TableRenderer_import = require("./jst.TableRenderer.js");
 let org_teavm_runtime_import = require("./org.teavm.runtime.js");
 
-let j_Main = org_teavm_runtime_import.$rt_classWithoutFields(),
-j_Main_$callClinit = () => {
-    j_Main_$callClinit = org_teavm_runtime_import.$rt_eraseClinit(j_Main);
-    j_Main__clinit_();
+let jst_Main = org_teavm_runtime_import.$rt_classWithoutFields(),
+jst_Main_$callClinit = () => {
+    jst_Main_$callClinit = org_teavm_runtime_import.$rt_eraseClinit(jst_Main);
+    jst_Main__clinit__V();
 },
-j_Main_main_Slabyb = $args => {
-    j_Main_$callClinit();
-    (org_teavm_runtime_import.jl_System_out()).$println_VHLrpW(j_Main_renderTable());
+jst_Main_main_WiJjkv = $args => {
+    jst_Main_$callClinit();
+    (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS(jst_Main_renderTable_VHLrpW());
 },
-j_Main_renderTable = () => {
+jst_Main_renderTable_VHLrpW = () => {
     let $table, $tableRenderer;
-    j_Main_$callClinit();
-    $table = jst_Table_import.j_Table_newInstance();
-    $tableRenderer = jst_TableRenderer_import.j_TableRenderer_newInstance();
-    j_Main_fillTable_Fdfton($table);
-    return $tableRenderer.$renderTable_guavLb($table.$getTable());
+    jst_Main_$callClinit();
+    $table = jst_Table_import.jst_Table_newInstance_Fdfton();
+    $tableRenderer = jst_TableRenderer_import.jst_TableRenderer_newInstance_SodLDa();
+    jst_Main_fillTable_usRYdC($table);
+    return $tableRenderer.$renderTable_EQObyq($table.$getTable_guavLb());
 },
-j_Main_fillTable_Fdfton = $table => {
+jst_Main_fillTable_usRYdC = $table => {
     let $i, $j;
-    j_Main_$callClinit();
+    jst_Main_$callClinit();
     $i = 1;
     while ($i <= 15) {
         $j = 1;
         while ($j <= 15) {
-            $table.$addCell_RzmAeX($j, $i, org_teavm_runtime_import.jl_String_valueOf_I(org_teavm_runtime_import.$rt_imul($i, $j)));
+            $table.$addCell_BPCxea($j, $i, org_teavm_runtime_import.java_lang_String_valueOf_iFmOGb(org_teavm_runtime_import.$rt_imul($i, $j)));
             $j = $j + 1 | 0;
         }
-        $table.$addColumnHeader_nftnjR($i, org_teavm_runtime_import.jl_String_valueOf_I($i));
-        $table.$addRowHeader_nftnjR($i, org_teavm_runtime_import.jl_String_valueOf_I($i));
+        $table.$addColumnHeader_yUVyrR($i, org_teavm_runtime_import.java_lang_String_valueOf_iFmOGb($i));
+        $table.$addRowHeader_yUVyrR($i, org_teavm_runtime_import.java_lang_String_valueOf_iFmOGb($i));
         $i = $i + 1 | 0;
     }
 },
-j_Main__clinit_ = () => {
+jst_Main__clinit__V = () => {
     return;
 };
 org_teavm_runtime_import.$rt_packages([
 ]);
-org_teavm_runtime_import.$rt_metadata([j_Main, 0, org_teavm_runtime_import.jl_Object, [], 0, 3, 0, j_Main_$callClinit, 0]);
-let $rt_export_main = org_teavm_runtime_import.$rt_mainStarter(j_Main_main_Slabyb);
+org_teavm_runtime_import.$rt_metadata([jst_Main, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, jst_Main_$callClinit, 0]);
+let $rt_export_main = org_teavm_runtime_import.$rt_mainStarter(jst_Main_main_WiJjkv);
 $rt_export_main.javaException = org_teavm_runtime_import.$rt_javaException;
-j_Main_$callClinit();
-exports.j_Main_main_Slabyb = j_Main_main_Slabyb;
-exports.j_Main = j_Main;
+jst_Main_$callClinit();
+exports.jst_Main_main_WiJjkv = jst_Main_main_WiJjkv;
+exports.jst_Main = jst_Main;
 exports.main = $rt_export_main;
 exports.main();

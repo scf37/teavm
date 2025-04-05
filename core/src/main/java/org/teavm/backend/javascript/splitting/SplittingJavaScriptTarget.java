@@ -84,11 +84,6 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
      */
     public static Set<String> currentClasses;
 
-    /**
-     * Reused alias provider to keep names consistent between emitted files
-     */
-    public static DefaultNamingStrategy defaultNamingStrategy;
-
     public static void initSplitting() {
         useSplitting = true;
     }
@@ -100,7 +95,6 @@ public class SplittingJavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHo
         runtimeLibraryClasses.clear();
         isRenderingRuntime = false;
         currentClasses = null;
-        defaultNamingStrategy = null;
     }
 
 

@@ -19,6 +19,7 @@ import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.carrotsearch.hppc.ObjectIntMap;
 import java.util.HashSet;
 import java.util.Set;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.model.FieldReference;
 import org.teavm.model.MethodDescriptor;
 import org.teavm.model.MethodReference;
@@ -41,7 +42,27 @@ public class DefaultAliasProvider implements AliasProvider {
         return makeUnique(suggestAliasForClass(cls));
     }
 
+    private static String suggestAliasForClassStable(String cls) {
+        StringBuilder alias = new StringBuilder(cls);
+
+        for (int i = 1; i < alias.length(); ++i) {
+            char c = alias.charAt(i);
+            if (!Character.isJavaIdentifierPart(c)) {
+                alias.setCharAt(i, '_');
+            }
+        }
+
+        if (!Character.isJavaIdentifierStart(alias.charAt(0))) {
+            alias.setCharAt(0, '_');
+        }
+
+        return alias.toString();
+    }
+
     private static String suggestAliasForClass(String cls) {
+        if (SplittingJavaScriptTarget.useSplitting) {
+            return suggestAliasForClassStable(cls);
+        }
         StringBuilder alias = new StringBuilder();
         int lastIndex = 0;
         while (true) {
@@ -92,7 +113,7 @@ public class DefaultAliasProvider implements AliasProvider {
     }
 
     @Override
-    public ScopedName getStaticMethodAlias(MethodReference method) {
+    public ScopedName getStaticMethodAlias(MethodReference method, byte classifier) {
         String suggested = method.getDescriptor().getName();
         switch (suggested) {
             case "<init>":
@@ -104,17 +125,14 @@ public class DefaultAliasProvider implements AliasProvider {
         }
 
         return makeUnique(suggestAliasForClass(method.getClassName())
-            + "_" + suggested + computeMethodSignature(method.getDescriptor())
+            + "_" + suggested + computeMethodSignature(method.getDescriptor()) + (classifier == 0 ? "" : "$" + classifier)
         );
     }
 
     // for split source, we need stable method aliases, both static and non-static as they both are visible
     private String computeMethodSignature(MethodDescriptor method) {
-        if (method.getParameterTypes().length == 0) {
-            return "";
-        }
-
         StringBuilder sb = new StringBuilder("_");
+        sb.append(method.getResultType().toString());
         for (ValueType t: method.getParameterTypes()) {
             sb.append(t.toString());
         }
@@ -150,7 +168,12 @@ public class DefaultAliasProvider implements AliasProvider {
 
     @Override
     public String getFieldAlias(FieldReference field) {
-        return makeUniqueInstance("$" + field.getFieldName());
+        if (SplittingJavaScriptTarget.useSplitting) {
+            return "$" + field.getFieldName();
+        } else {
+            return makeUniqueInstance("$" + field.getFieldName());
+        }
+
     }
 
     @Override
@@ -190,6 +213,9 @@ public class DefaultAliasProvider implements AliasProvider {
             alias = suggested + index++;
         }
         while (!knownAliases.add(alias)) {
+            if (SplittingJavaScriptTarget.useSplitting) {
+                throw new IllegalStateException("non-unique/non-stable alias with splitting: " + suggested);
+            }
             alias = suggested + index++;
         }
         knowAliasesCounter.put(alias, index);
@@ -237,6 +263,9 @@ public class DefaultAliasProvider implements AliasProvider {
             uniqueAlias = alias + index++;
         }
         while (!knownInstanceAliases.add(uniqueAlias)) {
+            if (SplittingJavaScriptTarget.useSplitting) {
+                throw new IllegalStateException("non-unique/non-stable alias with splitting: " + alias);
+            }
             uniqueAlias = alias + index++;
         }
         knowInstanceAliasesCounter.put(alias, index);

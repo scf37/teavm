@@ -24,7 +24,7 @@ public interface AliasProvider {
 
     ScopedName getStaticFieldAlias(FieldReference field);
 
-    ScopedName getStaticMethodAlias(MethodReference method);
+    ScopedName getStaticMethodAlias(MethodReference method, byte classifier);
 
     String getMethodAlias(MethodDescriptor method);
 

@@ -378,14 +378,6 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
 
         DefaultNamingStrategy naming = new DefaultNamingStrategy(aliasProvider, controller.getUnprocessedClassSource());
 
-        // reuse alias provider and naming strategy between module emits to keep names consistent
-        if (SplittingJavaScriptTarget.useSplitting) {
-            if (SplittingJavaScriptTarget.defaultNamingStrategy == null) {
-                SplittingJavaScriptTarget.defaultNamingStrategy = naming;
-            }
-            naming = SplittingJavaScriptTarget.defaultNamingStrategy;
-        }
-
         DebugInformationEmitter debugEmitterToUse = debugEmitter;
         if (debugEmitterToUse == null) {
             debugEmitterToUse = new DummyDebugInformationEmitter();
