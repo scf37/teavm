@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.ServiceLoader;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -988,7 +989,7 @@ public class TeaVM implements TeaVMHost, ServiceRepository {
     class PostProcessingClassHolderSource implements ListableClassHolderSource {
         private Linker linker = new Linker(dependencyAnalyzer);
         private Map<String, ClassHolder> cache = new HashMap<>();
-        private Set<String> classNames = Collections.unmodifiableSet(new HashSet<>(
+        private Set<String> classNames = Collections.unmodifiableSet(new TreeSet<>(
                 dependencyAnalyzer.getReachableClasses().stream()
                         .filter(className -> dependencyAnalyzer.getClassSource().get(className) != null)
                         .collect(Collectors.toList())));
@@ -1061,9 +1062,12 @@ public class TeaVM implements TeaVMHost, ServiceRepository {
 
         ListableClassReaderSourceAdapter(ClassReaderSource classSource, Set<String> classes) {
             this.classSource = classSource;
-            this.classes = classes.stream()
-                    .filter(className -> classSource.get(className) != null)
-                    .collect(Collectors.toUnmodifiableSet());
+            this.classes = new LinkedHashSet<>();
+            for (String className: classes) {
+                if (classSource.get(className) != null) {
+                    this.classes.add(className);
+                }
+            }
         }
 
         @Override

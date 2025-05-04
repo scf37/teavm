@@ -47,4 +47,3 @@ jst_Main_$callClinit();
 exports.jst_Main_main_WiJjkv = jst_Main_main_WiJjkv;
 exports.jst_Main = jst_Main;
 exports.main = $rt_export_main;
-exports.main();

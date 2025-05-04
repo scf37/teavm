@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.teavm.ast.ControlFlowEntry;
 import org.teavm.backend.javascript.codegen.DefaultAliasProvider;
 import org.teavm.backend.javascript.codegen.DefaultNamingStrategy;
@@ -939,7 +940,7 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
             // export all non-private stuff and constructors
             boolean needInitializer = !cls.hasModifier(ElementModifier.INTERFACE)
                     && !cls.hasModifier(ElementModifier.ABSTRACT);
-            for (MethodHolder method : cls.getMethods()) {
+            for (MethodHolder method : cls.getMethods().stream().sorted(new MethodHolderComparator()).collect(Collectors.toList())) {
                 if ((method.getLevel() != AccessLevel.PRIVATE || method.getOwnerName().equals("java.lang.Object"))
                         && method.getAnnotations().get(InjectedBy.class.getName()) == null
                         && !methodInjectors.containsKey(method.getReference())
@@ -957,11 +958,26 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
             }
             renderer.exportClass(className, null);
 
-            for (FieldHolder field : cls.getFields()) {
+            for (FieldHolder field : cls.getFields().stream().sorted(new FieldHolderComparator()).collect(Collectors.toList())) {
                 if (field.hasModifier(ElementModifier.STATIC) && field.getLevel() != AccessLevel.PRIVATE) {
                     renderer.exportField(field.getReference(), null);
                 }
             }
+        }
+    }
+
+    private static class MethodHolderComparator implements Comparator<MethodHolder> {
+
+        @Override
+        public int compare(MethodHolder o1, MethodHolder o2) {
+            return o1.getDescriptor().toString().compareTo(o2.getDescriptor().toString());
+        }
+    }
+
+    private static class FieldHolderComparator implements Comparator<FieldHolder> {
+        @Override
+        public int compare(FieldHolder o1, FieldHolder o2) {
+            return o1.getName().compareTo(o2.getName());
         }
     }
 }

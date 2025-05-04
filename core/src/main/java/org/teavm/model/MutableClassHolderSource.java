@@ -15,12 +15,12 @@
  */
 package org.teavm.model;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class MutableClassHolderSource implements ListableClassHolderSource {
-    private Map<String, ClassHolder> classes = new LinkedHashMap<>();
+    private Map<String, ClassHolder> classes = new TreeMap<>();
 
     @Override
     public Set<String> getClassNames() {

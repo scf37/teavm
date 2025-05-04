@@ -29,11 +29,11 @@ public class ToolTest {
         var log = new ConsoleTeaVMToolLog(false);
         TeaVMTool tool = new TeaVMTool();
 
-        tool.setMainClass("js.JsMain");
-        tool.setTargetDirectory(new File("playground/src/main/java"));
+//        tool.setMainClass("js.JsMain");
+//        tool.setTargetDirectory(new File("playground/src/main/java"));
 
-//        tool.setMainClass("jst.Main");
-//        tool.setTargetDirectory(new File("playground/src/main/java/jst/out"));
+        tool.setMainClass("jst.Main");
+        tool.setTargetDirectory(new File("playground/src/main/java/jst/out"));
 
         tool.setTargetType(TeaVMTargetType.JAVASCRIPT);
 
