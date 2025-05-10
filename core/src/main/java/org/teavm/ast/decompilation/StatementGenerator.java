@@ -43,13 +43,18 @@ import org.teavm.ast.ThrowStatement;
 import org.teavm.ast.UnaryOperation;
 import org.teavm.ast.UnwrapArrayExpr;
 import org.teavm.ast.WhileStatement;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.common.GraphIndexer;
 import org.teavm.model.BasicBlock;
 import org.teavm.model.ClassHolderSource;
+import org.teavm.model.FieldHolder;
+import org.teavm.model.FieldReference;
 import org.teavm.model.InvokeDynamicInstruction;
+import org.teavm.model.MethodDescriptor;
 import org.teavm.model.MethodReference;
 import org.teavm.model.Program;
 import org.teavm.model.TextLocation;
+import org.teavm.model.ValueType;
 import org.teavm.model.Variable;
 import org.teavm.model.instructions.ArrayElementType;
 import org.teavm.model.instructions.ArrayLengthInstruction;
@@ -405,7 +410,11 @@ class StatementGenerator implements InstructionVisitor {
             stmt.setLocation(currentLocation);
             statements.add(stmt);
         } else {
-            Expr fieldExpr = Expr.qualify(null, insn.getField());
+            FieldHolder fieldHolder = queryField(insn.getField());
+            MethodReference getter = new MethodReference(insn.getField().getClassName(),
+                    new MethodDescriptor(insn.getField().getFieldName() + "$get", fieldHolder.getType()));
+
+            Expr fieldExpr = Expr.invokeStatic(getter, new Expr[0]);
             AssignmentStatement stmt = Statement.assign(Expr.var(insn.getReceiver().getIndex()), fieldExpr);
             stmt.setLocation(currentLocation);
             statements.add(stmt);
@@ -415,15 +424,29 @@ class StatementGenerator implements InstructionVisitor {
     @Override
     public void visit(PutFieldInstruction insn) {
         Expr right = Expr.var(insn.getValue().getIndex());
-        Expr left;
+        AssignmentStatement stmt;
         if (insn.getInstance() != null) {
-            left = Expr.qualify(Expr.var(insn.getInstance().getIndex()), insn.getField());
+            Expr left = Expr.qualify(Expr.var(insn.getInstance().getIndex()), insn.getField());
+            stmt = Statement.assign(left, right);
         } else {
-            left = Expr.qualify(null, insn.getField());
+            FieldHolder fieldHolder = queryField(insn.getField());
+            MethodReference setter = new MethodReference(insn.getField().getClassName(),
+                    new MethodDescriptor(insn.getField().getFieldName() + "$set", fieldHolder.getType(), ValueType.VOID));
+            Expr result = Expr.invokeStatic(setter, new Expr[] { right });
+            stmt = Statement.assign(null, result);
         }
-        AssignmentStatement stmt = Statement.assign(left, right);
         stmt.setLocation(currentLocation);
         statements.add(stmt);
+    }
+
+    private FieldHolder queryField(FieldReference ref) {
+        ClassHolderSource classSource;
+        if (SplittingJavaScriptTarget.useSplitting) {
+            classSource = SplittingJavaScriptTarget.fullSource;
+        } else {
+            classSource = this.classSource;
+        }
+        return classSource.get(ref.getClassName()).getField(ref.getFieldName());
     }
 
     @Override

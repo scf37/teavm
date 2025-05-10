@@ -703,11 +703,12 @@ $rt_metadata = data => {
     $rt_metadataQueue.push(() => $rt_metadata1(data));
 },
 $rt_init_metadata = () => {
-    if ($rt_metadataQueue.length === 0) return;
+    $rt_init_metadata = () => {
+    };
     for (let i = 0;i < $rt_metadataQueue.length;++i) {
         $rt_metadataQueue[i]();
     }
-    $rt_metadataQueue.length = 0;
+    $rt_metadataQueue = [];
 },
 $rt_packages1 = data => {
     let i = 0;
@@ -1032,10 +1033,16 @@ function java_lang_Boolean() {
     java_lang_Object.call(this);
     this.$value = 0;
 }
-let java_lang_Boolean_TRUE = null,
-java_lang_Boolean_FALSE = null,
-java_lang_Boolean_TYPE = null,
-java_lang_Boolean_$callClinit = () => {
+let java_lang_Boolean_TRUE = null;
+function java_lang_Boolean_TRUE$get_BuxLVW() { $rt_init_metadata(); java_lang_Boolean_$callClinit();  return java_lang_Boolean_TRUE; }
+function java_lang_Boolean_TRUE$set_xmeeTf(value) { $rt_init_metadata(); java_lang_Boolean_$callClinit(); java_lang_Boolean_TRUE = value; }
+let java_lang_Boolean_FALSE = null;
+function java_lang_Boolean_FALSE$get_BuxLVW() { $rt_init_metadata(); java_lang_Boolean_$callClinit();  return java_lang_Boolean_FALSE; }
+function java_lang_Boolean_FALSE$set_xmeeTf(value) { $rt_init_metadata(); java_lang_Boolean_$callClinit(); java_lang_Boolean_FALSE = value; }
+let java_lang_Boolean_TYPE = null;
+function java_lang_Boolean_TYPE$get_rQPqgt() { $rt_init_metadata(); java_lang_Boolean_$callClinit();  return java_lang_Boolean_TYPE; }
+function java_lang_Boolean_TYPE$set_GfbAYs(value) { $rt_init_metadata(); java_lang_Boolean_$callClinit(); java_lang_Boolean_TYPE = value; }
+let java_lang_Boolean_$callClinit = () => {
     java_lang_Boolean_$callClinit = $rt_eraseClinit(java_lang_Boolean);
     java_lang_Boolean__clinit__V();
 },
@@ -1056,16 +1063,24 @@ java_lang_Boolean_toString_adrUOL = $value => {
     return !$value ? $rt_str("false") : $rt_str("true");
 },
 java_lang_Boolean__clinit__V = () => {
-    java_lang_Boolean_TRUE = java_lang_Boolean__init__VZ$1(1);
-    java_lang_Boolean_FALSE = java_lang_Boolean__init__VZ$1(0);
-    java_lang_Boolean_TYPE = $rt_cls($rt_booleancls);
+    java_lang_Boolean_TRUE$set_xmeeTf(java_lang_Boolean__init__VZ$1(1));
+    java_lang_Boolean_FALSE$set_xmeeTf(java_lang_Boolean__init__VZ$1(0));
+    java_lang_Boolean_TYPE$set_GfbAYs($rt_cls($rt_booleancls));
 },
 java_lang_Character = $rt_classWithoutFields(),
-java_lang_Character_TYPE = null,
-java_lang_Character_lowerCaseMapping = null,
-java_lang_Character_characterCache = null,
-java_lang_Character_$$metadata$$0 = null,
-java_lang_Character_$callClinit = () => {
+java_lang_Character_TYPE = null;
+function java_lang_Character_TYPE$get_rQPqgt() { $rt_init_metadata(); java_lang_Character_$callClinit();  return java_lang_Character_TYPE; }
+function java_lang_Character_TYPE$set_GfbAYs(value) { $rt_init_metadata(); java_lang_Character_$callClinit(); java_lang_Character_TYPE = value; }
+let java_lang_Character_lowerCaseMapping = null;
+function java_lang_Character_lowerCaseMapping$get_RZKDDF() { $rt_init_metadata(); java_lang_Character_$callClinit();  return java_lang_Character_lowerCaseMapping; }
+function java_lang_Character_lowerCaseMapping$set_ZUCuEm(value) { $rt_init_metadata(); java_lang_Character_$callClinit(); java_lang_Character_lowerCaseMapping = value; }
+let java_lang_Character_characterCache = null;
+function java_lang_Character_characterCache$get_jBueGa() { $rt_init_metadata(); java_lang_Character_$callClinit();  return java_lang_Character_characterCache; }
+function java_lang_Character_characterCache$set_waRJaZ(value) { $rt_init_metadata(); java_lang_Character_$callClinit(); java_lang_Character_characterCache = value; }
+let java_lang_Character_$$metadata$$0 = null;
+function java_lang_Character_$$metadata$$0$get_WDWuRL() { $rt_init_metadata(); java_lang_Character_$callClinit();  return java_lang_Character_$$metadata$$0; }
+function java_lang_Character_$$metadata$$0$set_tTBCfR(value) { $rt_init_metadata(); java_lang_Character_$callClinit(); java_lang_Character_$$metadata$$0 = value; }
+let java_lang_Character_$callClinit = () => {
     java_lang_Character_$callClinit = $rt_eraseClinit(java_lang_Character);
     java_lang_Character__clinit__V();
 },
@@ -1083,18 +1098,18 @@ java_lang_Character_getLowerCaseMapping_RZKDDF = () => {
     let var$1;
     $rt_init_metadata();
     java_lang_Character_$callClinit();
-    if (java_lang_Character_lowerCaseMapping === null) {
+    if (java_lang_Character_lowerCaseMapping$get_RZKDDF() === null) {
         var$1 = org_teavm_classlib_impl_unicode_UnicodeHelper_decodeCaseMapping_JHgFIf(((java_lang_Character_acquireLowerCaseMapping_WDWuRL()).value !== null ? $rt_str((java_lang_Character_acquireLowerCaseMapping_WDWuRL()).value) : null));
-        java_lang_Character_lowerCaseMapping = org_teavm_classlib_impl_unicode_UnicodeHelper_createCharMapping_uLlFHT(var$1);
+        java_lang_Character_lowerCaseMapping$set_ZUCuEm(org_teavm_classlib_impl_unicode_UnicodeHelper_createCharMapping_uLlFHT(var$1));
     }
-    return java_lang_Character_lowerCaseMapping;
+    return java_lang_Character_lowerCaseMapping$get_RZKDDF();
 },
 java_lang_Character_acquireLowerCaseMapping_WDWuRL = () => {
     $rt_init_metadata();
     java_lang_Character_$callClinit();
-    if (java_lang_Character_$$metadata$$0 === null)
-        java_lang_Character_$$metadata$$0 = java_lang_Character_acquireLowerCaseMapping$$create_WDWuRL();
-    return java_lang_Character_$$metadata$$0;
+    if (java_lang_Character_$$metadata$$0$get_WDWuRL() === null)
+        java_lang_Character_$$metadata$$0$set_tTBCfR(java_lang_Character_acquireLowerCaseMapping$$create_WDWuRL());
+    return java_lang_Character_$$metadata$$0$get_WDWuRL();
 },
 java_lang_Character_mapChar_vlkZUR = ($table, $codePoint) => {
     let $binSearchTable, $index, var$5, var$6;
@@ -1145,8 +1160,8 @@ java_lang_Character_forDigit_CII = ($digit, $radix) => {
     return 0;
 },
 java_lang_Character__clinit__V = () => {
-    java_lang_Character_TYPE = $rt_cls($rt_charcls);
-    java_lang_Character_characterCache = $rt_createArray(java_lang_Character, 128);
+    java_lang_Character_TYPE$set_GfbAYs($rt_cls($rt_charcls));
+    java_lang_Character_characterCache$set_waRJaZ($rt_createArray(java_lang_Character, 128));
 },
 java_lang_Character_acquireLowerCaseMapping$$create_WDWuRL = () => {
     return {"value" : "TW  H#F#U 4%F#O #F#/ d%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #a1# #%# #%# #%# %%# #%# #%# #%# #%# #%# #%# #%# %%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #%# #<+#%# #%# #%# \'.3#%# #%# #{1#%# #w1%%# %J\'#k1#o1#%# #w1#!3# #23#*3#%# \'23#:3# #>3#%# #%# #%# #N3#%# #N3# %%# #N3#%# #J3%%# #%# #R3#%# \'%# /)#%# #)#%# #)#%# #%# #%# #%# #%# #%# #%# #%# #%# %%# #%# #%# #%# #%# #%# #%# #%# #%# %)#%# #%# #8)#L%#%# #%# #%# #"
@@ -1305,9 +1320,13 @@ function java_lang_Integer() {
     java_lang_Number.call(this);
     this.$value = 0;
 }
-let java_lang_Integer_TYPE = null,
-java_lang_Integer_integerCache = null,
-java_lang_Integer_$callClinit = () => {
+let java_lang_Integer_TYPE = null;
+function java_lang_Integer_TYPE$get_rQPqgt() { $rt_init_metadata(); java_lang_Integer_$callClinit();  return java_lang_Integer_TYPE; }
+function java_lang_Integer_TYPE$set_GfbAYs(value) { $rt_init_metadata(); java_lang_Integer_$callClinit(); java_lang_Integer_TYPE = value; }
+let java_lang_Integer_integerCache = null;
+function java_lang_Integer_integerCache$get_JiUhVo() { $rt_init_metadata(); java_lang_Integer_$callClinit();  return java_lang_Integer_integerCache; }
+function java_lang_Integer_integerCache$set_KsSsFz(value) { $rt_init_metadata(); java_lang_Integer_$callClinit(); java_lang_Integer_integerCache = value; }
+let java_lang_Integer_$callClinit = () => {
     java_lang_Integer_$callClinit = $rt_eraseClinit(java_lang_Integer);
     java_lang_Integer__clinit__V();
 },
@@ -1344,7 +1363,7 @@ java_lang_Integer_valueOf_jxXMoQ = $i => {
     java_lang_Integer_$callClinit();
     if ($i >= (-128) && $i <= 127) {
         java_lang_Integer_ensureIntegerCache_V();
-        return java_lang_Integer_integerCache.data[$i + 128 | 0];
+        return (java_lang_Integer_integerCache$get_JiUhVo()).data[$i + 128 | 0];
     }
     return java_lang_Integer__init__VI$1($i);
 },
@@ -1353,13 +1372,13 @@ java_lang_Integer_ensureIntegerCache_V = () => {
     $rt_init_metadata();
     java_lang_Integer_$callClinit();
     a: {
-        if (java_lang_Integer_integerCache === null) {
-            java_lang_Integer_integerCache = $rt_createArray(java_lang_Integer, 256);
+        if (java_lang_Integer_integerCache$get_JiUhVo() === null) {
+            java_lang_Integer_integerCache$set_KsSsFz($rt_createArray(java_lang_Integer, 256));
             $j = 0;
             while (true) {
-                if ($j >= java_lang_Integer_integerCache.data.length)
+                if ($j >= (java_lang_Integer_integerCache$get_JiUhVo()).data.length)
                     break a;
-                java_lang_Integer_integerCache.data[$j] = java_lang_Integer__init__VI$1($j - 128 | 0);
+                (java_lang_Integer_integerCache$get_JiUhVo()).data[$j] = java_lang_Integer__init__VI$1($j - 128 | 0);
                 $j = $j + 1 | 0;
             }
         }
@@ -1400,7 +1419,7 @@ java_lang_Integer_numberOfLeadingZeros_II = $i => {
     return (32 - $n | 0) - 1 | 0;
 },
 java_lang_Integer__clinit__V = () => {
-    java_lang_Integer_TYPE = $rt_cls($rt_intcls);
+    java_lang_Integer_TYPE$set_GfbAYs($rt_cls($rt_intcls));
 },
 java_lang_Iterable = $rt_classWithoutFields(0),
 java_lang_Math = $rt_classWithoutFields(),
@@ -1449,10 +1468,16 @@ function java_lang_String() {
     java_lang_Object.call(this);
     this.$hashCode = 0;
 }
-let java_lang_String_EMPTY_CHARS = null,
-java_lang_String_EMPTY = null,
-java_lang_String_CASE_INSENSITIVE_ORDER = null,
-java_lang_String_$callClinit = () => {
+let java_lang_String_EMPTY_CHARS = null;
+function java_lang_String_EMPTY_CHARS$get__C() { $rt_init_metadata(); java_lang_String_$callClinit();  return java_lang_String_EMPTY_CHARS; }
+function java_lang_String_EMPTY_CHARS$set_V_C(value) { $rt_init_metadata(); java_lang_String_$callClinit(); java_lang_String_EMPTY_CHARS = value; }
+let java_lang_String_EMPTY = null;
+function java_lang_String_EMPTY$get_VHLrpW() { $rt_init_metadata(); java_lang_String_$callClinit();  return java_lang_String_EMPTY; }
+function java_lang_String_EMPTY$set_XjCHVS(value) { $rt_init_metadata(); java_lang_String_$callClinit(); java_lang_String_EMPTY = value; }
+let java_lang_String_CASE_INSENSITIVE_ORDER = null;
+function java_lang_String_CASE_INSENSITIVE_ORDER$get_kbAFBE() { $rt_init_metadata(); java_lang_String_$callClinit();  return java_lang_String_CASE_INSENSITIVE_ORDER; }
+function java_lang_String_CASE_INSENSITIVE_ORDER$set_anNSmD(value) { $rt_init_metadata(); java_lang_String_$callClinit(); java_lang_String_CASE_INSENSITIVE_ORDER = value; }
+let java_lang_String_$callClinit = () => {
     java_lang_String_$callClinit = $rt_eraseClinit(java_lang_String);
     java_lang_String__clinit__V();
 },
@@ -1577,9 +1602,9 @@ java_lang_String_lambda$static$0_fDwPQb = ($o1, $o2) => {
     return $o1.$compareToIgnoreCase_nftnjR($o2);
 },
 java_lang_String__clinit__V = () => {
-    java_lang_String_EMPTY_CHARS = $rt_createCharArray(0);
-    java_lang_String_EMPTY = java_lang_String__init__V$1();
-    java_lang_String_CASE_INSENSITIVE_ORDER = java_lang_String$_clinit_$lambda$_115_0__init__V$1();
+    java_lang_String_EMPTY_CHARS$set_V_C($rt_createCharArray(0));
+    java_lang_String_EMPTY$set_XjCHVS(java_lang_String__init__V$1());
+    java_lang_String_CASE_INSENSITIVE_ORDER$set_anNSmD(java_lang_String$_clinit_$lambda$_115_0__init__V$1());
 },
 java_util_Comparator = $rt_classWithoutFields(0),
 java_lang_String$_clinit_$lambda$_115_0 = $rt_classWithoutFields(),
@@ -1658,12 +1683,14 @@ java_lang_StringIndexOutOfBoundsException__init__V$1 = () => {
     return var_0;
 },
 java_lang_System = $rt_classWithoutFields(),
-java_lang_System_outCache = null,
-java_lang_System_out_JQwxsu = () => {
+java_lang_System_outCache = null;
+function java_lang_System_outCache$get_JQwxsu() { $rt_init_metadata();  return java_lang_System_outCache; }
+function java_lang_System_outCache$set_lLaEnR(value) { $rt_init_metadata(); java_lang_System_outCache = value; }
+let java_lang_System_out_JQwxsu = () => {
     $rt_init_metadata();
-    if (java_lang_System_outCache === null)
-        java_lang_System_outCache = org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1();
-    return java_lang_System_outCache;
+    if (java_lang_System_outCache$get_JQwxsu() === null)
+        java_lang_System_outCache$set_lLaEnR(org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1());
+    return java_lang_System_outCache$get_JQwxsu();
 },
 java_lang_reflect_Array = $rt_classWithoutFields(),
 java_lang_reflect_Array_newInstance_AAjNOn = ($componentType, $length) => {
@@ -1675,8 +1702,8 @@ java_lang_reflect_Array_newInstance_AAjNOn = ($componentType, $length) => {
     if ($length < 0)
         $rt_throw(java_lang_NegativeArraySizeException__init__V$1());
     return java_lang_reflect_Array_newInstanceImpl_lfJdlA(java_lang_Class_getPlatformClass_BSppjk($componentType), $length);
-};
-let java_lang_reflect_Array_newInstanceImpl_lfJdlA = (var$1, var$2) => {
+},
+java_lang_reflect_Array_newInstanceImpl_lfJdlA = (var$1, var$2) => {
     if (var$1.$meta.primitive) {
         switch (var$1) {
         }
@@ -2332,10 +2359,6 @@ java_lang_Object.prototype.toString = function() {
 java_lang_Object.prototype.__teavm_class__ = function() {
     return $dbg_class(this);
 };
-java_lang_Boolean_$callClinit();
-java_lang_Character_$callClinit();
-java_lang_Integer_$callClinit();
-java_lang_String_$callClinit();
 exports.java_io_Closeable = java_io_Closeable;
 exports.java_io_FilterOutputStream__init__gjftmH = java_io_FilterOutputStream__init__gjftmH;
 exports.java_io_FilterOutputStream__init__gjftmH$1 = java_io_FilterOutputStream__init__gjftmH$1;
@@ -2570,6 +2593,32 @@ exports.org_teavm_platform_Platform_getName_xWEGZR = org_teavm_platform_Platform
 exports.org_teavm_platform_Platform = org_teavm_platform_Platform;
 exports.org_teavm_platform_plugin_ResourceAccessor = org_teavm_platform_plugin_ResourceAccessor;
 exports.org_teavm_runtime = org_teavm_runtime;
+exports.java_lang_Boolean_TRUE$get_BuxLVW = java_lang_Boolean_TRUE$get_BuxLVW;
+exports.java_lang_Boolean_TRUE$set_xmeeTf = java_lang_Boolean_TRUE$set_xmeeTf;
+exports.java_lang_Boolean_FALSE$get_BuxLVW = java_lang_Boolean_FALSE$get_BuxLVW;
+exports.java_lang_Boolean_FALSE$set_xmeeTf = java_lang_Boolean_FALSE$set_xmeeTf;
+exports.java_lang_Boolean_TYPE$get_rQPqgt = java_lang_Boolean_TYPE$get_rQPqgt;
+exports.java_lang_Boolean_TYPE$set_GfbAYs = java_lang_Boolean_TYPE$set_GfbAYs;
+exports.java_lang_Character_TYPE$get_rQPqgt = java_lang_Character_TYPE$get_rQPqgt;
+exports.java_lang_Character_TYPE$set_GfbAYs = java_lang_Character_TYPE$set_GfbAYs;
+exports.java_lang_Character_lowerCaseMapping$get_RZKDDF = java_lang_Character_lowerCaseMapping$get_RZKDDF;
+exports.java_lang_Character_lowerCaseMapping$set_ZUCuEm = java_lang_Character_lowerCaseMapping$set_ZUCuEm;
+exports.java_lang_Character_characterCache$get_jBueGa = java_lang_Character_characterCache$get_jBueGa;
+exports.java_lang_Character_characterCache$set_waRJaZ = java_lang_Character_characterCache$set_waRJaZ;
+exports.java_lang_Character_$$metadata$$0$get_WDWuRL = java_lang_Character_$$metadata$$0$get_WDWuRL;
+exports.java_lang_Character_$$metadata$$0$set_tTBCfR = java_lang_Character_$$metadata$$0$set_tTBCfR;
+exports.java_lang_Integer_TYPE$get_rQPqgt = java_lang_Integer_TYPE$get_rQPqgt;
+exports.java_lang_Integer_TYPE$set_GfbAYs = java_lang_Integer_TYPE$set_GfbAYs;
+exports.java_lang_Integer_integerCache$get_JiUhVo = java_lang_Integer_integerCache$get_JiUhVo;
+exports.java_lang_Integer_integerCache$set_KsSsFz = java_lang_Integer_integerCache$set_KsSsFz;
+exports.java_lang_String_EMPTY_CHARS$get__C = java_lang_String_EMPTY_CHARS$get__C;
+exports.java_lang_String_EMPTY_CHARS$set_V_C = java_lang_String_EMPTY_CHARS$set_V_C;
+exports.java_lang_String_EMPTY$get_VHLrpW = java_lang_String_EMPTY$get_VHLrpW;
+exports.java_lang_String_EMPTY$set_XjCHVS = java_lang_String_EMPTY$set_XjCHVS;
+exports.java_lang_String_CASE_INSENSITIVE_ORDER$get_kbAFBE = java_lang_String_CASE_INSENSITIVE_ORDER$get_kbAFBE;
+exports.java_lang_String_CASE_INSENSITIVE_ORDER$set_anNSmD = java_lang_String_CASE_INSENSITIVE_ORDER$set_anNSmD;
+exports.java_lang_System_outCache$get_JQwxsu = java_lang_System_outCache$get_JQwxsu;
+exports.java_lang_System_outCache$set_lLaEnR = java_lang_System_outCache$set_lLaEnR;
 exports.$rt_numberConversionView = $rt_numberConversionView;
 exports.Long_fromNumber = Long_fromNumber;
 exports.$rt_createcls = $rt_createcls;

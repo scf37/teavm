@@ -461,21 +461,6 @@ public class JavaScriptTarget implements TeaVMTarget, TeaVMJavaScriptHost, JavaS
             listener.complete();
         }
 
-        if (SplittingJavaScriptTarget.useSplitting) {
-            // eagerly run class static initializers
-            // it is required because static fields are exported as-is and not within wrapper objects
-            // so they must be initialized before 'exports.field = field;' line.
-            // this is not very good since can increase startup time
-            // Alternative: move static fields within some eager object (class constructor maybe)
-
-            for (var clsName : classes.getClassNames()) {
-                MethodReader clinit = classes.get(clsName).getMethod(CLINIT_METHOD);
-                if (clinit != null && renderingContext.isDynamicInitializer(clsName)) {
-                    rememberingWriter.appendClassInit(clsName).append("();").softNewLine();
-                }
-            }
-        }
-
         var epilogue = rememberingWriter.save();
         rememberingWriter.clear();
 

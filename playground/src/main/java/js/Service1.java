@@ -17,6 +17,12 @@ package js;
 
 public class Service1 {
     private int num = 1;
+    public static int staticNum = 2;
+
+    public static void sayHello() {
+        System.out.println("Hello World: " + staticNum);
+    }
+
     static  {
         System.out.println("Service1 static constructor");
     }

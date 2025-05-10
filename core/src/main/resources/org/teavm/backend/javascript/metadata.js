@@ -28,12 +28,11 @@ let $rt_metadata = data => {
 }
 
 let $rt_init_metadata = () => {
-    if ($rt_metadataQueue.length === 0) return;
-
+    $rt_init_metadata = () => {};
     for (let i = 0; i < $rt_metadataQueue.length; ++i) {
         $rt_metadataQueue[i]();
     }
-    $rt_metadataQueue.length = 0;
+    $rt_metadataQueue = [];
 }
 
 let $rt_packages1 = data => {

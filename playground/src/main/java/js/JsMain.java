@@ -40,7 +40,10 @@ public class JsMain {
     }
 
     public static void main(String[] args) {
+        Service1.staticNum++;
+        System.out.println(Service1.staticNum);
         Service1 service1 = new Service1();
+        service1 = new Service1(); // initialize twice
         Service2 service2 = new Service2();
         Service3 service3 = new Service3(service1, service2);
         JsMain main = new JsMain(service3);

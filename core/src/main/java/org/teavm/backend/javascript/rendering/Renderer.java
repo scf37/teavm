@@ -133,6 +133,9 @@ public class Renderer implements RenderingManager {
 
     @Override
     public void exportMethod(MethodReference method, String alias) {
+        if (alias == null) {
+            alias = context.getNaming().methodName(method).name;
+        }
         exports.add(new ExportedDeclaration(w -> w.appendMethod(method), n -> n.methodName(method), alias));
     }
 
@@ -312,6 +315,10 @@ public class Renderer implements RenderingManager {
             renderFullClassFunctionDeclaration(cls, nonStaticFields);
         }
 
+
+        MethodReader clinitMethod = cls.getMethod(CLINIT_METHOD);
+        boolean hasClinit = clinitMethod != null;
+
         for (FieldHolder field : staticFields) {
             Object value = field.getInitialValue();
             if (value == null) {
@@ -327,6 +334,40 @@ public class Renderer implements RenderingManager {
             writer.startVariableDeclaration().appendStaticField(fieldRef);
             context.constantToString(writer, value);
             writer.endDeclaration();
+
+            MethodReference getterRef = new MethodReference(fieldRef.getClassName(),
+                    new MethodDescriptor(fieldRef.getFieldName() + "$get", field.getType())
+            );
+
+            MethodReference setterRef = new MethodReference(fieldRef.getClassName(),
+                    new MethodDescriptor(fieldRef.getFieldName() + "$set", field.getType(), ValueType.VOID)
+            );
+
+            // emit accessors for static field
+            writer.startFunctionDeclaration();
+            writer.emitMethod(getterRef.getDescriptor());
+            writer.appendMethod(getterRef);
+            writer.append("() { ").appendFunction("$rt_init_metadata")
+                    .append("(); ");
+            if (hasClinit) {
+                writer.appendClassInit(getterRef.getClassName()).append("(); ");
+            }
+            writer.append(" return ").appendStaticField(fieldRef).append("; }");
+            exportMethod(getterRef, null);
+            writer.endDeclaration();
+
+            writer.startFunctionDeclaration();
+            writer.emitMethod(setterRef.getDescriptor());
+            writer.appendMethod(setterRef);
+            writer.append("(value) { ").appendFunction("$rt_init_metadata")
+                    .append("(); ");
+            if (hasClinit) {
+                writer.appendClassInit(getterRef.getClassName()).append("(); ");
+            }
+            writer.appendStaticField(fieldRef).append(" = value; }");
+            exportMethod(setterRef, null);
+            writer.endDeclaration();
+
         }
     }
 
