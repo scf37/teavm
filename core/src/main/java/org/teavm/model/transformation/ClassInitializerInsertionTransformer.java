@@ -42,7 +42,8 @@ public class ClassInitializerInsertionTransformer {
         ClassReader cls = classes.get(method.getOwnerName());
         boolean hasClinit = cls.getMethod(clinitDescriptor) != null
                 && classInitializerInfo.isDynamicInitializer(cls.getName());
-        if (hasClinit && needsClinitCall(method)) {
+        // we always have clinit - event if class does not have clinit(), we need to call $rt_init_metadata()
+        if (/*hasClinit && */needsClinitCall(method)) {
             BasicBlock entryBlock = program.basicBlockAt(0);
             InitClassInstruction initInsn = new InitClassInstruction();
             initInsn.setClassName(method.getOwnerName());

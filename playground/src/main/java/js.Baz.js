@@ -4,6 +4,7 @@ let org_teavm_runtime_import = require("./org.teavm.runtime.js");
 
 let js_Baz = org_teavm_runtime_import.$rt_classWithoutFields(js_Bar_import.js_Bar),
 js_Baz__init__XjCHVS = ($this, $p) => {
+    org_teavm_runtime_import.$rt_init_metadata();
     js_Bar_import.js_Bar__init__XjCHVS($this, $p);
 },
 js_Baz__init__XjCHVS$1 = var_0 => {

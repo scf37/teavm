@@ -15,8 +15,28 @@
  */
 "use strict";
 
+// $rt_packages and $rt_metadata are called multiple times during js module(s) parse phase
+// To enforce lazyness, calls will be added to a queue and then $rt_init_metadata will be called on every static initializer
+
 let $rt_packageData = null;
+let $rt_metadataQueue = [];
 let $rt_packages = data => {
+    $rt_metadataQueue.push(() => $rt_packages1(data));
+}
+let $rt_metadata = data => {
+    $rt_metadataQueue.push(() => $rt_metadata1(data));
+}
+
+let $rt_init_metadata = () => {
+    if ($rt_metadataQueue.length === 0) return;
+
+    for (let i = 0; i < $rt_metadataQueue.length; ++i) {
+        $rt_metadataQueue[i]();
+    }
+    $rt_metadataQueue.length = 0;
+}
+
+let $rt_packages1 = data => {
     let i = 0;
     let packages = new teavm_globals.Array(data.length);
     for (let j = 0; j < data.length; ++j) {
@@ -26,7 +46,7 @@ let $rt_packages = data => {
     }
     $rt_packageData = packages;
 }
-let $rt_metadata = data => {
+let $rt_metadata1 = data => {
     let packages = $rt_packageData;
     let i = 0;
     while (i < data.length) {

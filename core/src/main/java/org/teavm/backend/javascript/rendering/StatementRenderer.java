@@ -489,6 +489,7 @@ public class StatementRenderer implements ExprVisitor, StatementVisitor {
         if (cls == null) {
             return;
         }
+        writer.appendFunction("$rt_init_metadata").append("();").newLine();
         MethodReader method = cls.getMethod(CLINIT_METHOD);
         if (method == null) {
             return;

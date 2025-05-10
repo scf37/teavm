@@ -3,6 +3,7 @@ let org_teavm_runtime_import = require("./org.teavm.runtime.js");
 
 let js_Service2 = org_teavm_runtime_import.$rt_classWithoutFields(),
 js_Service2__init__V = $this => {
+    org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V($this);
 },
 js_Service2__init__V$1 = () => {

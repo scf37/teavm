@@ -10,6 +10,7 @@ let js_Service1_$callClinit = () => {
     js_Service1__clinit__V();
 },
 js_Service1__init__V = $this => {
+    org_teavm_runtime_import.$rt_init_metadata();
     js_Service1_$callClinit();
     org_teavm_runtime_import.java_lang_Object__init__V($this);
     $this.$num = 1;

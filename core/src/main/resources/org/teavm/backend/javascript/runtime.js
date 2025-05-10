@@ -53,6 +53,7 @@ let $rt_threadStarter = f => function() {
     });
 }
 let $rt_mainStarter = f => (args, callback) => {
+    $rt_init_metadata();
     if (!args) {
         args = [];
     }

@@ -23,6 +23,7 @@ js_JsMain_foo_VHLrpW = $this => {
     return org_teavm_runtime_import.java_lang_StringBuilder_toString_VHLrpW(var$2);
 },
 js_JsMain__init__mmFgnD = ($this, $service3) => {
+    org_teavm_runtime_import.$rt_init_metadata();
     js_JsMain_$callClinit();
     org_teavm_runtime_import.java_lang_Object__init__V($this);
     $this.$service3 = $service3;
@@ -34,6 +35,7 @@ js_JsMain__init__mmFgnD$1 = var_0 => {
 },
 js_JsMain_main_WiJjkv = $args => {
     let $service1, $service2, $service3, $main, $list, var$7, $map, $bar, $baz;
+    org_teavm_runtime_import.$rt_init_metadata();
     js_JsMain_$callClinit();
     $service1 = js_Service1_import.js_Service1__init__V$1();
     $service2 = js_Service2_import.js_Service2__init__V$1();
@@ -69,6 +71,7 @@ js_JsMain_main_WiJjkv = $args => {
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_VZ(org_teavm_runtime_import.$rt_isInstance(js_JsMain_make_aTGoyT(org_teavm_runtime_import.$rt_str("Bar")), js_Baz_import.js_Baz));
 },
 js_JsMain_make_aTGoyT = $what => {
+    org_teavm_runtime_import.$rt_init_metadata();
     js_JsMain_$callClinit();
     if ($what.$equals_uKWEwg(org_teavm_runtime_import.$rt_str("Bar")))
         return js_Bar_import.js_Bar__init__XjCHVS$1(org_teavm_runtime_import.$rt_str("x"));
@@ -78,6 +81,7 @@ js_JsMain_make_aTGoyT = $what => {
 },
 js_JsMain_lambda$main$0_CeLKBX = ($k, $v) => {
     let var$3, var$4;
+    org_teavm_runtime_import.$rt_init_metadata();
     js_JsMain_$callClinit();
     var$3 = org_teavm_runtime_import.java_lang_System_out_JQwxsu();
     var$4 = org_teavm_runtime_import.java_lang_StringBuilder__init__V$1();
@@ -96,6 +100,7 @@ js_JsMain_export$js_body$_4_jMtQXM = (var$1, var$2) => {
 js_JsMain$JsMainCtor = org_teavm_runtime_import.$rt_classWithoutFields(0),
 js_JsMain$_clinit_$lambda$_6_0 = org_teavm_runtime_import.$rt_classWithoutFields(),
 js_JsMain$_clinit_$lambda$_6_0__init__V = var$0 => {
+    org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
 },
 js_JsMain$_clinit_$lambda$_6_0__init__V$1 = () => {
@@ -107,6 +112,7 @@ js_JsMain$_clinit_$lambda$_6_0_create_yGwQxM = (var$0, var$1) => {
     return js_JsMain__init__mmFgnD$1(var$1);
 },
 js_JsMain$_clinit_$lambda$_6_0_create$exported$0_PmAeiP = (var$1, var$2) => {
+    org_teavm_runtime_import.$rt_init_metadata();
     var$2 = var$2;
     return org_teavm_runtime_import.org_teavm_jso_impl_JSWrapper_javaToJs_jntYSA(var$1.$create_yGwQxM(var$2));
 };
@@ -115,6 +121,7 @@ function js_JsMain$main$lambda$_2_0() {
     this.$_0 = null;
 }
 let js_JsMain$main$lambda$_2_0__init__lLaEnR = (var$0, var$1) => {
+    org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
     var$0.$_0 = var$1;
 },
@@ -131,6 +138,7 @@ js_JsMain$main$lambda$_2_0_accept_XjCHVS = (var$0, var$1) => {
 },
 js_JsMain$main$lambda$_2_1 = org_teavm_runtime_import.$rt_classWithoutFields(),
 js_JsMain$main$lambda$_2_1__init__V = var$0 => {
+    org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
 },
 js_JsMain$main$lambda$_2_1__init__V$1 = () => {
@@ -182,3 +190,4 @@ exports.js_JsMain$main$lambda$_2_1_accept_PLTLFS = js_JsMain$main$lambda$_2_1_ac
 exports.js_JsMain$main$lambda$_2_1_accept_CeLKBX = js_JsMain$main$lambda$_2_1_accept_CeLKBX;
 exports.js_JsMain$main$lambda$_2_1 = js_JsMain$main$lambda$_2_1;
 exports.main = $rt_export_main;
+exports.main();

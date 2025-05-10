@@ -7,6 +7,7 @@ function js_Bar() {
     this.$p = null;
 }
 let js_Bar__init__XjCHVS = ($this, $p) => {
+    org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V($this);
     $this.$p = $p;
 },

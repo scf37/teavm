@@ -9,6 +9,7 @@ function js_Service3() {
     a.$service2 = null;
 }
 let js_Service3__init__linHFy = ($this, $service1, $service2) => {
+    org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V($this);
     $this.$service1 = $service1;
     $this.$service2 = $service2;

@@ -36,6 +36,7 @@ $rt_threadStarter = f => function() {
     });
 },
 $rt_mainStarter = f => (args, callback) => {
+    $rt_init_metadata();
     if (!args) {
         args = [];
     }
@@ -694,7 +695,21 @@ $rt_putStdout = typeof $rt_putStdoutCustom === "function" ? $rt_putStdoutCustom 
 $rt_putStderr = typeof $rt_putStderrCustom === "function" ? $rt_putStderrCustom : typeof console === "object" ? $rt_createOutputFunction(msg => console.error(msg)) : () => {
 },
 $rt_packageData = null,
+$rt_metadataQueue = [],
 $rt_packages = data => {
+    $rt_metadataQueue.push(() => $rt_packages1(data));
+},
+$rt_metadata = data => {
+    $rt_metadataQueue.push(() => $rt_metadata1(data));
+},
+$rt_init_metadata = () => {
+    if ($rt_metadataQueue.length === 0) return;
+    for (let i = 0;i < $rt_metadataQueue.length;++i) {
+        $rt_metadataQueue[i]();
+    }
+    $rt_metadataQueue.length = 0;
+},
+$rt_packages1 = data => {
     let i = 0;
     let packages = new Array(data.length);
     for (let j = 0;j < data.length;++j) {
@@ -704,7 +719,7 @@ $rt_packages = data => {
     }
     $rt_packageData = packages;
 },
-$rt_metadata = data => {
+$rt_metadata1 = data => {
     let packages = $rt_packageData;
     let i = 0;
     while (i < data.length) {
@@ -791,7 +806,7 @@ function java_lang_Object() {
     this.$id$ = 0;
 }
 let java_lang_Object__init__V = $this => {
-    return;
+    $rt_init_metadata();
 },
 java_lang_Object__init__V$1 = () => {
     let var_0 = new java_lang_Object();
@@ -821,6 +836,7 @@ java_io_Closeable = $rt_classWithoutFields(0),
 java_io_Flushable = $rt_classWithoutFields(0),
 java_io_OutputStream = $rt_classWithoutFields(),
 java_io_OutputStream__init__V = $this => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
 };
 function java_io_FilterOutputStream() {
@@ -828,6 +844,7 @@ function java_io_FilterOutputStream() {
     this.$out = null;
 }
 let java_io_FilterOutputStream__init__gjftmH = ($this, $out) => {
+    $rt_init_metadata();
     java_io_OutputStream__init__V($this);
     $this.$out = $out;
 },
@@ -845,6 +862,7 @@ function java_io_PrintStream() {
     a.$charset = null;
 }
 let java_io_PrintStream__init__RHOATE = ($this, $out, $autoFlush, $charset) => {
+    $rt_init_metadata();
     java_io_FilterOutputStream__init__gjftmH($this, $out);
     $this.$sb = java_lang_StringBuilder__init__V$1();
     $this.$buffer = $rt_createCharArray(32);
@@ -864,6 +882,7 @@ function java_lang_AbstractStringBuilder() {
     a.$length = 0;
 }
 let java_lang_AbstractStringBuilder__init__V = $this => {
+    $rt_init_metadata();
     java_lang_AbstractStringBuilder__init__VI($this, 16);
 },
 java_lang_AbstractStringBuilder__init__V$1 = () => {
@@ -872,6 +891,7 @@ java_lang_AbstractStringBuilder__init__V$1 = () => {
     return var_0;
 },
 java_lang_AbstractStringBuilder__init__VI = ($this, $capacity) => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
     $this.$buffer = $rt_createCharArray($capacity);
 },
@@ -1020,6 +1040,7 @@ java_lang_Boolean_$callClinit = () => {
     java_lang_Boolean__clinit__V();
 },
 java_lang_Boolean__init__VZ = ($this, $value) => {
+    $rt_init_metadata();
     java_lang_Boolean_$callClinit();
     java_lang_Object__init__V($this);
     $this.$value = $value;
@@ -1030,6 +1051,7 @@ java_lang_Boolean__init__VZ$1 = var_0 => {
     return var_1;
 },
 java_lang_Boolean_toString_adrUOL = $value => {
+    $rt_init_metadata();
     java_lang_Boolean_$callClinit();
     return !$value ? $rt_str("false") : $rt_str("true");
 },
@@ -1048,15 +1070,18 @@ java_lang_Character_$callClinit = () => {
     java_lang_Character__clinit__V();
 },
 java_lang_Character_toLowerCase_CC = $ch => {
+    $rt_init_metadata();
     java_lang_Character_$callClinit();
     return java_lang_Character_toLowerCase_II($ch) & 65535;
 },
 java_lang_Character_toLowerCase_II = $ch => {
+    $rt_init_metadata();
     java_lang_Character_$callClinit();
     return java_lang_Character_mapChar_vlkZUR(java_lang_Character_getLowerCaseMapping_RZKDDF(), $ch);
 },
 java_lang_Character_getLowerCaseMapping_RZKDDF = () => {
     let var$1;
+    $rt_init_metadata();
     java_lang_Character_$callClinit();
     if (java_lang_Character_lowerCaseMapping === null) {
         var$1 = org_teavm_classlib_impl_unicode_UnicodeHelper_decodeCaseMapping_JHgFIf(((java_lang_Character_acquireLowerCaseMapping_WDWuRL()).value !== null ? $rt_str((java_lang_Character_acquireLowerCaseMapping_WDWuRL()).value) : null));
@@ -1065,6 +1090,7 @@ java_lang_Character_getLowerCaseMapping_RZKDDF = () => {
     return java_lang_Character_lowerCaseMapping;
 },
 java_lang_Character_acquireLowerCaseMapping_WDWuRL = () => {
+    $rt_init_metadata();
     java_lang_Character_$callClinit();
     if (java_lang_Character_$$metadata$$0 === null)
         java_lang_Character_$$metadata$$0 = java_lang_Character_acquireLowerCaseMapping$$create_WDWuRL();
@@ -1072,6 +1098,7 @@ java_lang_Character_acquireLowerCaseMapping_WDWuRL = () => {
 },
 java_lang_Character_mapChar_vlkZUR = ($table, $codePoint) => {
     let $binSearchTable, $index, var$5, var$6;
+    $rt_init_metadata();
     java_lang_Character_$callClinit();
     if ($codePoint < $table.$fastTable.data.length)
         return $codePoint + $table.$fastTable.data[$codePoint] | 0;
@@ -1087,6 +1114,7 @@ java_lang_Character_mapChar_vlkZUR = ($table, $codePoint) => {
 },
 java_lang_Character_binarySearchTable_I_II = ($data, $key) => {
     let var$3, $l, $u, $i, $e, var$8;
+    $rt_init_metadata();
     java_lang_Character_$callClinit();
     var$3 = $data.data;
     $l = 0;
@@ -1110,6 +1138,7 @@ java_lang_Character_binarySearchTable_I_II = ($data, $key) => {
     return $i;
 },
 java_lang_Character_forDigit_CII = ($digit, $radix) => {
+    $rt_init_metadata();
     java_lang_Character_$callClinit();
     if ($radix >= 2 && $radix <= 36 && $digit >= 0 && $digit < $radix)
         return $digit < 10 ? (48 + $digit | 0) & 65535 : ((97 + $digit | 0) - 10 | 0) & 65535;
@@ -1136,6 +1165,7 @@ function java_lang_Class() {
 }
 let java_lang_Class__init__YHHWXM = ($this, $platformClass) => {
     let var$2;
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
     $this.$platformClass = $platformClass;
     var$2 = $this;
@@ -1148,6 +1178,7 @@ java_lang_Class__init__YHHWXM$1 = var_0 => {
 },
 java_lang_Class_getClass_LTJNGA = $cls => {
     let $result;
+    $rt_init_metadata();
     if ($cls === null)
         return null;
     $result = $cls.classObject;
@@ -1174,6 +1205,7 @@ function java_lang_Throwable() {
     a.$writableStackTrace = 0;
 }
 let java_lang_Throwable__init__V = $this => {
+    $rt_init_metadata();
     $this.$suppressionEnabled = 1;
     $this.$writableStackTrace = 1;
     $this.$fillInStackTrace_MBBfFS();
@@ -1184,6 +1216,7 @@ java_lang_Throwable__init__V$1 = () => {
     return var_0;
 },
 java_lang_Throwable__init__XjCHVS = ($this, $message) => {
+    $rt_init_metadata();
     $this.$suppressionEnabled = 1;
     $this.$writableStackTrace = 1;
     $this.$fillInStackTrace_MBBfFS();
@@ -1205,6 +1238,7 @@ java_lang_Throwable_getCause_MBBfFS = $this => {
 },
 java_lang_Exception = $rt_classWithoutFields(java_lang_Throwable),
 java_lang_Exception__init__V = $this => {
+    $rt_init_metadata();
     java_lang_Throwable__init__V($this);
 },
 java_lang_Exception__init__V$1 = () => {
@@ -1213,6 +1247,7 @@ java_lang_Exception__init__V$1 = () => {
     return var_0;
 },
 java_lang_Exception__init__XjCHVS = ($this, $message) => {
+    $rt_init_metadata();
     java_lang_Throwable__init__XjCHVS($this, $message);
 },
 java_lang_Exception__init__XjCHVS$1 = var_0 => {
@@ -1222,6 +1257,7 @@ java_lang_Exception__init__XjCHVS$1 = var_0 => {
 },
 java_lang_RuntimeException = $rt_classWithoutFields(java_lang_Exception),
 java_lang_RuntimeException__init__V = $this => {
+    $rt_init_metadata();
     java_lang_Exception__init__V($this);
 },
 java_lang_RuntimeException__init__V$1 = () => {
@@ -1230,6 +1266,7 @@ java_lang_RuntimeException__init__V$1 = () => {
     return var_0;
 },
 java_lang_RuntimeException__init__XjCHVS = ($this, $message) => {
+    $rt_init_metadata();
     java_lang_Exception__init__XjCHVS($this, $message);
 },
 java_lang_RuntimeException__init__XjCHVS$1 = var_0 => {
@@ -1241,6 +1278,7 @@ java_lang_ClassCastException = $rt_classWithoutFields(java_lang_RuntimeException
 java_lang_Cloneable = $rt_classWithoutFields(0),
 java_lang_IllegalArgumentException = $rt_classWithoutFields(java_lang_RuntimeException),
 java_lang_IllegalArgumentException__init__V = $this => {
+    $rt_init_metadata();
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_IllegalArgumentException__init__V$1 = () => {
@@ -1250,6 +1288,7 @@ java_lang_IllegalArgumentException__init__V$1 = () => {
 },
 java_lang_IndexOutOfBoundsException = $rt_classWithoutFields(java_lang_RuntimeException),
 java_lang_IndexOutOfBoundsException__init__V = $this => {
+    $rt_init_metadata();
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_IndexOutOfBoundsException__init__V$1 = () => {
@@ -1259,6 +1298,7 @@ java_lang_IndexOutOfBoundsException__init__V$1 = () => {
 },
 java_lang_Number = $rt_classWithoutFields(),
 java_lang_Number__init__V = $this => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
 };
 function java_lang_Integer() {
@@ -1272,6 +1312,7 @@ java_lang_Integer_$callClinit = () => {
     java_lang_Integer__clinit__V();
 },
 java_lang_Integer__init__VI = ($this, $value) => {
+    $rt_init_metadata();
     java_lang_Integer_$callClinit();
     java_lang_Number__init__V($this);
     $this.$value = $value;
@@ -1282,20 +1323,24 @@ java_lang_Integer__init__VI$1 = var_0 => {
     return var_1;
 },
 java_lang_Integer_toString_KSkSDS = ($i, $radix) => {
+    $rt_init_metadata();
     java_lang_Integer_$callClinit();
     if (!($radix >= 2 && $radix <= 36))
         $radix = 10;
     return ((java_lang_AbstractStringBuilder__init__VI$1(20)).$append_ylxaCJ($i, $radix)).$toString_VHLrpW();
 },
 java_lang_Integer_toHexString_iFmOGb = $i => {
+    $rt_init_metadata();
     java_lang_Integer_$callClinit();
     return org_teavm_classlib_impl_IntegerUtil_toUnsignedLogRadixString_KSkSDS($i, 4);
 },
 java_lang_Integer_toString_iFmOGb = $i => {
+    $rt_init_metadata();
     java_lang_Integer_$callClinit();
     return java_lang_Integer_toString_KSkSDS($i, 10);
 },
 java_lang_Integer_valueOf_jxXMoQ = $i => {
+    $rt_init_metadata();
     java_lang_Integer_$callClinit();
     if ($i >= (-128) && $i <= 127) {
         java_lang_Integer_ensureIntegerCache_V();
@@ -1305,6 +1350,7 @@ java_lang_Integer_valueOf_jxXMoQ = $i => {
 },
 java_lang_Integer_ensureIntegerCache_V = () => {
     let $j;
+    $rt_init_metadata();
     java_lang_Integer_$callClinit();
     a: {
         if (java_lang_Integer_integerCache === null) {
@@ -1324,6 +1370,7 @@ java_lang_Integer_toString_VHLrpW = $this => {
 },
 java_lang_Integer_numberOfLeadingZeros_II = $i => {
     let $n, var$3, var$4;
+    $rt_init_metadata();
     java_lang_Integer_$callClinit();
     if (!$i)
         return 32;
@@ -1358,17 +1405,20 @@ java_lang_Integer__clinit__V = () => {
 java_lang_Iterable = $rt_classWithoutFields(0),
 java_lang_Math = $rt_classWithoutFields(),
 java_lang_Math_min_III = ($a, $b) => {
+    $rt_init_metadata();
     if ($a < $b)
         $b = $a;
     return $b;
 },
 java_lang_Math_max_III = ($a, $b) => {
+    $rt_init_metadata();
     if ($a > $b)
         $b = $a;
     return $b;
 },
 java_lang_NegativeArraySizeException = $rt_classWithoutFields(java_lang_RuntimeException),
 java_lang_NegativeArraySizeException__init__V = $this => {
+    $rt_init_metadata();
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_NegativeArraySizeException__init__V$1 = () => {
@@ -1378,6 +1428,7 @@ java_lang_NegativeArraySizeException__init__V$1 = () => {
 },
 java_lang_NullPointerException = $rt_classWithoutFields(java_lang_RuntimeException),
 java_lang_NullPointerException__init__XjCHVS = ($this, $message) => {
+    $rt_init_metadata();
     java_lang_RuntimeException__init__XjCHVS($this, $message);
 },
 java_lang_NullPointerException__init__XjCHVS$1 = var_0 => {
@@ -1386,6 +1437,7 @@ java_lang_NullPointerException__init__XjCHVS$1 = var_0 => {
     return var_1;
 },
 java_lang_NullPointerException__init__V = $this => {
+    $rt_init_metadata();
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_NullPointerException__init__V$1 = () => {
@@ -1405,6 +1457,7 @@ java_lang_String_$callClinit = () => {
     java_lang_String__clinit__V();
 },
 java_lang_String__init__V = $this => {
+    $rt_init_metadata();
     java_lang_String_$callClinit();
     java_lang_Object__init__V($this);
     $this.$nativeString = "";
@@ -1416,6 +1469,7 @@ java_lang_String__init__V$1 = () => {
 },
 java_lang_String__init__V_C = ($this, $characters) => {
     let var$2;
+    $rt_init_metadata();
     java_lang_String_$callClinit();
     var$2 = $characters.data;
     java_lang_Object__init__V($this);
@@ -1436,6 +1490,7 @@ java_lang_String__init__HFyQDR$1 = var_0 => {
 },
 java_lang_String__init__V_CII = (var$0, var$1, $offset, $count) => {
     let var$4;
+    $rt_init_metadata();
     java_lang_String_$callClinit();
     var$4 = var$1.data;
     java_lang_Object__init__V(var$0);
@@ -1517,6 +1572,7 @@ java_lang_String_hashCode_I = $this => {
     return $this.$hashCode;
 },
 java_lang_String_lambda$static$0_fDwPQb = ($o1, $o2) => {
+    $rt_init_metadata();
     java_lang_String_$callClinit();
     return $o1.$compareToIgnoreCase_nftnjR($o2);
 },
@@ -1528,6 +1584,7 @@ java_lang_String__clinit__V = () => {
 java_util_Comparator = $rt_classWithoutFields(0),
 java_lang_String$_clinit_$lambda$_115_0 = $rt_classWithoutFields(),
 java_lang_String$_clinit_$lambda$_115_0__init__V = var$0 => {
+    $rt_init_metadata();
     java_lang_Object__init__V(var$0);
 },
 java_lang_String$_clinit_$lambda$_115_0__init__V$1 = () => {
@@ -1543,6 +1600,7 @@ java_lang_String$_clinit_$lambda$_115_0_compare_fDwPQb = (var$0, var$1, var$2) =
 },
 java_lang_StringBuilder = $rt_classWithoutFields(java_lang_AbstractStringBuilder),
 java_lang_StringBuilder__init__V = $this => {
+    $rt_init_metadata();
     java_lang_AbstractStringBuilder__init__V($this);
 },
 java_lang_StringBuilder__init__V$1 = () => {
@@ -1591,6 +1649,7 @@ java_lang_StringBuilder_insert_hzKion = ($this, var$1, var$2) => {
 },
 java_lang_StringIndexOutOfBoundsException = $rt_classWithoutFields(java_lang_IndexOutOfBoundsException),
 java_lang_StringIndexOutOfBoundsException__init__V = $this => {
+    $rt_init_metadata();
     java_lang_IndexOutOfBoundsException__init__V($this);
 },
 java_lang_StringIndexOutOfBoundsException__init__V$1 = () => {
@@ -1601,12 +1660,14 @@ java_lang_StringIndexOutOfBoundsException__init__V$1 = () => {
 java_lang_System = $rt_classWithoutFields(),
 java_lang_System_outCache = null,
 java_lang_System_out_JQwxsu = () => {
+    $rt_init_metadata();
     if (java_lang_System_outCache === null)
         java_lang_System_outCache = org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1();
     return java_lang_System_outCache;
 },
 java_lang_reflect_Array = $rt_classWithoutFields(),
 java_lang_reflect_Array_newInstance_AAjNOn = ($componentType, $length) => {
+    $rt_init_metadata();
     if ($componentType === null)
         $rt_throw(java_lang_NullPointerException__init__V$1());
     if ($componentType === $rt_cls($rt_voidcls))
@@ -1627,6 +1688,7 @@ java_nio_charset_Charset = $rt_classWithoutFields(),
 java_util_Collection = $rt_classWithoutFields(0),
 java_util_AbstractCollection = $rt_classWithoutFields(),
 java_util_AbstractCollection__init__V = $this => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
 },
 java_util_SequencedCollection = $rt_classWithoutFields(0),
@@ -1636,11 +1698,13 @@ function java_util_AbstractList() {
     this.$modCount = 0;
 }
 let java_util_AbstractList__init__V = $this => {
+    $rt_init_metadata();
     java_util_AbstractCollection__init__V($this);
 },
 java_util_Map = $rt_classWithoutFields(0),
 java_util_AbstractMap = $rt_classWithoutFields(),
 java_util_AbstractMap__init__V = $this => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
 },
 java_util_RandomAccess = $rt_classWithoutFields(0);
@@ -1650,6 +1714,7 @@ function java_util_ArrayList() {
     a.$size = 0;
 }
 let java_util_ArrayList__init__V = $this => {
+    $rt_init_metadata();
     java_util_ArrayList__init__VI($this, 10);
 },
 java_util_ArrayList__init__V$1 = () => {
@@ -1658,6 +1723,7 @@ java_util_ArrayList__init__V$1 = () => {
     return var_0;
 },
 java_util_ArrayList__init__VI = ($this, $initialCapacity) => {
+    $rt_init_metadata();
     java_util_AbstractList__init__V($this);
     if ($initialCapacity >= 0) {
         $this.$array = $rt_createArray(java_lang_Object, $initialCapacity);
@@ -1698,6 +1764,7 @@ java_util_ArrayList_forEach_bOKmPa = ($this, $action) => {
 java_util_Arrays = $rt_classWithoutFields(),
 java_util_Arrays_copyOf__C_CI = ($array, $length) => {
     let var$3, $result, $sz, $i;
+    $rt_init_metadata();
     var$3 = $array.data;
     $result = $rt_createCharArray($length);
     $sz = java_lang_Math_min_III($length, var$3.length);
@@ -1710,6 +1777,7 @@ java_util_Arrays_copyOf__C_CI = ($array, $length) => {
 },
 java_util_Arrays_copyOf_MqkkEq = ($original, $newLength) => {
     let var$3, $result, $sz, $i;
+    $rt_init_metadata();
     var$3 = $original.data;
     $result = java_lang_reflect_Array_newInstance_AAjNOn(java_lang_Class_getComponentType_rQPqgt(java_lang_Object_getClass_rQPqgt($original)), $newLength);
     $sz = java_lang_Math_min_III($newLength, var$3.length);
@@ -1722,6 +1790,7 @@ java_util_Arrays_copyOf_MqkkEq = ($original, $newLength) => {
 },
 java_util_Arrays_fill_yhNzHk = ($a, $fromIndex, $toIndex, $val) => {
     let var$5, var$6;
+    $rt_init_metadata();
     if ($fromIndex > $toIndex)
         $rt_throw(java_lang_IllegalArgumentException__init__V$1());
     while ($fromIndex < $toIndex) {
@@ -1733,6 +1802,7 @@ java_util_Arrays_fill_yhNzHk = ($a, $fromIndex, $toIndex, $val) => {
 },
 java_util_ConcurrentModificationException = $rt_classWithoutFields(java_lang_RuntimeException),
 java_util_ConcurrentModificationException__init__V = $this => {
+    $rt_init_metadata();
     java_lang_RuntimeException__init__V($this);
 },
 java_util_ConcurrentModificationException__init__V$1 = () => {
@@ -1752,6 +1822,7 @@ let java_util_HashMap_newElementArray_HaDQXJ = ($this, $s) => {
     return $rt_createArray(java_util_HashMap$HashEntry, $s);
 },
 java_util_HashMap__init__V = $this => {
+    $rt_init_metadata();
     java_util_HashMap__init__VI($this, 16);
 },
 java_util_HashMap__init__V$1 = () => {
@@ -1760,6 +1831,7 @@ java_util_HashMap__init__V$1 = () => {
     return var_0;
 },
 java_util_HashMap__init__VI = ($this, $capacity) => {
+    $rt_init_metadata();
     java_util_HashMap__init__VIF($this, $capacity, 0.75);
 },
 java_util_HashMap__init__VI$1 = var_0 => {
@@ -1769,6 +1841,7 @@ java_util_HashMap__init__VI$1 = var_0 => {
 },
 java_util_HashMap_calculateCapacity_II = $x => {
     let var$2, var$3;
+    $rt_init_metadata();
     if ($x >= 1073741824)
         return 1073741824;
     if (!$x)
@@ -1783,6 +1856,7 @@ java_util_HashMap_calculateCapacity_II = $x => {
 },
 java_util_HashMap__init__VIF = ($this, $capacity, $loadFactor) => {
     let var$3;
+    $rt_init_metadata();
     java_util_AbstractMap__init__V($this);
     if ($capacity >= 0 && $loadFactor > 0.0) {
         var$3 = java_util_HashMap_calculateCapacity_II($capacity);
@@ -1903,6 +1977,7 @@ java_util_HashMap_forEach_bjTrMv = ($this, $action) => {
     }
 },
 java_util_HashMap_areEqualKeys_UWKivJ = ($key1, $key2) => {
+    $rt_init_metadata();
     return $key1 !== $key2 && !$key1.$equals_uKWEwg($key2) ? 0 : 1;
 },
 java_util_Map$Entry = $rt_classWithoutFields(0);
@@ -1912,6 +1987,7 @@ function java_util_MapEntry() {
     a.$value = null;
 }
 let java_util_MapEntry__init__PLTLFS = ($this, $theKey, $theValue) => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
     $this.$key = $theKey;
     $this.$value = $theValue;
@@ -1927,6 +2003,7 @@ function java_util_HashMap$HashEntry() {
     a.$next = null;
 }
 let java_util_HashMap$HashEntry__init__moeQBN = ($this, $theKey, $hash) => {
+    $rt_init_metadata();
     java_util_MapEntry__init__PLTLFS($this, $theKey, null);
     $this.$origKeyHash = $hash;
 },
@@ -1937,14 +2014,17 @@ java_util_HashMap$HashEntry__init__moeQBN$1 = (var_0, var_1) => {
 },
 java_util_Objects = $rt_classWithoutFields(),
 java_util_Objects_requireNonNull_lVIoyP = $obj => {
+    $rt_init_metadata();
     return java_util_Objects_requireNonNull_iCEnfr($obj, $rt_str(""));
 },
 java_util_Objects_requireNonNull_iCEnfr = ($obj, $message) => {
+    $rt_init_metadata();
     if ($obj !== null)
         return $obj;
     $rt_throw(java_lang_NullPointerException__init__XjCHVS$1($message));
 },
 java_util_Objects_checkFromIndexSize_IIII = ($fromIndex, $size, $length) => {
+    $rt_init_metadata();
     if ($fromIndex >= 0 && $size >= 0 && $size <= ($length - $fromIndex | 0))
         return $fromIndex;
     $rt_throw(java_lang_IndexOutOfBoundsException__init__V$1());
@@ -1954,6 +2034,7 @@ java_util_function_Consumer = $rt_classWithoutFields(0),
 org_teavm_classlib_impl_Base46 = $rt_classWithoutFields(),
 org_teavm_classlib_impl_Base46_decodeUnsigned_fpZHVA = $seq => {
     let $number, $pos, var$4, var$5, $digit, $hasMore;
+    $rt_init_metadata();
     $number = 0;
     $pos = 1;
     while (true) {
@@ -1971,6 +2052,7 @@ org_teavm_classlib_impl_Base46_decodeUnsigned_fpZHVA = $seq => {
 },
 org_teavm_classlib_impl_Base46_decode_fpZHVA = $seq => {
     let $number, $result;
+    $rt_init_metadata();
     $number = org_teavm_classlib_impl_Base46_decodeUnsigned_fpZHVA($seq);
     $result = $number / 2 | 0;
     if ($number % 2 | 0)
@@ -1978,6 +2060,7 @@ org_teavm_classlib_impl_Base46_decode_fpZHVA = $seq => {
     return $result;
 },
 org_teavm_classlib_impl_Base46_decodeDigit_IC = $c => {
+    $rt_init_metadata();
     if ($c < 34)
         return $c - 32 | 0;
     if ($c >= 92)
@@ -1990,6 +2073,7 @@ function org_teavm_classlib_impl_CharFlow() {
     a.$pointer = 0;
 }
 let org_teavm_classlib_impl_CharFlow__init__V_C = ($this, $characters) => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
     $this.$characters = $characters;
 },
@@ -2001,6 +2085,7 @@ org_teavm_classlib_impl_CharFlow__init__V_C$1 = var_0 => {
 org_teavm_classlib_impl_IntegerUtil = $rt_classWithoutFields(),
 org_teavm_classlib_impl_IntegerUtil_toUnsignedLogRadixString_KSkSDS = ($value, $radixLog2) => {
     let $radix, $mask, $sz, $chars, $pos, $target, var$9, $target_0;
+    $rt_init_metadata();
     if (!$value)
         return $rt_str("0");
     $radix = 1 << $radixLog2;
@@ -2020,6 +2105,7 @@ org_teavm_classlib_impl_IntegerUtil_toUnsignedLogRadixString_KSkSDS = ($value, $
 },
 org_teavm_classlib_impl_console_JsConsolePrintStream = $rt_classWithoutFields(java_io_PrintStream),
 org_teavm_classlib_impl_console_JsConsolePrintStream__init__V = $this => {
+    $rt_init_metadata();
     java_io_PrintStream__init__RHOATE($this, null, 0, null);
 },
 org_teavm_classlib_impl_console_JsConsolePrintStream_println_XjCHVS = ($this, $s) => {
@@ -2034,6 +2120,7 @@ org_teavm_classlib_impl_console_JsConsolePrintStream_println_VZ = ($this, $b) =>
 },
 org_teavm_classlib_impl_console_JSStdoutPrintStream = $rt_classWithoutFields(org_teavm_classlib_impl_console_JsConsolePrintStream),
 org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V = $this => {
+    $rt_init_metadata();
     org_teavm_classlib_impl_console_JsConsolePrintStream__init__V($this);
 },
 org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1 = () => {
@@ -2052,6 +2139,7 @@ function org_teavm_classlib_impl_unicode_CharMapping() {
     a.$fastTable = null;
 }
 let org_teavm_classlib_impl_unicode_CharMapping__init__V_I_I = ($this, $binarySearchTable, $fastTable) => {
+    $rt_init_metadata();
     java_lang_Object__init__V($this);
     $this.$binarySearchTable = $binarySearchTable;
     $this.$fastTable = $fastTable;
@@ -2064,6 +2152,7 @@ org_teavm_classlib_impl_unicode_CharMapping__init__V_I_I$1 = (var_0, var_1) => {
 org_teavm_classlib_impl_unicode_UnicodeHelper = $rt_classWithoutFields(),
 org_teavm_classlib_impl_unicode_UnicodeHelper_decodeCaseMapping_JHgFIf = $text => {
     let $flow, $sz, $data, $last, $i, var$7, var$8;
+    $rt_init_metadata();
     $flow = org_teavm_classlib_impl_CharFlow__init__V_C$1($text.$toCharArray__C());
     $sz = org_teavm_classlib_impl_Base46_decodeUnsigned_fpZHVA($flow);
     $data = $rt_createIntArray($sz * 2 | 0);
@@ -2081,6 +2170,7 @@ org_teavm_classlib_impl_unicode_UnicodeHelper_decodeCaseMapping_JHgFIf = $text =
 },
 org_teavm_classlib_impl_unicode_UnicodeHelper_createCharMapping_uLlFHT = $data => {
     let $result, $last, $lastValue, $i, var$6, var$7, $key, $value, var$10;
+    $rt_init_metadata();
     $result = $rt_createIntArray(65536);
     $last = 0;
     $lastValue = 0;
@@ -2125,20 +2215,24 @@ function org_teavm_jso_impl_JSWrapper() {
     this.$js = null;
 }
 let org_teavm_jso_impl_JSWrapper_unwrap_jntYSA = var$1 => {
+    $rt_init_metadata();
     if (var$1 === null)
         return null;
     return !(var$1 instanceof org_teavm_jso_impl_JSWrapper) ? var$1 : var$1.$js;
 },
 org_teavm_jso_impl_JSWrapper_javaToJs_jntYSA = $o => {
+    $rt_init_metadata();
     if ($o === null)
         return null;
     return $o instanceof $rt_objcls() && $o instanceof org_teavm_jso_impl_JSWrapper ? org_teavm_jso_impl_JSWrapper_unwrap_jntYSA($o) : $o;
 },
 org_teavm_platform_Platform = $rt_classWithoutFields(),
 org_teavm_platform_Platform_getArrayItem_PKtewy = $cls => {
+    $rt_init_metadata();
     return $cls.$meta.item;
 },
 org_teavm_platform_Platform_getName_xWEGZR = $cls => {
+    $rt_init_metadata();
     return $rt_str($cls.$meta.name);
 },
 org_teavm_platform_plugin_ResourceAccessor = $rt_classWithoutFields(),
@@ -2519,6 +2613,7 @@ exports.$rt_booleancls = $rt_booleancls;
 exports.$rt_createCharMultiArray = $rt_createCharMultiArray;
 exports.$rt_wrapException = $rt_wrapException;
 exports.$rt_createBooleanArrayFromData = $rt_createBooleanArrayFromData;
+exports.$rt_init_metadata = $rt_init_metadata;
 exports.Long_eq = Long_eq;
 exports.$rt_createByteArrayFromData = $rt_createByteArrayFromData;
 exports.$rt_umod = $rt_umod;
@@ -2565,6 +2660,7 @@ exports.$rt_putStdout = $rt_putStdout;
 exports.$rt_apply_topLevel = $rt_apply_topLevel;
 exports.Long_create = Long_create;
 exports.$rt_longcls = $rt_longcls;
+exports.$rt_metadataQueue = $rt_metadataQueue;
 exports.Long_gt = Long_gt;
 exports.$rt_stringPool_instance = $rt_stringPool_instance;
 exports.$rt_fastStringToCharArray = $rt_fastStringToCharArray;
@@ -2585,6 +2681,7 @@ exports.Long_and = Long_and;
 exports.$rt_longBitsToDouble = $rt_longBitsToDouble;
 exports.$rt_doubleToRawLongBits = $rt_doubleToRawLongBits;
 exports.$rt_createFloatArrayFromData = $rt_createFloatArrayFromData;
+exports.$rt_packages1 = $rt_packages1;
 exports.Long_mul = Long_mul;
 exports.$rt_wrapFunctionVararg = $rt_wrapFunctionVararg;
 exports.$rt_str = $rt_str;
@@ -2595,6 +2692,7 @@ exports.$rt_createIntArrayFromData = $rt_createIntArrayFromData;
 exports.$rt_primitiveArrayCount = $rt_primitiveArrayCount;
 exports.$rt_createDoubleMultiArray = $rt_createDoubleMultiArray;
 exports.$rt_nextId = $rt_nextId;
+exports.$rt_metadata1 = $rt_metadata1;
 exports.$rt_throwableMessage = $rt_throwableMessage;
 exports.$rt_packageData = $rt_packageData;
 exports.$rt_nativeThread = $rt_nativeThread;
