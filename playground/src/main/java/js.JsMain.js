@@ -34,30 +34,32 @@ js_JsMain__init__mmFgnD$1 = var_0 => {
     return var_1;
 },
 js_JsMain_main_WiJjkv = $args => {
-    let $service1, var$3, $service2, $service3, $main, $list, $map, $bar, $baz;
+    let var$2, $service1, $service2, $service3, $main, $list, $map, $bar, $baz;
     org_teavm_runtime_import.$rt_init_metadata();
     js_JsMain_$callClinit();
+    var$2 = js_JsMain$main$lambda$_2_0__init__V$1();
+    setTimeout(org_teavm_runtime_import.org_teavm_jso_impl_JS_function_PmAeiP(org_teavm_runtime_import.org_teavm_jso_impl_JSWrapper_unwrap_jntYSA(var$2), "onTimer"), 1000);
     js_Service1_import.js_Service1_staticNum$set_VI(js_Service1_import.js_Service1_staticNum$get_I() + 1 | 0);
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_VI(js_Service1_import.js_Service1_staticNum$get_I());
     $service1 = js_Service1_import.js_Service1__init__V$1();
-    var$3 = js_Service1_import.js_Service1__init__V$1();
+    var$2 = js_Service1_import.js_Service1__init__V$1();
     $service2 = js_Service2_import.js_Service2__init__V$1();
-    $service3 = js_Service3_import.js_Service3__init__linHFy$1(var$3, $service2);
+    $service3 = js_Service3_import.js_Service3__init__linHFy$1(var$2, $service2);
     $main = js_JsMain__init__mmFgnD$1($service3);
     $list = org_teavm_runtime_import.java_util_ArrayList__init__V$1();
     $list.$add_uKWEwg(org_teavm_runtime_import.$rt_str("item1"));
     $list.$add_uKWEwg(org_teavm_runtime_import.$rt_str("item2"));
     $list.$add_uKWEwg(org_teavm_runtime_import.$rt_str("item3"));
-    var$3 = org_teavm_runtime_import.java_lang_System_out_JQwxsu();
-    org_teavm_runtime_import.java_util_Objects_requireNonNull_lVIoyP(var$3);
-    $list.$forEach_bOKmPa(js_JsMain$main$lambda$_2_0__init__lLaEnR$1(var$3));
+    var$2 = org_teavm_runtime_import.java_lang_System_out_JQwxsu();
+    org_teavm_runtime_import.java_util_Objects_requireNonNull_lVIoyP(var$2);
+    $list.$forEach_bOKmPa(js_JsMain$main$lambda$_2_1__init__lLaEnR$1(var$2));
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS($main.$foo_VHLrpW());
-    var$3 = org_teavm_runtime_import.java_lang_System_out_JQwxsu();
-    var$3.$println_VI((org_teavm_runtime_import.java_lang_String_CASE_INSENSITIVE_ORDER$get_kbAFBE()).$compare_ZygPOh(org_teavm_runtime_import.$rt_str("HELLO"), org_teavm_runtime_import.$rt_str("hello")));
+    var$2 = org_teavm_runtime_import.java_lang_System_out_JQwxsu();
+    var$2.$println_VI((org_teavm_runtime_import.java_lang_String_CASE_INSENSITIVE_ORDER$get_kbAFBE()).$compare_ZygPOh(org_teavm_runtime_import.$rt_str("HELLO"), org_teavm_runtime_import.$rt_str("hello")));
     $map = org_teavm_runtime_import.java_util_HashMap__init__V$1();
     $map.$put_tsMSwf(org_teavm_runtime_import.$rt_str("hello"), org_teavm_runtime_import.java_lang_Integer_valueOf_jxXMoQ(1));
     $map.$put_tsMSwf(org_teavm_runtime_import.$rt_str("world"), org_teavm_runtime_import.java_lang_Integer_valueOf_jxXMoQ(2));
-    $map.$forEach_bjTrMv(js_JsMain$main$lambda$_2_1__init__V$1());
+    $map.$forEach_bjTrMv(js_JsMain$main$lambda$_2_2__init__V$1());
     $bar = js_Bar_import.js_Bar__init__XjCHVS$1(org_teavm_runtime_import.$rt_str("x"));
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS($bar.$foo_VHLrpW());
     $baz = js_Baz_import.js_Baz__init__XjCHVS$1(org_teavm_runtime_import.$rt_str("y"));
@@ -82,7 +84,7 @@ js_JsMain_make_aTGoyT = $what => {
         return null;
     return js_Baz_import.js_Baz__init__XjCHVS$1(org_teavm_runtime_import.$rt_str("y"));
 },
-js_JsMain_lambda$main$0_CeLKBX = ($k, $v) => {
+js_JsMain_lambda$main$1_CeLKBX = ($k, $v) => {
     let var$3, var$4;
     org_teavm_runtime_import.$rt_init_metadata();
     js_JsMain_$callClinit();
@@ -91,9 +93,14 @@ js_JsMain_lambda$main$0_CeLKBX = ($k, $v) => {
     org_teavm_runtime_import.java_lang_StringBuilder_append_ZOYxhs(org_teavm_runtime_import.java_lang_StringBuilder_append_zwKTwE(org_teavm_runtime_import.java_lang_StringBuilder_append_ZOYxhs(var$4, $k), 32), $v);
     var$3.$println_XjCHVS(org_teavm_runtime_import.java_lang_StringBuilder_toString_VHLrpW(var$4));
 },
+js_JsMain_lambda$main$0_V = () => {
+    org_teavm_runtime_import.$rt_init_metadata();
+    js_JsMain_$callClinit();
+    (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS(org_teavm_runtime_import.$rt_str("setTimeout handler"));
+},
 js_JsMain__clinit__V = () => {
     let var$1;
-    var$1 = js_JsMain$_clinit_$lambda$_6_0__init__V$1();
+    var$1 = js_JsMain$_clinit_$lambda$_7_0__init__V$1();
     js_JsMain_export$js_body$_4_jMtQXM("JsMain1", org_teavm_runtime_import.org_teavm_jso_impl_JS_function_PmAeiP(org_teavm_runtime_import.org_teavm_jso_impl_JSWrapper_unwrap_jntYSA(var$1), "create"));
 },
 js_JsMain_export$js_body$_4_jMtQXM = (var$1, var$2) => {
@@ -101,95 +108,120 @@ js_JsMain_export$js_body$_4_jMtQXM = (var$1, var$2) => {
     window[var$1] = var$2;
 },
 js_JsMain$JsMainCtor = org_teavm_runtime_import.$rt_classWithoutFields(0),
-js_JsMain$_clinit_$lambda$_6_0 = org_teavm_runtime_import.$rt_classWithoutFields(),
-js_JsMain$_clinit_$lambda$_6_0__init__V = var$0 => {
+js_JsMain$_clinit_$lambda$_7_0 = org_teavm_runtime_import.$rt_classWithoutFields(),
+js_JsMain$_clinit_$lambda$_7_0__init__V = var$0 => {
     org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
 },
-js_JsMain$_clinit_$lambda$_6_0__init__V$1 = () => {
-    let var_0 = new js_JsMain$_clinit_$lambda$_6_0();
-    js_JsMain$_clinit_$lambda$_6_0__init__V(var_0);
+js_JsMain$_clinit_$lambda$_7_0__init__V$1 = () => {
+    let var_0 = new js_JsMain$_clinit_$lambda$_7_0();
+    js_JsMain$_clinit_$lambda$_7_0__init__V(var_0);
     return var_0;
 },
-js_JsMain$_clinit_$lambda$_6_0_create_yGwQxM = (var$0, var$1) => {
+js_JsMain$_clinit_$lambda$_7_0_create_yGwQxM = (var$0, var$1) => {
     return js_JsMain__init__mmFgnD$1(var$1);
 },
-js_JsMain$_clinit_$lambda$_6_0_create$exported$0_PmAeiP = (var$1, var$2) => {
+js_JsMain$_clinit_$lambda$_7_0_create$exported$0_PmAeiP = (var$1, var$2) => {
     org_teavm_runtime_import.$rt_init_metadata();
     var$2 = var$2;
     return org_teavm_runtime_import.org_teavm_jso_impl_JSWrapper_javaToJs_jntYSA(var$1.$create_yGwQxM(var$2));
+},
+js_JsMain$main$lambda$_2_0 = org_teavm_runtime_import.$rt_classWithoutFields(),
+js_JsMain$main$lambda$_2_0__init__V = var$0 => {
+    org_teavm_runtime_import.$rt_init_metadata();
+    org_teavm_runtime_import.java_lang_Object__init__V(var$0);
+},
+js_JsMain$main$lambda$_2_0__init__V$1 = () => {
+    let var_0 = new js_JsMain$main$lambda$_2_0();
+    js_JsMain$main$lambda$_2_0__init__V(var_0);
+    return var_0;
+},
+js_JsMain$main$lambda$_2_0_onTimer_V = var$0 => {
+    js_JsMain_lambda$main$0_V();
+},
+js_JsMain$main$lambda$_2_0_onTimer$exported$0_ompCkp = var$1 => {
+    org_teavm_runtime_import.$rt_init_metadata();
+    var$1.$onTimer_V();
 };
-function js_JsMain$main$lambda$_2_0() {
+function js_JsMain$main$lambda$_2_1() {
     org_teavm_runtime_import.java_lang_Object.call(this);
     this.$_0 = null;
 }
-let js_JsMain$main$lambda$_2_0__init__lLaEnR = (var$0, var$1) => {
+let js_JsMain$main$lambda$_2_1__init__lLaEnR = (var$0, var$1) => {
     org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
     var$0.$_0 = var$1;
 },
-js_JsMain$main$lambda$_2_0__init__lLaEnR$1 = var_0 => {
-    let var_1 = new js_JsMain$main$lambda$_2_0();
-    js_JsMain$main$lambda$_2_0__init__lLaEnR(var_1, var_0);
+js_JsMain$main$lambda$_2_1__init__lLaEnR$1 = var_0 => {
+    let var_1 = new js_JsMain$main$lambda$_2_1();
+    js_JsMain$main$lambda$_2_1__init__lLaEnR(var_1, var_0);
     return var_1;
 },
-js_JsMain$main$lambda$_2_0_accept_HFyQDR = (var$0, var$1) => {
-    js_JsMain$main$lambda$_2_0_accept_XjCHVS(var$0, var$1);
+js_JsMain$main$lambda$_2_1_accept_HFyQDR = (var$0, var$1) => {
+    js_JsMain$main$lambda$_2_1_accept_XjCHVS(var$0, var$1);
 },
-js_JsMain$main$lambda$_2_0_accept_XjCHVS = (var$0, var$1) => {
+js_JsMain$main$lambda$_2_1_accept_XjCHVS = (var$0, var$1) => {
     var$0.$_0.$println_XjCHVS(var$1);
 },
-js_JsMain$main$lambda$_2_1 = org_teavm_runtime_import.$rt_classWithoutFields(),
-js_JsMain$main$lambda$_2_1__init__V = var$0 => {
+js_JsMain$main$lambda$_2_2 = org_teavm_runtime_import.$rt_classWithoutFields(),
+js_JsMain$main$lambda$_2_2__init__V = var$0 => {
     org_teavm_runtime_import.$rt_init_metadata();
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
 },
-js_JsMain$main$lambda$_2_1__init__V$1 = () => {
-    let var_0 = new js_JsMain$main$lambda$_2_1();
-    js_JsMain$main$lambda$_2_1__init__V(var_0);
+js_JsMain$main$lambda$_2_2__init__V$1 = () => {
+    let var_0 = new js_JsMain$main$lambda$_2_2();
+    js_JsMain$main$lambda$_2_2__init__V(var_0);
     return var_0;
 },
-js_JsMain$main$lambda$_2_1_accept_PLTLFS = (var$0, var$1, var$2) => {
-    js_JsMain$main$lambda$_2_1_accept_CeLKBX(var$0, var$1, var$2);
+js_JsMain$main$lambda$_2_2_accept_PLTLFS = (var$0, var$1, var$2) => {
+    js_JsMain$main$lambda$_2_2_accept_CeLKBX(var$0, var$1, var$2);
 },
-js_JsMain$main$lambda$_2_1_accept_CeLKBX = (var$0, var$1, var$2) => {
-    js_JsMain_lambda$main$0_CeLKBX(var$1, var$2);
+js_JsMain$main$lambda$_2_2_accept_CeLKBX = (var$0, var$1, var$2) => {
+    js_JsMain_lambda$main$1_CeLKBX(var$1, var$2);
 };
 org_teavm_runtime_import.$rt_packages([
 ]);
 org_teavm_runtime_import.$rt_metadata([js_JsMain, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, js_JsMain_$callClinit, [(o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain_foo_VHLrpW), (o,r)=>o.$_init__mmFgnD=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain__init__mmFgnD)],
 js_JsMain$JsMainCtor, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.org_teavm_jso_JSObject], 3, 3, 0, 0, 0,
-js_JsMain$_clinit_$lambda$_6_0, 0, org_teavm_runtime_import.java_lang_Object, [js_JsMain$JsMainCtor], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$_clinit_$lambda$_6_0__init__V), (o,r)=>o.$create_yGwQxM=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$_clinit_$lambda$_6_0_create_yGwQxM)],
-js_JsMain$main$lambda$_2_0, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.java_util_function_Consumer], 0, 3, 0, 0, [(o,r)=>o.$_init__lLaEnR=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$main$lambda$_2_0__init__lLaEnR), (o,r)=>o.$accept_HFyQDR=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$main$lambda$_2_0_accept_HFyQDR), (o,r)=>o.$accept_XjCHVS=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$main$lambda$_2_0_accept_XjCHVS)],
-js_JsMain$main$lambda$_2_1, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.java_util_function_BiConsumer], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$main$lambda$_2_1__init__V), (o,r)=>o.$accept_PLTLFS=r, org_teavm_runtime_import.$rt_wrapFunction2(js_JsMain$main$lambda$_2_1_accept_PLTLFS), (o,r)=>o.$accept_CeLKBX=r, org_teavm_runtime_import.$rt_wrapFunction2(js_JsMain$main$lambda$_2_1_accept_CeLKBX)]]);
+js_JsMain$_clinit_$lambda$_7_0, 0, org_teavm_runtime_import.java_lang_Object, [js_JsMain$JsMainCtor], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$_clinit_$lambda$_7_0__init__V), (o,r)=>o.$create_yGwQxM=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$_clinit_$lambda$_7_0_create_yGwQxM)],
+js_JsMain$main$lambda$_2_0, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.org_teavm_jso_browser_TimerHandler], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$main$lambda$_2_0__init__V), (o,r)=>o.$onTimer_V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$main$lambda$_2_0_onTimer_V)],
+js_JsMain$main$lambda$_2_1, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.java_util_function_Consumer], 0, 3, 0, 0, [(o,r)=>o.$_init__lLaEnR=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$main$lambda$_2_1__init__lLaEnR), (o,r)=>o.$accept_HFyQDR=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$main$lambda$_2_1_accept_HFyQDR), (o,r)=>o.$accept_XjCHVS=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$main$lambda$_2_1_accept_XjCHVS)],
+js_JsMain$main$lambda$_2_2, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.java_util_function_BiConsumer], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$main$lambda$_2_2__init__V), (o,r)=>o.$accept_PLTLFS=r, org_teavm_runtime_import.$rt_wrapFunction2(js_JsMain$main$lambda$_2_2_accept_PLTLFS), (o,r)=>o.$accept_CeLKBX=r, org_teavm_runtime_import.$rt_wrapFunction2(js_JsMain$main$lambda$_2_2_accept_CeLKBX)]]);
 let $rt_export_main = org_teavm_runtime_import.$rt_mainStarter(js_JsMain_main_WiJjkv);
 $rt_export_main.javaException = org_teavm_runtime_import.$rt_javaException;
 let $rt_jso_marker = Symbol('jsoClass');
-(() => {
+org_teavm_runtime_import.$rt_metadataQueue.push(() => {
     let c;
-    c = js_JsMain$_clinit_$lambda$_6_0.prototype;
-    c.create = org_teavm_runtime_import.$rt_callWithReceiver(js_JsMain$_clinit_$lambda$_6_0_create$exported$0_PmAeiP);
-})();
+    c = js_JsMain$_clinit_$lambda$_7_0.prototype;
+    c["create"] = org_teavm_runtime_import.$rt_callWithReceiver(js_JsMain$_clinit_$lambda$_7_0_create$exported$0_PmAeiP);
+    c = js_JsMain$main$lambda$_2_0.prototype;
+    c["onTimer"] = org_teavm_runtime_import.$rt_callWithReceiver(js_JsMain$main$lambda$_2_0_onTimer$exported$0_ompCkp);
+});
 exports.js_JsMain__init__mmFgnD = js_JsMain__init__mmFgnD;
 exports.js_JsMain__init__mmFgnD$1 = js_JsMain__init__mmFgnD$1;
 exports.js_JsMain_foo_VHLrpW = js_JsMain_foo_VHLrpW;
 exports.js_JsMain_main_WiJjkv = js_JsMain_main_WiJjkv;
 exports.js_JsMain = js_JsMain;
-exports.js_JsMain$_clinit_$lambda$_6_0__init__V = js_JsMain$_clinit_$lambda$_6_0__init__V;
-exports.js_JsMain$_clinit_$lambda$_6_0__init__V$1 = js_JsMain$_clinit_$lambda$_6_0__init__V$1;
-exports.js_JsMain$_clinit_$lambda$_6_0_create$exported$0_PmAeiP = js_JsMain$_clinit_$lambda$_6_0_create$exported$0_PmAeiP;
-exports.js_JsMain$_clinit_$lambda$_6_0_create_yGwQxM = js_JsMain$_clinit_$lambda$_6_0_create_yGwQxM;
-exports.js_JsMain$_clinit_$lambda$_6_0 = js_JsMain$_clinit_$lambda$_6_0;
+exports.js_JsMain$_clinit_$lambda$_7_0__init__V = js_JsMain$_clinit_$lambda$_7_0__init__V;
+exports.js_JsMain$_clinit_$lambda$_7_0__init__V$1 = js_JsMain$_clinit_$lambda$_7_0__init__V$1;
+exports.js_JsMain$_clinit_$lambda$_7_0_create$exported$0_PmAeiP = js_JsMain$_clinit_$lambda$_7_0_create$exported$0_PmAeiP;
+exports.js_JsMain$_clinit_$lambda$_7_0_create_yGwQxM = js_JsMain$_clinit_$lambda$_7_0_create_yGwQxM;
+exports.js_JsMain$_clinit_$lambda$_7_0 = js_JsMain$_clinit_$lambda$_7_0;
 exports.js_JsMain$JsMainCtor = js_JsMain$JsMainCtor;
-exports.js_JsMain$main$lambda$_2_0__init__lLaEnR = js_JsMain$main$lambda$_2_0__init__lLaEnR;
-exports.js_JsMain$main$lambda$_2_0__init__lLaEnR$1 = js_JsMain$main$lambda$_2_0__init__lLaEnR$1;
-exports.js_JsMain$main$lambda$_2_0_accept_HFyQDR = js_JsMain$main$lambda$_2_0_accept_HFyQDR;
-exports.js_JsMain$main$lambda$_2_0_accept_XjCHVS = js_JsMain$main$lambda$_2_0_accept_XjCHVS;
+exports.js_JsMain$main$lambda$_2_0__init__V = js_JsMain$main$lambda$_2_0__init__V;
+exports.js_JsMain$main$lambda$_2_0__init__V$1 = js_JsMain$main$lambda$_2_0__init__V$1;
+exports.js_JsMain$main$lambda$_2_0_onTimer$exported$0_ompCkp = js_JsMain$main$lambda$_2_0_onTimer$exported$0_ompCkp;
+exports.js_JsMain$main$lambda$_2_0_onTimer_V = js_JsMain$main$lambda$_2_0_onTimer_V;
 exports.js_JsMain$main$lambda$_2_0 = js_JsMain$main$lambda$_2_0;
-exports.js_JsMain$main$lambda$_2_1__init__V = js_JsMain$main$lambda$_2_1__init__V;
-exports.js_JsMain$main$lambda$_2_1__init__V$1 = js_JsMain$main$lambda$_2_1__init__V$1;
-exports.js_JsMain$main$lambda$_2_1_accept_PLTLFS = js_JsMain$main$lambda$_2_1_accept_PLTLFS;
-exports.js_JsMain$main$lambda$_2_1_accept_CeLKBX = js_JsMain$main$lambda$_2_1_accept_CeLKBX;
+exports.js_JsMain$main$lambda$_2_1__init__lLaEnR = js_JsMain$main$lambda$_2_1__init__lLaEnR;
+exports.js_JsMain$main$lambda$_2_1__init__lLaEnR$1 = js_JsMain$main$lambda$_2_1__init__lLaEnR$1;
+exports.js_JsMain$main$lambda$_2_1_accept_HFyQDR = js_JsMain$main$lambda$_2_1_accept_HFyQDR;
+exports.js_JsMain$main$lambda$_2_1_accept_XjCHVS = js_JsMain$main$lambda$_2_1_accept_XjCHVS;
 exports.js_JsMain$main$lambda$_2_1 = js_JsMain$main$lambda$_2_1;
+exports.js_JsMain$main$lambda$_2_2__init__V = js_JsMain$main$lambda$_2_2__init__V;
+exports.js_JsMain$main$lambda$_2_2__init__V$1 = js_JsMain$main$lambda$_2_2__init__V$1;
+exports.js_JsMain$main$lambda$_2_2_accept_PLTLFS = js_JsMain$main$lambda$_2_2_accept_PLTLFS;
+exports.js_JsMain$main$lambda$_2_2_accept_CeLKBX = js_JsMain$main$lambda$_2_2_accept_CeLKBX;
+exports.js_JsMain$main$lambda$_2_2 = js_JsMain$main$lambda$_2_2;
 exports.main = $rt_export_main;
 exports.main();

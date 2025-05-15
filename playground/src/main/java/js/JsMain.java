@@ -40,6 +40,7 @@ public class JsMain {
     }
 
     public static void main(String[] args) {
+        Window.setTimeout(() -> System.out.println("setTimeout handler"), 1000);
         Service1.staticNum++;
         System.out.println(Service1.staticNum);
         Service1 service1 = new Service1();

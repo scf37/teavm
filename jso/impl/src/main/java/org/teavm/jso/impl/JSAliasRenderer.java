@@ -64,7 +64,8 @@ class JSAliasRenderer implements RendererListener, MethodContributor {
 
         writer.startVariableDeclaration().appendFunction("$rt_jso_marker")
                 .appendGlobal("Symbol").append("('jsoClass')").endDeclaration();
-        writer.append("(()").sameLineWs().append("=>").ws().append("{").softNewLine().indent();
+        writer.appendFunction("$rt_metadataQueue").append(".push(");
+        writer.append("()").sameLineWs().append("=>").ws().append("{").softNewLine().indent();
         writer.append("let c;").softNewLine();
         var exportedNamesByClass = new HashMap<String, String>();
         for (var className : classSource.getClassNames()) {
@@ -79,7 +80,7 @@ class JSAliasRenderer implements RendererListener, MethodContributor {
                 }
             }
         }
-        writer.outdent().append("})();").newLine();
+        writer.outdent().append("});").newLine();
         for (var className : classSource.getClassNames()) {
             var classReader = classSource.get(className);
             var name = exportedNamesByClass.get(className);
@@ -166,7 +167,11 @@ class JSAliasRenderer implements RendererListener, MethodContributor {
     }
 
     private void appendMethodAlias(String name) {
-        if (isKeyword(name)) {
+        // GCC compatibility: method name is needed to resolve functor target in jsFunction, see JS.js
+        // Alternatively, jsFunction could take third parameter: self => methodReference but it is quite complex:
+        // current implementation uses bytecode manipulation to generate jsFunction invocations
+        // but we need raw javascript lambda which too early to emit at bytecode transformation step.
+        if (isKeyword(name) || true) {
             writer.append("c[\"").append(name).append("\"]");
         } else {
             writer.append("c.").append(name);

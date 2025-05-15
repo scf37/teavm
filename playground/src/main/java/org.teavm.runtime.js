@@ -2224,18 +2224,19 @@ org_teavm_classlib_impl_unicode_UnicodeHelper_createCharMapping_uLlFHT = $data =
     return org_teavm_classlib_impl_unicode_CharMapping__init__V_I_I$1($data, $result);
 },
 org_teavm_jso_JSObject = $rt_classWithoutFields(0),
+org_teavm_jso_browser_TimerHandler = $rt_classWithoutFields(0),
 org_teavm_jso_impl_JS = $rt_classWithoutFields(),
 org_teavm_jso_impl_JS_function_PmAeiP = (var$1, var$2) => {
     let name = 'jso$functor$' + var$2;
     let result = var$1[name];
     if (typeof result !== 'function') {
-        let fn = function() {
-            return var$1[var$2].apply(var$1, arguments);
+        let m = var$1[var$2];
+        result = function() {
+            return m.apply(var$1, arguments);
         };
-        result = () => fn;
         var$1[name] = result;
     }
-    return result();
+    return result;
 };
 function org_teavm_jso_impl_JSWrapper() {
     java_lang_Object.call(this);
@@ -2336,6 +2337,7 @@ org_teavm_classlib_impl_console_JSStdoutPrintStream, 0, org_teavm_classlib_impl_
 org_teavm_classlib_impl_unicode_CharMapping, 0, java_lang_Object, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V_I_I=r, $rt_wrapFunction2(org_teavm_classlib_impl_unicode_CharMapping__init__V_I_I)],
 org_teavm_classlib_impl_unicode_UnicodeHelper, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
 org_teavm_jso_JSObject, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+org_teavm_jso_browser_TimerHandler, 0, java_lang_Object, [org_teavm_jso_JSObject], 3, 3, 0, 0, 0,
 org_teavm_jso_impl_JS, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
 org_teavm_jso_impl_JSWrapper, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
 org_teavm_platform_Platform, 0, java_lang_Object, [], 4, 3, 0, 0, 0,
@@ -2583,6 +2585,7 @@ exports.org_teavm_classlib_impl_unicode_UnicodeHelper_createCharMapping_uLlFHT =
 exports.org_teavm_classlib_impl_unicode_UnicodeHelper_decodeCaseMapping_JHgFIf = org_teavm_classlib_impl_unicode_UnicodeHelper_decodeCaseMapping_JHgFIf;
 exports.org_teavm_classlib_impl_unicode_UnicodeHelper = org_teavm_classlib_impl_unicode_UnicodeHelper;
 exports.org_teavm_jso_JSObject = org_teavm_jso_JSObject;
+exports.org_teavm_jso_browser_TimerHandler = org_teavm_jso_browser_TimerHandler;
 exports.org_teavm_jso_impl_JS_function_PmAeiP = org_teavm_jso_impl_JS_function_PmAeiP;
 exports.org_teavm_jso_impl_JS = org_teavm_jso_impl_JS;
 exports.org_teavm_jso_impl_JSWrapper_javaToJs_jntYSA = org_teavm_jso_impl_JSWrapper_javaToJs_jntYSA;

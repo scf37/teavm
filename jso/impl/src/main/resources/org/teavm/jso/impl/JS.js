@@ -18,13 +18,13 @@ function jsFunction(self, method) {
     let name = 'jso$functor$' + method;
     let result = self[name];
     if (typeof result !== 'function') {
-        let fn = function() {
-            return self[method].apply(self, arguments);
-        }
-        result = () => fn;
+        let m = self[method];
+        result = function() {
+            return m.apply(self, arguments);
+        };
         self[name] = result;
     }
-    return result();
+    return result;
 }
 function jsFunctionAsObject(self, method) {
     if (typeof self !== 'function') return self;
