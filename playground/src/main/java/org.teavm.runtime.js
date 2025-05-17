@@ -703,12 +703,11 @@ $rt_metadata = data => {
     $rt_metadataQueue.push(() => $rt_metadata1(data));
 },
 $rt_init_metadata = () => {
-    $rt_init_metadata = () => {
-    };
+    if ($rt_metadataQueue.length === 0) return;
     for (let i = 0;i < $rt_metadataQueue.length;++i) {
         $rt_metadataQueue[i]();
     }
-    $rt_metadataQueue = [];
+    $rt_metadataQueue.length = 0;
 },
 $rt_packages1 = data => {
     let i = 0;
@@ -740,8 +739,10 @@ $rt_metadata1 = data => {
         m.superclass = superclass !== 0 ? superclass : null;
         m.supertypes = data[i++];
         if (m.superclass) {
-            m.supertypes.push(m.superclass);
-            cls.prototype = Object.create(m.superclass.prototype);
+            if (m.supertypes.indexOf(m.superclass) < 0) {
+                m.supertypes.push(m.superclass);
+                cls.prototype = Object.create(m.superclass.prototype);
+            }
         } else {
             cls.prototype = {  };
         }
