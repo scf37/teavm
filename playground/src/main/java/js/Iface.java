@@ -17,4 +17,8 @@ package js;
 
 public interface Iface {
     String foo();
+
+    default String hello() {
+        return "Hello virtual " + foo();
+    }
 }

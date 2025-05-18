@@ -25,7 +25,7 @@ js_Bar_foo_VHLrpW = $this => {
 };
 org_teavm_runtime_import.$rt_packages([-1, "js"
 ]);
-org_teavm_runtime_import.$rt_metadata([js_Bar, "Bar", 0, org_teavm_runtime_import.java_lang_Object, [js_Iface_import.js_Iface], 0, 3, 0, 0, [(o,r)=>o.$_init__XjCHVS=r, org_teavm_runtime_import.$rt_wrapFunction1(js_Bar__init__XjCHVS), (o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Bar_foo_VHLrpW)]]);
+org_teavm_runtime_import.$rt_metadata([js_Bar, "Bar", 0, org_teavm_runtime_import.java_lang_Object, [js_Iface_import.js_Iface], 0, 3, 0, 0, [(o,r)=>o.$hello_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Iface_import.js_Iface_hello_VHLrpW), (o,r)=>o.$_init__XjCHVS=r, org_teavm_runtime_import.$rt_wrapFunction1(js_Bar__init__XjCHVS), (o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Bar_foo_VHLrpW)]]);
 exports.js_Bar__init__XjCHVS = js_Bar__init__XjCHVS;
 exports.js_Bar__init__XjCHVS$1 = js_Bar__init__XjCHVS$1;
 exports.js_Bar_foo_VHLrpW = js_Bar_foo_VHLrpW;

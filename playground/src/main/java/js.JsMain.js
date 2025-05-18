@@ -66,6 +66,7 @@ js_JsMain_main_WiJjkv = $args => {
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS($baz.$foo_VHLrpW());
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS((js_JsMain_make_aTGoyT(org_teavm_runtime_import.$rt_str("Bar"))).$foo_VHLrpW());
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS((js_JsMain_make_aTGoyT(org_teavm_runtime_import.$rt_str("Baz"))).$foo_VHLrpW());
+    (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS((js_JsMain_make_aTGoyT(org_teavm_runtime_import.$rt_str("Baz"))).$hello_VHLrpW());
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS(org_teavm_runtime_import.java_lang_Class_getName_VHLrpW(org_teavm_runtime_import.java_lang_Object_getClass_rQPqgt(js_JsMain_make_aTGoyT(org_teavm_runtime_import.$rt_str("Bar")))));
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS(org_teavm_runtime_import.java_lang_Class_getName_VHLrpW(org_teavm_runtime_import.java_lang_Object_getClass_rQPqgt(js_JsMain_make_aTGoyT(org_teavm_runtime_import.$rt_str("Baz")))));
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_VZ(org_teavm_runtime_import.$rt_isInstance(js_JsMain_make_aTGoyT(org_teavm_runtime_import.$rt_str("Baz")), js_Iface_import.js_Iface));
@@ -224,4 +225,3 @@ exports.js_JsMain$main$lambda$_2_2_accept_PLTLFS = js_JsMain$main$lambda$_2_2_ac
 exports.js_JsMain$main$lambda$_2_2_accept_CeLKBX = js_JsMain$main$lambda$_2_2_accept_CeLKBX;
 exports.js_JsMain$main$lambda$_2_2 = js_JsMain$main$lambda$_2_2;
 exports.main = $rt_export_main;
-exports.main();

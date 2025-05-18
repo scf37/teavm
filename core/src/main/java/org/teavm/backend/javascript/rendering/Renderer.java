@@ -42,6 +42,7 @@ import org.teavm.backend.javascript.codegen.SourceWriter;
 import org.teavm.backend.javascript.spi.GeneratedBy;
 import org.teavm.backend.javascript.spi.Generator;
 import org.teavm.backend.javascript.spi.InjectedBy;
+import org.teavm.backend.javascript.splitting.SplittingJavaScriptTarget;
 import org.teavm.backend.javascript.templating.JavaScriptTemplateFactory;
 import org.teavm.cache.AstCacheEntry;
 import org.teavm.cache.AstDependencyExtractor;
@@ -711,20 +712,27 @@ public class Renderer implements RenderingManager {
                     implementedMethods.add(method.getDescriptor());
                 }
             }
-            superclass = superclass.getParent() != null ? classSource.get(superclass.getParent()) : null;
+            superclass = superclass.getParent() != null ? fullSource().get(superclass.getParent()) : null;
         }
 
         Set<String> visitedClasses = new HashSet<>();
         superclass = cls;
         while (superclass != null) {
             for (String ifaceName : superclass.getInterfaces()) {
-                ClassReader iface = classSource.get(ifaceName);
+                ClassReader iface = fullSource().get(ifaceName);
                 if (iface != null) {
                     collectMethodsToCopyFromInterfacesImpl(iface, target, implementedMethods, visitedClasses);
                 }
             }
-            superclass = superclass.getParent() != null ? classSource.get(superclass.getParent()) : null;
+            superclass = superclass.getParent() != null ? fullSource().get(superclass.getParent()) : null;
         }
+    }
+
+    private ListableClassReaderSource fullSource() {
+        if (SplittingJavaScriptTarget.useSplitting) {
+            return SplittingJavaScriptTarget.fullSource;
+        }
+        return classSource;
     }
 
     private void collectMethodsToCopyFromInterfacesImpl(ClassReader cls, Map<MethodDescriptor, MethodReference> target,
@@ -734,7 +742,7 @@ public class Renderer implements RenderingManager {
         }
 
         for (String ifaceName : cls.getInterfaces()) {
-            ClassReader iface = classSource.get(ifaceName);
+            ClassReader iface = fullSource().get(ifaceName);
             if (iface != null) {
                 collectMethodsToCopyFromInterfacesImpl(iface, target, implementedMethods, visitedClasses);
             }

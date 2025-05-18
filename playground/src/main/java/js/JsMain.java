@@ -68,6 +68,8 @@ public class JsMain {
         System.out.println(make("Bar").foo());
         System.out.println(make("Baz").foo());
 
+        System.out.println(make("Baz").hello());
+
         System.out.println(make("Bar").getClass().getName());
         System.out.println(make("Baz").getClass().getName());
 

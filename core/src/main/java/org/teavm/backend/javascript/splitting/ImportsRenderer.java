@@ -17,6 +17,7 @@ package org.teavm.backend.javascript.splitting;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -25,13 +26,17 @@ import org.teavm.backend.javascript.codegen.NamingStrategy;
 import org.teavm.backend.javascript.codegen.SourceWriter;
 import org.teavm.backend.javascript.codegen.SourceWriterSink;
 import org.teavm.backend.javascript.rendering.RenderingUtil;
+import org.teavm.backend.javascript.spi.InjectedBy;
 import org.teavm.model.AccessLevel;
 import org.teavm.model.BasicBlock;
 import org.teavm.model.ClassHolder;
+import org.teavm.model.ClassReader;
 import org.teavm.model.ElementModifier;
 import org.teavm.model.FieldHolder;
 import org.teavm.model.FieldReference;
 import org.teavm.model.ListableClassHolderSource;
+import org.teavm.model.ListableClassReaderSource;
+import org.teavm.model.MethodDescriptor;
 import org.teavm.model.MethodHolder;
 import org.teavm.model.MethodReader;
 import org.teavm.model.MethodReference;
@@ -94,10 +99,75 @@ public class ImportsRenderer {
                     block.readAllInstructions(imports);
                 }
             }
+
+            for (MethodReference m: collectVirtualMethods(cls).values()) { // used by rt_metadata
+                 imports.importMethod(m);
+            }
         }
 
         return imports.getImports();
     }
+
+    private Map<MethodDescriptor, MethodReference> collectVirtualMethods(ClassHolder cls) {
+        Map<MethodDescriptor, MethodReference> virtualMethods = new LinkedHashMap<>();
+
+        Set<MethodDescriptor> implementedMethods = new HashSet<>();
+        ClassReader superclass = cls;
+        while (superclass != null) {
+            for (MethodReader method : superclass.getMethods()) {
+                if (method.getLevel() != AccessLevel.PRIVATE && !method.hasModifier(ElementModifier.STATIC)
+                        && !method.hasModifier(ElementModifier.ABSTRACT)
+                        && !method.getName().equals("<init>")) {
+                    implementedMethods.add(method.getDescriptor());
+                }
+            }
+            superclass = superclass.getParent() != null ? allClasses.get(superclass.getParent()) : null;
+        }
+
+        Set<String> visitedClasses = new HashSet<>();
+        superclass = cls;
+        while (superclass != null) {
+            for (String ifaceName : superclass.getInterfaces()) {
+                ClassReader iface = allClasses.get(ifaceName);
+                if (iface != null) {
+                    collectMethodsToCopyFromInterfacesImpl(iface, virtualMethods, implementedMethods, visitedClasses);
+                }
+            }
+            superclass = superclass.getParent() != null ? allClasses.get(superclass.getParent()) : null;
+        }
+
+        return virtualMethods;
+    }
+
+    private void collectMethodsToCopyFromInterfacesImpl(
+            ClassReader cls,
+            Map<MethodDescriptor, MethodReference> target,
+            Set<MethodDescriptor> implementedMethods,
+            Set<String> visitedClasses
+    ) {
+        if (!visitedClasses.add(cls.getName())) {
+            return;
+        }
+
+        for (String ifaceName : cls.getInterfaces()) {
+            ClassReader iface = allClasses.get(ifaceName);
+            if (iface != null) {
+                collectMethodsToCopyFromInterfacesImpl(iface, target, implementedMethods, visitedClasses);
+            }
+        }
+
+        for (MethodReader method : cls.getMethods()) {
+            if (!method.hasModifier(ElementModifier.STATIC)
+                    && !method.hasModifier(ElementModifier.ABSTRACT)) {
+                MethodDescriptor descriptor = method.getDescriptor();
+                if (!implementedMethods.contains(descriptor)) {
+                    target.put(descriptor, method.getReference());
+                }
+            }
+        }
+    }
+
+
 
     public void emit(SourceWriter writer, Map<String, Set<String>> imports) {
         var sortedImports = imports.entrySet().stream()
