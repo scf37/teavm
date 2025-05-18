@@ -180,9 +180,9 @@ js_JsMain$main$lambda$_2_2_accept_PLTLFS = (var$0, var$1, var$2) => {
 js_JsMain$main$lambda$_2_2_accept_CeLKBX = (var$0, var$1, var$2) => {
     js_JsMain_lambda$main$1_CeLKBX(var$1, var$2);
 };
-org_teavm_runtime_import.$rt_packages([
+org_teavm_runtime_import.$rt_packages(() => [
 ]);
-org_teavm_runtime_import.$rt_metadata([js_JsMain, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, js_JsMain_$callClinit, [(o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain_foo_VHLrpW), (o,r)=>o.$_init__mmFgnD=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain__init__mmFgnD)],
+org_teavm_runtime_import.$rt_metadata(() => [js_JsMain, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, js_JsMain_$callClinit, [(o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain_foo_VHLrpW), (o,r)=>o.$_init__mmFgnD=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain__init__mmFgnD)],
 js_JsMain$JsMainCtor, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.org_teavm_jso_JSObject], 3, 3, 0, 0, 0,
 js_JsMain$_clinit_$lambda$_7_0, 0, org_teavm_runtime_import.java_lang_Object, [js_JsMain$JsMainCtor], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$_clinit_$lambda$_7_0__init__V), (o,r)=>o.$create_yGwQxM=r, org_teavm_runtime_import.$rt_wrapFunction1(js_JsMain$_clinit_$lambda$_7_0_create_yGwQxM)],
 js_JsMain$main$lambda$_2_0, 0, org_teavm_runtime_import.java_lang_Object, [org_teavm_runtime_import.org_teavm_jso_browser_TimerHandler], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$main$lambda$_2_0__init__V), (o,r)=>o.$onTimer_V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_JsMain$main$lambda$_2_0_onTimer_V)],
@@ -225,3 +225,4 @@ exports.js_JsMain$main$lambda$_2_2_accept_PLTLFS = js_JsMain$main$lambda$_2_2_ac
 exports.js_JsMain$main$lambda$_2_2_accept_CeLKBX = js_JsMain$main$lambda$_2_2_accept_CeLKBX;
 exports.js_JsMain$main$lambda$_2_2 = js_JsMain$main$lambda$_2_2;
 exports.main = $rt_export_main;
+exports.main();

@@ -528,7 +528,7 @@ public class Renderer implements RenderingManager {
 
         writer.markSectionStart(SECTION_METADATA);
 
-        writer.appendFunction("$rt_packages").append("([");
+        writer.appendFunction("$rt_packages").append("(() => [");
         ObjectIntMap<String> packageIndexes = generatePackageMetadata(classReaders, metadataRequirements);
         writer.append("]);").newLine();
 
@@ -542,7 +542,7 @@ public class Renderer implements RenderingManager {
 
     private void renderClassMetadataPortion(List<? extends ClassReader> classes, ObjectIntMap<String> packageIndexes,
             ClassMetadataRequirements metadataRequirements) {
-        writer.appendFunction("$rt_metadata").append("([");
+        writer.appendFunction("$rt_metadata").append("(() => [");
         boolean first = true;
         for (var cls : classes) {
             if (!first) {

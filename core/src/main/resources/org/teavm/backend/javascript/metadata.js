@@ -21,10 +21,10 @@
 let $rt_packageData = null;
 let $rt_metadataQueue = [];
 let $rt_packages = data => {
-    $rt_metadataQueue.push(() => $rt_packages1(data));
+    $rt_metadataQueue.push(() => $rt_packages1(data()));
 }
 let $rt_metadata = data => {
-    $rt_metadataQueue.push(() => $rt_metadata1(data));
+    $rt_metadataQueue.push(() => $rt_metadata1(data()));
 }
 
 let $rt_init_metadata = () => {

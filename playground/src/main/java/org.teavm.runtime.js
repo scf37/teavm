@@ -697,10 +697,10 @@ $rt_putStderr = typeof $rt_putStderrCustom === "function" ? $rt_putStderrCustom 
 $rt_packageData = null,
 $rt_metadataQueue = [],
 $rt_packages = data => {
-    $rt_metadataQueue.push(() => $rt_packages1(data));
+    $rt_metadataQueue.push(() => $rt_packages1(data()));
 },
 $rt_metadata = data => {
-    $rt_metadataQueue.push(() => $rt_metadata1(data));
+    $rt_metadataQueue.push(() => $rt_metadata1(data()));
 },
 $rt_init_metadata = () => {
     if ($rt_metadataQueue.length === 0) return;
@@ -2266,9 +2266,9 @@ org_teavm_platform_Platform_getName_xWEGZR = $cls => {
 },
 org_teavm_platform_plugin_ResourceAccessor = $rt_classWithoutFields(),
 org_teavm_runtime = $rt_classWithoutFields();
-$rt_packages([-1, "java", 0, "lang"
+$rt_packages(() => [-1, "java", 0, "lang"
 ]);
-$rt_metadata([java_lang_Object, "Object", 1, 0, [], 0, 3, 0, 0, [(o,r)=>o.$getClass_rQPqgt=r, $rt_wrapFunction0(java_lang_Object_getClass_rQPqgt), (o,r)=>o.$toString_VHLrpW=r, $rt_wrapFunction0(java_lang_Object_toString_VHLrpW), (o,r)=>o.$identity_I=r, $rt_wrapFunction0(java_lang_Object_identity_I)],
+$rt_metadata(() => [java_lang_Object, "Object", 1, 0, [], 0, 3, 0, 0, [(o,r)=>o.$getClass_rQPqgt=r, $rt_wrapFunction0(java_lang_Object_getClass_rQPqgt), (o,r)=>o.$toString_VHLrpW=r, $rt_wrapFunction0(java_lang_Object_toString_VHLrpW), (o,r)=>o.$identity_I=r, $rt_wrapFunction0(java_lang_Object_identity_I)],
 java_lang_AutoCloseable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
 java_io_Closeable, 0, java_lang_Object, [java_lang_AutoCloseable], 3, 3, 0, 0, 0,
 java_io_Flushable, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
@@ -2324,7 +2324,7 @@ java_util_Arrays, 0, java_lang_Object, [], 0, 3, 0, 0, 0,
 java_util_ConcurrentModificationException, 0, java_lang_RuntimeException, [], 0, 3, 0, 0, [(o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_ConcurrentModificationException__init__V)],
 java_util_HashMap, 0, java_util_AbstractMap, [java_lang_Cloneable, java_io_Serializable], 0, 3, 0, 0, [(o,r)=>o.$newElementArray_HaDQXJ=r, $rt_wrapFunction1(java_util_HashMap_newElementArray_HaDQXJ), (o,r)=>o.$_init__V=r, $rt_wrapFunction0(java_util_HashMap__init__V), (o,r)=>o.$_init__VI=r, $rt_wrapFunction1(java_util_HashMap__init__VI), (o,r)=>o.$_init__VIF=r, $rt_wrapFunction2(java_util_HashMap__init__VIF), (o,r)=>o.$findNonNullKeyEntry_RrVLlf=r, $rt_wrapFunction3(java_util_HashMap_findNonNullKeyEntry_RrVLlf),
 (o,r)=>o.$findNullKeyEntry_QqMKmf=r, $rt_wrapFunction0(java_util_HashMap_findNullKeyEntry_QqMKmf), (o,r)=>o.$put_tsMSwf=r, $rt_wrapFunction2(java_util_HashMap_put_tsMSwf), (o,r)=>o.$rehash_VI=r, $rt_wrapFunction1(java_util_HashMap_rehash_VI), (o,r)=>o.$rehash_V=r, $rt_wrapFunction0(java_util_HashMap_rehash_V), (o,r)=>o.$forEach_bjTrMv=r, $rt_wrapFunction1(java_util_HashMap_forEach_bjTrMv)]]);
-$rt_metadata([java_util_Map$Entry, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
+$rt_metadata(() => [java_util_Map$Entry, 0, java_lang_Object, [], 3, 3, 0, 0, 0,
 java_util_MapEntry, 0, java_lang_Object, [java_util_Map$Entry, java_lang_Cloneable], 0, 0, 0, 0, [(o,r)=>o.$_init__PLTLFS=r, $rt_wrapFunction2(java_util_MapEntry__init__PLTLFS)],
 java_util_HashMap$HashEntry, 0, java_util_MapEntry, [], 0, 0, 0, 0, [(o,r)=>o.$_init__moeQBN=r, $rt_wrapFunction2(java_util_HashMap$HashEntry__init__moeQBN)],
 java_util_Objects, 0, java_lang_Object, [], 4, 3, 0, 0, 0,

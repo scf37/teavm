@@ -27,9 +27,9 @@ js_Service3_foo_VHLrpW = $this => {
     org_teavm_runtime_import.java_lang_StringBuilder_append_ZOYxhs(org_teavm_runtime_import.java_lang_StringBuilder_append_ZOYxhs(org_teavm_runtime_import.java_lang_StringBuilder_append_ZOYxhs(org_teavm_runtime_import.java_lang_StringBuilder_append_ZOYxhs(var$3, org_teavm_runtime_import.$rt_str("Service3: ")), var$1), org_teavm_runtime_import.$rt_str(", ")), var$2);
     return org_teavm_runtime_import.java_lang_StringBuilder_toString_VHLrpW(var$3);
 };
-org_teavm_runtime_import.$rt_packages([
+org_teavm_runtime_import.$rt_packages(() => [
 ]);
-org_teavm_runtime_import.$rt_metadata([js_Service3, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, 0, [(o,r)=>o.$_init__linHFy=r, org_teavm_runtime_import.$rt_wrapFunction2(js_Service3__init__linHFy), (o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Service3_foo_VHLrpW)]]);
+org_teavm_runtime_import.$rt_metadata(() => [js_Service3, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, 0, [(o,r)=>o.$_init__linHFy=r, org_teavm_runtime_import.$rt_wrapFunction2(js_Service3__init__linHFy), (o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Service3_foo_VHLrpW)]]);
 exports.js_Service3__init__linHFy = js_Service3__init__linHFy;
 exports.js_Service3__init__linHFy$1 = js_Service3__init__linHFy$1;
 exports.js_Service3_foo_VHLrpW = js_Service3_foo_VHLrpW;

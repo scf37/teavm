@@ -35,9 +35,9 @@ js_Service1__clinit__V = () => {
     js_Service1_staticNum$set_VI(2);
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS(org_teavm_runtime_import.$rt_str("Service1 static constructor"));
 };
-org_teavm_runtime_import.$rt_packages([
+org_teavm_runtime_import.$rt_packages(() => [
 ]);
-org_teavm_runtime_import.$rt_metadata([js_Service1, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, js_Service1_$callClinit, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Service1__init__V), (o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Service1_foo_VHLrpW)]]);
+org_teavm_runtime_import.$rt_metadata(() => [js_Service1, 0, org_teavm_runtime_import.java_lang_Object, [], 0, 3, 0, js_Service1_$callClinit, [(o,r)=>o.$_init__V=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Service1__init__V), (o,r)=>o.$foo_VHLrpW=r, org_teavm_runtime_import.$rt_wrapFunction0(js_Service1_foo_VHLrpW)]]);
 exports.js_Service1__init__V = js_Service1__init__V;
 exports.js_Service1__init__V$1 = js_Service1__init__V$1;
 exports.js_Service1_foo_VHLrpW = js_Service1_foo_VHLrpW;
