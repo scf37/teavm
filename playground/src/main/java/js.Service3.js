@@ -15,6 +15,7 @@ let js_Service3__init__linHFy = ($this, $service1, $service2) => {
     $this.$service2 = $service2;
 },
 js_Service3__init__linHFy$1 = (var_0, var_1) => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_2 = new js_Service3();
     js_Service3__init__linHFy(var_2, var_0, var_1);
     return var_2;

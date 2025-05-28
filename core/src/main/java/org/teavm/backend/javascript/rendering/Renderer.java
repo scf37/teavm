@@ -802,6 +802,9 @@ public class Renderer implements RenderingManager {
         }
         writer.sameLineWs().append("=>").ws().append("{").softNewLine().indent();
 
+        // for hot reload: class prototype must be initialized before calling new()
+        writer.appendFunction("$rt_init_metadata").append("();").newLine();
+
         String instanceName = variableNameForInitializer(ref.parameterCount());
         writer.append("let " + instanceName).ws().append("=").ws().append("new ").appendClass(
                 ref.getClassName()).append("();").softNewLine();

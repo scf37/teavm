@@ -9,6 +9,7 @@ js_Baz__init__XjCHVS = ($this, $p) => {
     js_Bar_import.js_Bar__init__XjCHVS($this, $p);
 },
 js_Baz__init__XjCHVS$1 = var_0 => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_1 = new js_Baz();
     js_Baz__init__XjCHVS(var_1, var_0);
     return var_1;

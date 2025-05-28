@@ -29,6 +29,7 @@ js_JsMain__init__mmFgnD = ($this, $service3) => {
     $this.$service3 = $service3;
 },
 js_JsMain__init__mmFgnD$1 = var_0 => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_1 = new js_JsMain();
     js_JsMain__init__mmFgnD(var_1, var_0);
     return var_1;
@@ -115,6 +116,7 @@ js_JsMain$_clinit_$lambda$_7_0__init__V = var$0 => {
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
 },
 js_JsMain$_clinit_$lambda$_7_0__init__V$1 = () => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_0 = new js_JsMain$_clinit_$lambda$_7_0();
     js_JsMain$_clinit_$lambda$_7_0__init__V(var_0);
     return var_0;
@@ -133,6 +135,7 @@ js_JsMain$main$lambda$_2_0__init__V = var$0 => {
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
 },
 js_JsMain$main$lambda$_2_0__init__V$1 = () => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_0 = new js_JsMain$main$lambda$_2_0();
     js_JsMain$main$lambda$_2_0__init__V(var_0);
     return var_0;
@@ -154,6 +157,7 @@ let js_JsMain$main$lambda$_2_1__init__lLaEnR = (var$0, var$1) => {
     var$0.$_0 = var$1;
 },
 js_JsMain$main$lambda$_2_1__init__lLaEnR$1 = var_0 => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_1 = new js_JsMain$main$lambda$_2_1();
     js_JsMain$main$lambda$_2_1__init__lLaEnR(var_1, var_0);
     return var_1;
@@ -170,6 +174,7 @@ js_JsMain$main$lambda$_2_2__init__V = var$0 => {
     org_teavm_runtime_import.java_lang_Object__init__V(var$0);
 },
 js_JsMain$main$lambda$_2_2__init__V$1 = () => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_0 = new js_JsMain$main$lambda$_2_2();
     js_JsMain$main$lambda$_2_2__init__V(var_0);
     return var_0;

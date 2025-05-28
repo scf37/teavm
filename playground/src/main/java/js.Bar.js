@@ -12,6 +12,7 @@ let js_Bar__init__XjCHVS = ($this, $p) => {
     $this.$p = $p;
 },
 js_Bar__init__XjCHVS$1 = var_0 => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_1 = new js_Bar();
     js_Bar__init__XjCHVS(var_1, var_0);
     return var_1;

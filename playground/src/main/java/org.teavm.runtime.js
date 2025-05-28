@@ -811,6 +811,7 @@ let java_lang_Object__init__V = $this => {
     $rt_init_metadata();
 },
 java_lang_Object__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_Object();
     java_lang_Object__init__V(var_0);
     return var_0;
@@ -851,6 +852,7 @@ let java_io_FilterOutputStream__init__gjftmH = ($this, $out) => {
     $this.$out = $out;
 },
 java_io_FilterOutputStream__init__gjftmH$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_io_FilterOutputStream();
     java_io_FilterOutputStream__init__gjftmH(var_1, var_0);
     return var_1;
@@ -872,6 +874,7 @@ let java_io_PrintStream__init__RHOATE = ($this, $out, $autoFlush, $charset) => {
     $this.$charset = $charset;
 },
 java_io_PrintStream__init__RHOATE$1 = (var_0, var_1, var_2) => {
+    $rt_init_metadata();
     let var_3 = new java_io_PrintStream();
     java_io_PrintStream__init__RHOATE(var_3, var_0, var_1, var_2);
     return var_3;
@@ -888,6 +891,7 @@ let java_lang_AbstractStringBuilder__init__V = $this => {
     java_lang_AbstractStringBuilder__init__VI($this, 16);
 },
 java_lang_AbstractStringBuilder__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_AbstractStringBuilder();
     java_lang_AbstractStringBuilder__init__V(var_0);
     return var_0;
@@ -898,6 +902,7 @@ java_lang_AbstractStringBuilder__init__VI = ($this, $capacity) => {
     $this.$buffer = $rt_createCharArray($capacity);
 },
 java_lang_AbstractStringBuilder__init__VI$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_AbstractStringBuilder();
     java_lang_AbstractStringBuilder__init__VI(var_1, var_0);
     return var_1;
@@ -1054,6 +1059,7 @@ java_lang_Boolean__init__VZ = ($this, $value) => {
     $this.$value = $value;
 },
 java_lang_Boolean__init__VZ$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_Boolean();
     java_lang_Boolean__init__VZ(var_1, var_0);
     return var_1;
@@ -1188,6 +1194,7 @@ let java_lang_Class__init__YHHWXM = ($this, $platformClass) => {
     $platformClass.classObject = var$2;
 },
 java_lang_Class__init__YHHWXM$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_Class();
     java_lang_Class__init__YHHWXM(var_1, var_0);
     return var_1;
@@ -1227,6 +1234,7 @@ let java_lang_Throwable__init__V = $this => {
     $this.$fillInStackTrace_MBBfFS();
 },
 java_lang_Throwable__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_Throwable();
     java_lang_Throwable__init__V(var_0);
     return var_0;
@@ -1239,6 +1247,7 @@ java_lang_Throwable__init__XjCHVS = ($this, $message) => {
     $this.$message = $message;
 },
 java_lang_Throwable__init__XjCHVS$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_Throwable();
     java_lang_Throwable__init__XjCHVS(var_1, var_0);
     return var_1;
@@ -1258,6 +1267,7 @@ java_lang_Exception__init__V = $this => {
     java_lang_Throwable__init__V($this);
 },
 java_lang_Exception__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_Exception();
     java_lang_Exception__init__V(var_0);
     return var_0;
@@ -1267,6 +1277,7 @@ java_lang_Exception__init__XjCHVS = ($this, $message) => {
     java_lang_Throwable__init__XjCHVS($this, $message);
 },
 java_lang_Exception__init__XjCHVS$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_Exception();
     java_lang_Exception__init__XjCHVS(var_1, var_0);
     return var_1;
@@ -1277,6 +1288,7 @@ java_lang_RuntimeException__init__V = $this => {
     java_lang_Exception__init__V($this);
 },
 java_lang_RuntimeException__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_RuntimeException();
     java_lang_RuntimeException__init__V(var_0);
     return var_0;
@@ -1286,6 +1298,7 @@ java_lang_RuntimeException__init__XjCHVS = ($this, $message) => {
     java_lang_Exception__init__XjCHVS($this, $message);
 },
 java_lang_RuntimeException__init__XjCHVS$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_RuntimeException();
     java_lang_RuntimeException__init__XjCHVS(var_1, var_0);
     return var_1;
@@ -1298,6 +1311,7 @@ java_lang_IllegalArgumentException__init__V = $this => {
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_IllegalArgumentException__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_IllegalArgumentException();
     java_lang_IllegalArgumentException__init__V(var_0);
     return var_0;
@@ -1308,6 +1322,7 @@ java_lang_IndexOutOfBoundsException__init__V = $this => {
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_IndexOutOfBoundsException__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_IndexOutOfBoundsException();
     java_lang_IndexOutOfBoundsException__init__V(var_0);
     return var_0;
@@ -1338,6 +1353,7 @@ java_lang_Integer__init__VI = ($this, $value) => {
     $this.$value = $value;
 },
 java_lang_Integer__init__VI$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_Integer();
     java_lang_Integer__init__VI(var_1, var_0);
     return var_1;
@@ -1442,6 +1458,7 @@ java_lang_NegativeArraySizeException__init__V = $this => {
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_NegativeArraySizeException__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_NegativeArraySizeException();
     java_lang_NegativeArraySizeException__init__V(var_0);
     return var_0;
@@ -1452,6 +1469,7 @@ java_lang_NullPointerException__init__XjCHVS = ($this, $message) => {
     java_lang_RuntimeException__init__XjCHVS($this, $message);
 },
 java_lang_NullPointerException__init__XjCHVS$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_NullPointerException();
     java_lang_NullPointerException__init__XjCHVS(var_1, var_0);
     return var_1;
@@ -1461,6 +1479,7 @@ java_lang_NullPointerException__init__V = $this => {
     java_lang_RuntimeException__init__V($this);
 },
 java_lang_NullPointerException__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_NullPointerException();
     java_lang_NullPointerException__init__V(var_0);
     return var_0;
@@ -1489,6 +1508,7 @@ java_lang_String__init__V = $this => {
     $this.$nativeString = "";
 },
 java_lang_String__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_String();
     java_lang_String__init__V(var_0);
     return var_0;
@@ -1502,6 +1522,7 @@ java_lang_String__init__V_C = ($this, $characters) => {
     $this.$nativeString = $rt_charArrayToString($characters.data, 0, var$2.length);
 },
 java_lang_String__init__V_C$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_String();
     java_lang_String__init__V_C(var_1, var_0);
     return var_1;
@@ -1510,6 +1531,7 @@ java_lang_String__init__HFyQDR = (var$0, var$1) => {
     var$0.$nativeString = var$1;
 },
 java_lang_String__init__HFyQDR$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_lang_String();
     java_lang_String__init__HFyQDR(var_1, var_0);
     return var_1;
@@ -1524,6 +1546,7 @@ java_lang_String__init__V_CII = (var$0, var$1, $offset, $count) => {
     var$0.$nativeString = $rt_charArrayToString(var$1.data, $offset, $count);
 },
 java_lang_String__init__V_CII$1 = (var_0, var_1, var_2) => {
+    $rt_init_metadata();
     let var_3 = new java_lang_String();
     java_lang_String__init__V_CII(var_3, var_0, var_1, var_2);
     return var_3;
@@ -1614,6 +1637,7 @@ java_lang_String$_clinit_$lambda$_115_0__init__V = var$0 => {
     java_lang_Object__init__V(var$0);
 },
 java_lang_String$_clinit_$lambda$_115_0__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_String$_clinit_$lambda$_115_0();
     java_lang_String$_clinit_$lambda$_115_0__init__V(var_0);
     return var_0;
@@ -1630,6 +1654,7 @@ java_lang_StringBuilder__init__V = $this => {
     java_lang_AbstractStringBuilder__init__V($this);
 },
 java_lang_StringBuilder__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_StringBuilder();
     java_lang_StringBuilder__init__V(var_0);
     return var_0;
@@ -1679,6 +1704,7 @@ java_lang_StringIndexOutOfBoundsException__init__V = $this => {
     java_lang_IndexOutOfBoundsException__init__V($this);
 },
 java_lang_StringIndexOutOfBoundsException__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_lang_StringIndexOutOfBoundsException();
     java_lang_StringIndexOutOfBoundsException__init__V(var_0);
     return var_0;
@@ -1746,6 +1772,7 @@ let java_util_ArrayList__init__V = $this => {
     java_util_ArrayList__init__VI($this, 10);
 },
 java_util_ArrayList__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_util_ArrayList();
     java_util_ArrayList__init__V(var_0);
     return var_0;
@@ -1760,6 +1787,7 @@ java_util_ArrayList__init__VI = ($this, $initialCapacity) => {
     $rt_throw(java_lang_IllegalArgumentException__init__V$1());
 },
 java_util_ArrayList__init__VI$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_util_ArrayList();
     java_util_ArrayList__init__VI(var_1, var_0);
     return var_1;
@@ -1834,6 +1862,7 @@ java_util_ConcurrentModificationException__init__V = $this => {
     java_lang_RuntimeException__init__V($this);
 },
 java_util_ConcurrentModificationException__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_util_ConcurrentModificationException();
     java_util_ConcurrentModificationException__init__V(var_0);
     return var_0;
@@ -1854,6 +1883,7 @@ java_util_HashMap__init__V = $this => {
     java_util_HashMap__init__VI($this, 16);
 },
 java_util_HashMap__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new java_util_HashMap();
     java_util_HashMap__init__V(var_0);
     return var_0;
@@ -1863,6 +1893,7 @@ java_util_HashMap__init__VI = ($this, $capacity) => {
     java_util_HashMap__init__VIF($this, $capacity, 0.75);
 },
 java_util_HashMap__init__VI$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new java_util_HashMap();
     java_util_HashMap__init__VI(var_1, var_0);
     return var_1;
@@ -1897,6 +1928,7 @@ java_util_HashMap__init__VIF = ($this, $capacity, $loadFactor) => {
     $rt_throw(java_lang_IllegalArgumentException__init__V$1());
 },
 java_util_HashMap__init__VIF$1 = (var_0, var_1) => {
+    $rt_init_metadata();
     let var_2 = new java_util_HashMap();
     java_util_HashMap__init__VIF(var_2, var_0, var_1);
     return var_2;
@@ -2021,6 +2053,7 @@ let java_util_MapEntry__init__PLTLFS = ($this, $theKey, $theValue) => {
     $this.$value = $theValue;
 },
 java_util_MapEntry__init__PLTLFS$1 = (var_0, var_1) => {
+    $rt_init_metadata();
     let var_2 = new java_util_MapEntry();
     java_util_MapEntry__init__PLTLFS(var_2, var_0, var_1);
     return var_2;
@@ -2036,6 +2069,7 @@ let java_util_HashMap$HashEntry__init__moeQBN = ($this, $theKey, $hash) => {
     $this.$origKeyHash = $hash;
 },
 java_util_HashMap$HashEntry__init__moeQBN$1 = (var_0, var_1) => {
+    $rt_init_metadata();
     let var_2 = new java_util_HashMap$HashEntry();
     java_util_HashMap$HashEntry__init__moeQBN(var_2, var_0, var_1);
     return var_2;
@@ -2106,6 +2140,7 @@ let org_teavm_classlib_impl_CharFlow__init__V_C = ($this, $characters) => {
     $this.$characters = $characters;
 },
 org_teavm_classlib_impl_CharFlow__init__V_C$1 = var_0 => {
+    $rt_init_metadata();
     let var_1 = new org_teavm_classlib_impl_CharFlow();
     org_teavm_classlib_impl_CharFlow__init__V_C(var_1, var_0);
     return var_1;
@@ -2152,6 +2187,7 @@ org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V = $this => {
     org_teavm_classlib_impl_console_JsConsolePrintStream__init__V($this);
 },
 org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V$1 = () => {
+    $rt_init_metadata();
     let var_0 = new org_teavm_classlib_impl_console_JSStdoutPrintStream();
     org_teavm_classlib_impl_console_JSStdoutPrintStream__init__V(var_0);
     return var_0;
@@ -2173,6 +2209,7 @@ let org_teavm_classlib_impl_unicode_CharMapping__init__V_I_I = ($this, $binarySe
     $this.$fastTable = $fastTable;
 },
 org_teavm_classlib_impl_unicode_CharMapping__init__V_I_I$1 = (var_0, var_1) => {
+    $rt_init_metadata();
     let var_2 = new org_teavm_classlib_impl_unicode_CharMapping();
     org_teavm_classlib_impl_unicode_CharMapping__init__V_I_I(var_2, var_0, var_1);
     return var_2;

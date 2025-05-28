@@ -20,6 +20,7 @@ js_Service1__init__V = $this => {
     (org_teavm_runtime_import.java_lang_System_out_JQwxsu()).$println_XjCHVS(org_teavm_runtime_import.$rt_str("Service1 constructor"));
 },
 js_Service1__init__V$1 = () => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_0 = new js_Service1();
     js_Service1__init__V(var_0);
     return var_0;

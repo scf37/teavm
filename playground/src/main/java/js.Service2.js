@@ -7,6 +7,7 @@ js_Service2__init__V = $this => {
     org_teavm_runtime_import.java_lang_Object__init__V($this);
 },
 js_Service2__init__V$1 = () => {
+    org_teavm_runtime_import.$rt_init_metadata();
     let var_0 = new js_Service2();
     js_Service2__init__V(var_0);
     return var_0;
