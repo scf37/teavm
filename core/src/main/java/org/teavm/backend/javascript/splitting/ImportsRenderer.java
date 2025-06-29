@@ -238,6 +238,22 @@ public class ImportsRenderer {
             }
         }
 
+        @Override
+        public void createArray(VariableReader receiver, ValueType itemType, VariableReader size) {
+            if (itemType instanceof ValueType.Object) {
+                String className = ((ValueType.Object) itemType).getClassName();
+                registerImport(className, namingStrategy.className(className).name);
+            }
+        }
+
+        @Override
+        public void createArray(VariableReader receiver, ValueType itemType, List<? extends VariableReader> dimensions) {
+            if (itemType instanceof ValueType.Object) {
+                String className = ((ValueType.Object) itemType).getClassName();
+                registerImport(className, namingStrategy.className(className).name);
+            }
+        }
+
         void importMethod(MethodReference method) {
             if (classNames.contains(method.getClassName())) {
                 return;
